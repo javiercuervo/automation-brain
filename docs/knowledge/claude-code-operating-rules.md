@@ -1200,6 +1200,7 @@ return {
 13. **SIEMPRE loguea en console.log()**: visible en Task History para debugging.
 14. **NUNCA olvides el `reason` en `control`**: explica decisiones para auditoria.
 15. **SIEMPRE respeta la arquitectura**: Claude genera → GitHub aloja → Pabbly ejecuta.
+16. **NUNCA incluyas PII real en commits**: emails, DNIs, teléfonos, direcciones, firmas, URLs de firma deben ser anonimizados. Usar placeholders: `student+001@example.com`, `00000000T`, `+34600000000`, `REDACTED_URL`. Si se detecta PII en archivos generados, eliminarla o añadir a `.gitignore` antes del commit.
 
 ---
 
