@@ -1,6 +1,6 @@
 {
   "mapping_name": "DECA Inscripción → SOLICITUDES_DECA",
-  "mapping_version": "1.0.0",
+  "mapping_version": "1.2.0",
   "automation_id": "WF_001_DECA_INSCRIPCION",
   "description": "Sincroniza formulario de inscripción DECA desde Google Sheets a Stackby",
 
@@ -198,12 +198,14 @@
       "required": false
     },
     "ACEPTADO EN": {
-      "source": "ADMITIDO EN",
+      "source": null,
       "target": "ACEPTADO EN",
-      "target_pending_verification": "Verificar si Stackby tiene trailing space",
-      "type": "text",
+      "type": "select",
       "required": false,
-      "notes": "Sheet: 'ADMITIDO EN' → Stackby: 'ACEPTADO EN' (VERIFICAR trailing space)"
+      "allowed_values": ["PENDIENTE", "UNO", "DOS", "TRES", "COMPLETO", "CONVALIDACIÓN"],
+      "default": "PENDIENTE",
+      "managed_by": "system",
+      "notes": "NO se mapea desde Google Sheets. Se gestiona internamente: CREATE → 'PENDIENTE', UPDATE → mantener valor existente. El campo 'ADMITIDO EN' del Sheet se IGNORA."
     },
     "Thank You Screen": {
       "source": "Thank You Screen",
@@ -253,6 +255,7 @@
   },
 
   "changelog": {
+    "1.2.0": "ACEPTADO EN: gestionado internamente (Single Select), no se importa del Sheet",
     "1.0.0": "Initial mapping: Google Sheets DECA Inscripción → Stackby SOLICITUDES_DECA"
   }
 }

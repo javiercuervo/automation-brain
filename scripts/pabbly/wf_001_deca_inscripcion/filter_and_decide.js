@@ -12,7 +12,7 @@
  * @outputs Envelope actualizado con control.action = CREATE|UPDATE|ERROR
  */
 
-const SCRIPT_VERSION = "1.0.0";
+const SCRIPT_VERSION = "1.2.0";
 const SCRIPT_NAME = "wf_001_filter_and_decide";
 
 // ============================================================================
@@ -191,6 +191,33 @@ try {
 
   // Añadir row_id para update (si aplica)
   envelope.data._stackby_row_id = existingRowId;
+
+  // =========================================================================
+  // GESTIÓN DE "ACEPTADO EN" (campo gestionado internamente)
+  // - CREATE: siempre set "PENDIENTE"
+  // - UPDATE: solo set "PENDIENTE" si el valor actual está vacío/null
+  // =========================================================================
+  const ACEPTADO_EN_DEFAULT = "PENDIENTE";
+  const ACEPTADO_EN_FIELD = "ACEPTADO EN";
+
+  if (action === "CREATE") {
+    // Nuevo registro: siempre inicializar con PENDIENTE
+    envelope.data.targets[ACEPTADO_EN_FIELD] = ACEPTADO_EN_DEFAULT;
+    console.log(`[${SCRIPT_NAME}] CREATE: Setting "${ACEPTADO_EN_FIELD}" = "${ACEPTADO_EN_DEFAULT}"`);
+  } else if (action === "UPDATE" && matchingRecord) {
+    // Registro existente: verificar si tiene valor
+    const existingValue = matchingRecord.fields[ACEPTADO_EN_FIELD];
+
+    if (!existingValue || existingValue === "" || existingValue === null) {
+      // Campo vacío en registro existente: inicializar con PENDIENTE
+      envelope.data.targets[ACEPTADO_EN_FIELD] = ACEPTADO_EN_DEFAULT;
+      console.log(`[${SCRIPT_NAME}] UPDATE: "${ACEPTADO_EN_FIELD}" was empty, setting to "${ACEPTADO_EN_DEFAULT}"`);
+    } else {
+      // Campo ya tiene valor: NO sobrescribir (eliminar del targets si existe)
+      delete envelope.data.targets[ACEPTADO_EN_FIELD];
+      console.log(`[${SCRIPT_NAME}] UPDATE: Preserving existing "${ACEPTADO_EN_FIELD}" = "${existingValue}"`);
+    }
+  }
 
   // Añadir metadata de decisión
   envelope.meta.decision_ts = new Date().toISOString();

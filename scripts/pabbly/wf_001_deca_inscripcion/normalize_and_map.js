@@ -9,7 +9,7 @@
  * @outputs Envelope {meta, data, control}
  */
 
-const SCRIPT_VERSION = "1.0.0";
+const SCRIPT_VERSION = "1.2.0";
 const SCRIPT_NAME = "wf_001_deca_inscripcion";
 const WORKFLOW_NAME = "WF_001_DECA_INSCRIPCION";
 
@@ -57,7 +57,7 @@ const FIELD_MAP = {
   "Teléfono de contacto":            "Teléfono de contacto",
   "Correo electrónico":              "Correo electrónico",
   "Firma del solicitante":           "Firma del solicitante",
-  "ADMITIDO EN":                     "ACEPTADO EN",   // VERIFICAR: puede tener trailing space
+  // "ADMITIDO EN" del Sheet se IGNORA - "ACEPTADO EN" es gestionado internamente
   "Thank You Screen":                "Thank You Screen"
 };
 
@@ -263,7 +263,8 @@ function applyMapping(normalized) {
   targets["Teléfono de contacto"] = normalized.telefono;
   targets["Correo electrónico"] = normalized.email;
   targets["Firma del solicitante"] = normalized.firma_url;
-  targets["ACEPTADO EN"] = normalized.aceptado_en;   // VERIFICAR trailing space
+  // "ACEPTADO EN" NO se incluye aquí - se gestiona en filter_and_decide.js
+  // CREATE → "PENDIENTE", UPDATE → mantener valor existente
   targets["Thank You Screen"] = normalized.thank_you;
 
   return targets;
@@ -328,7 +329,7 @@ try {
     telefono: normalizePhone(rawData["Teléfono de contacto"]),
     email: normalizeEmail(rawData["Correo electrónico"]),
     firma_url: normalizeString(rawData["Firma del solicitante"]),
-    aceptado_en: normalizeString(rawData["ADMITIDO EN"]),
+    // aceptado_en: NO se importa del Sheet - se gestiona internamente
     thank_you: normalizeString(rawData["Thank You Screen"])
   };
 

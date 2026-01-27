@@ -1,7 +1,7 @@
 # WF_001: DECA Inscripción → Stackby
 
 **Automatización**: WF_001_DECA_INSCRIPCION
-**Versión**: 1.1.0
+**Versión**: 1.2.0
 **Fecha**: Enero 2026
 **Autor**: Claude Code
 
@@ -348,12 +348,19 @@ Raw Data (truncated)→ {{step_4.data.raw}}
 - `Selección de módulos`: Multiselect, el script lo convierte a array
 - `Sexo`: Normaliza "Hombre"→"Masculino", "Mujer"→"Femenino"
 - `Fecha de nacimiento`: Parsea "Date: 07 Jul, 2004" → "2004-07-07"
-- `ACEPTADO EN`: Verificar si tiene trailing space en Stackby (ver nota abajo)
 
-### Nota sobre "ACEPTADO EN"
-**PENDIENTE VERIFICACIÓN**: Confirmar el nombre exacto del campo en Stackby.
-Si hay trailing space, usar `"ACEPTADO EN "` (con espacio).
-Si no hay trailing space, usar `"ACEPTADO EN"` (sin espacio).
+### Campo "ACEPTADO EN" (Gestionado Internamente)
+
+**Tipo**: Single Select
+**Opciones**: `PENDIENTE`, `UNO`, `DOS`, `TRES`, `COMPLETO`, `CONVALIDACIÓN`
+
+**Regla de negocio**:
+- **NO se importa desde Google Sheets** (el campo "ADMITIDO EN" del formulario se ignora)
+- **CREATE**: Se inicializa automáticamente con `"PENDIENTE"`
+- **UPDATE**: Se preserva el valor existente (no se sobrescribe)
+- **Excepción UPDATE**: Si el valor actual está vacío, se establece `"PENDIENTE"`
+
+**Propósito**: Permite al personal administrativo gestionar el estado de aceptación sin que las re-sincronizaciones lo sobrescriban.
 
 ---
 
@@ -396,5 +403,6 @@ Si no hay trailing space, usar `"ACEPTADO EN"` (sin espacio).
 
 | Versión | Fecha | Cambios |
 |---------|-------|---------|
+| 1.2.0 | Ene 2026 | "ACEPTADO EN" gestionado internamente (no se importa del Sheet) |
 | 1.1.0 | Ene 2026 | Añadido paso 6b (filter_and_decide.js) para clave compuesta |
 | 1.0.0 | Ene 2026 | Versión inicial |

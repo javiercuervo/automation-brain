@@ -1,7 +1,7 @@
 # WF_001: Checklist de Pruebas
 
 **Automatización**: WF_001_DECA_INSCRIPCION
-**Versión**: 1.1.0
+**Versión**: 1.2.0
 
 > **NOTA**: Todos los datos en este documento son SINTÉTICOS. No usar datos reales en pruebas.
 
@@ -221,6 +221,47 @@ Código postal: 06800 (con cero inicial)
 
 ---
 
+## Pruebas de Campo "ACEPTADO EN"
+
+### Test: CREATE inicializa con PENDIENTE
+
+**Procedimiento**:
+1. Crear nueva fila en Sheet con datos válidos
+2. Ejecutar workflow (primera vez para este email+submitted_on)
+
+**Expected**:
+- [ ] `control.action` = `CREATE`
+- [ ] `data.targets["ACEPTADO EN"]` = `"PENDIENTE"`
+- [ ] Registro en Stackby tiene `ACEPTADO EN` = `"PENDIENTE"`
+
+---
+
+### Test: UPDATE preserva valor existente
+
+**Procedimiento**:
+1. En Stackby, cambiar manualmente `ACEPTADO EN` de un registro a `"COMPLETO"`
+2. Re-ejecutar workflow con la misma fila del Sheet
+
+**Expected**:
+- [ ] `control.action` = `UPDATE`
+- [ ] `data.targets` NO contiene `"ACEPTADO EN"` (o está eliminado)
+- [ ] Registro en Stackby mantiene `ACEPTADO EN` = `"COMPLETO"` (no se sobrescribe)
+
+---
+
+### Test: UPDATE con campo vacío inicializa PENDIENTE
+
+**Procedimiento**:
+1. En Stackby, vaciar manualmente `ACEPTADO EN` de un registro existente
+2. Re-ejecutar workflow con la misma fila del Sheet
+
+**Expected**:
+- [ ] `control.action` = `UPDATE`
+- [ ] `data.targets["ACEPTADO EN"]` = `"PENDIENTE"`
+- [ ] Registro en Stackby tiene `ACEPTADO EN` = `"PENDIENTE"`
+
+---
+
 ## Checklist Post-Pruebas
 
 - [ ] **5 filas de muestra procesadas correctamente**
@@ -232,6 +273,10 @@ Código postal: 06800 (con cero inicial)
 - [ ] **Códigos postales preservan ceros**
 - [ ] **Mapping de columnas correcto** (Sheet → Stackby)
 - [ ] **Clave compuesta funciona** (email + submitted_on)
+- [ ] **ACEPTADO EN gestionado correctamente**:
+  - [ ] CREATE → inicializa con "PENDIENTE"
+  - [ ] UPDATE → preserva valor existente (no sobrescribe)
+  - [ ] UPDATE con campo vacío → inicializa con "PENDIENTE"
 
 ---
 
@@ -269,5 +314,6 @@ curl -X GET "https://stackby.com/api/betav1/rowlist/stHbLS2nezlbb3BL78/tbcoXCDU2
 
 | Versión | Fecha | Cambios |
 |---------|-------|---------|
+| 1.2.0 | Ene 2026 | Tests para "ACEPTADO EN" gestionado internamente |
 | 1.1.0 | Ene 2026 | Añadido paso filter_and_decide.js; anonimizados datos de prueba |
 | 1.0.0 | Ene 2026 | Versión inicial |
