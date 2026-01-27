@@ -1,20 +1,42 @@
 /**
  * @name WF_001 DECA Inscripción - Normalize & Map
- * @version 1.0.0
+ * @version 2.0.0
  * @author Claude Code
  * @description Transforma fila de Google Sheets (DECA Inscripción) en Envelope
  *              normalizado para upsert en Stackby (SOLICITUDES_DECA)
  * @automation WF_001_DECA_INSCRIPCION
- * @inputs input (objeto JSON con campos del row de Google Sheets)
+ * @platform Pabbly Connect - Code by Pabbly (JavaScript) - NodeJS 18.x
+ *
+ * @setup CONFIGURACIÓN EN PABBLY:
+ *        1. Copia este script completo en el módulo "Code by Pabbly"
+ *        2. Verifica que ITERATOR_STEP_NUMBER coincida con tu paso Iterator
+ *        3. Guarda y ejecuta "Save & Send Test Request"
+ *
+ * @important En Pabbly, los datos del Iterator están en el objeto 'data'
+ *            Se accede como: data['3. Nombre'] (3 = número del paso Iterator)
+ *
  * @outputs Envelope {meta, data, control}
  */
 
-const SCRIPT_VERSION = "1.2.0";
+const SCRIPT_VERSION = "2.0.0";
 const SCRIPT_NAME = "wf_001_deca_inscripcion";
 const WORKFLOW_NAME = "WF_001_DECA_INSCRIPCION";
 
 // ============================================================================
-// 1. CONFIGURATION & CONSTANTS
+// ⚠️  ÚNICA CONFIGURACIÓN NECESARIA: NÚMERO DEL PASO ITERATOR
+// ============================================================================
+// Cambia este número si tu Iterator NO es el paso 3
+const ITERATOR_STEP_NUMBER = 3;
+// ============================================================================
+
+// Helper para acceder a campos del Iterator
+function getField(fieldName) {
+  const key = `${ITERATOR_STEP_NUMBER}. ${fieldName}`;
+  return data[key] !== undefined ? data[key] : null;
+}
+
+// ============================================================================
+// CONFIGURATION & CONSTANTS
 // ============================================================================
 
 const CONFIG = {
@@ -33,34 +55,6 @@ const CONFIG = {
   required_fields: ["email", "nombre", "apellidos", "dni", "submitted_on"]
 };
 
-// Mapeo de nombres de columna: Sheet → Stackby
-const FIELD_MAP = {
-  // Sheet column                    → Stackby column
-  "Submitted On (UTC)":              "Submitted On (UTC)",
-  "¿En qué se desea matricular?":    "¿En qué se desea matricular?",
-  "Selección de Módulos":            "Selección de módulos",  // minúscula en Stackby
-  "Título civil":                    "Título civil",
-  "Indique su título":               "Especificar otro título",  // diferente nombre
-  "Nombre":                          "Nombre",
-  "Apellidos":                       "Apellidos",
-  "Calle (vía)":                     "Calle (vía)",
-  "Número, piso, puerta":            "Número, piso, puerta",
-  "Centro asociado al que pertenece":"Centro asociado al que pertenece",
-  "Indique el nombre del centro":    "Indique el nombre del centro",
-  "Población":                       "Población",
-  "Código postal":                   "Código postal",
-  "Provincia":                       "Provincia",
-  "DNI / Pasaporte / NIE":           "DNI / Pasaporte / NIE",
-  "Fecha de nacimiento":             "Fecha de nacimiento",
-  "Estado civil":                    "Estado civil",
-  "Sexo":                            "Sexo",
-  "Teléfono de contacto":            "Teléfono de contacto",
-  "Correo electrónico":              "Correo electrónico",
-  "Firma del solicitante":           "Firma del solicitante",
-  // "ADMITIDO EN" del Sheet se IGNORA - "ACEPTADO EN" es gestionado internamente
-  "Thank You Screen":                "Thank You Screen"
-};
-
 // Normalización de valores Sexo
 const SEXO_NORMALIZE = {
   "Hombre": "Masculino",
@@ -74,7 +68,7 @@ const SEXO_NORMALIZE = {
 };
 
 // ============================================================================
-// 2. VALIDATION FUNCTIONS
+// VALIDATION FUNCTIONS
 // ============================================================================
 
 function validateEmail(email) {
@@ -84,7 +78,6 @@ function validateEmail(email) {
 
 function validateDNI(dni) {
   if (!dni) return false;
-  // Acepta DNI (8 dígitos + letra), NIE (X/Y/Z + 7 dígitos + letra), Pasaporte
   return /^[0-9XYZxyz][0-9]{6,7}[A-Za-z]?$/.test(dni.replace(/[\s-]/g, ''));
 }
 
@@ -99,21 +92,14 @@ function validateRequired(data, fields) {
   return errors;
 }
 
-function isEmptyRow(raw) {
-  // Verifica si todos los campos relevantes están vacíos
-  const values = Object.values(raw);
-  return values.every(v => v === null || v === undefined || v === "");
-}
-
 // ============================================================================
-// 3. NORMALIZATION FUNCTIONS
+// NORMALIZATION FUNCTIONS
 // ============================================================================
 
 function normalizeString(value) {
   if (value === null || value === undefined) return null;
   const trimmed = String(value).trim();
   if (trimmed === "") return null;
-  // Colapsa espacios múltiples
   return trimmed.replace(/\s+/g, " ");
 }
 
@@ -125,7 +111,6 @@ function normalizeEmail(email) {
 
 function normalizePhone(phone) {
   if (!phone) return null;
-  // Elimina todo excepto dígitos y +
   const cleaned = String(phone).replace(/[^\d+]/g, '');
   if (cleaned.length < 9) return null;
   return cleaned;
@@ -133,7 +118,6 @@ function normalizePhone(phone) {
 
 function normalizeDNI(dni) {
   if (!dni) return null;
-  // Elimina espacios y guiones, convierte a mayúsculas
   return String(dni).replace(/[\s-]/g, '').toUpperCase();
 }
 
@@ -144,25 +128,14 @@ function normalizeSexo(sexo) {
   return SEXO_NORMALIZE[normalized] || normalized;
 }
 
-/**
- * Parsea fecha en formato "DD MMM, YYYY" o "Date: DD MMM, YYYY"
- * Ejemplo: "17 Oct, 2025" → "2025-10-17"
- *          "Date: 07 Jul, 2004" → "2004-07-07"
- */
 function parseDate(dateStr) {
   if (!dateStr) return null;
-
-  // Elimina prefijo "Date: " si existe
   let cleaned = String(dateStr).replace(/^Date:\s*/i, '').trim();
-
-  // Mapa de meses
   const months = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
     'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
     'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
   };
-
-  // Intenta parsear "DD MMM, YYYY" o "DD MMM YYYY"
   const match = cleaned.match(/(\d{1,2})\s+([A-Za-z]{3}),?\s+(\d{4})/);
   if (match) {
     const day = match[1].padStart(2, '0');
@@ -170,30 +143,20 @@ function parseDate(dateStr) {
     const year = match[3];
     return `${year}-${month}-${day}`;
   }
-
-  // Fallback: intenta Date.parse
   const parsed = new Date(cleaned);
   if (!isNaN(parsed.getTime())) {
     return parsed.toISOString().split('T')[0];
   }
-
   return null;
 }
 
-/**
- * Parsea datetime en formato "DD MMM, YYYY HH:mm"
- * Ejemplo: "17 Oct, 2025 08:10" → "2025-10-17T08:10:00Z"
- */
 function parseDateTime(dateTimeStr) {
   if (!dateTimeStr) return null;
-
   const months = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
     'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
     'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
   };
-
-  // Parsea "DD MMM, YYYY HH:mm"
   const match = String(dateTimeStr).match(/(\d{1,2})\s+([A-Za-z]{3}),?\s+(\d{4})\s+(\d{1,2}):(\d{2})/);
   if (match) {
     const day = match[1].padStart(2, '0');
@@ -203,29 +166,20 @@ function parseDateTime(dateTimeStr) {
     const minute = match[5];
     return `${year}-${month}-${day}T${hour}:${minute}:00Z`;
   }
-
-  // Fallback
   const parsed = new Date(dateTimeStr);
   if (!isNaN(parsed.getTime())) {
     return parsed.toISOString();
   }
-
   return null;
 }
 
-/**
- * Separa string por comas en array (para multiselect)
- */
 function splitComma(value) {
   if (!value) return [];
-  return String(value)
-    .split(',')
-    .map(item => item.trim())
-    .filter(item => item !== '');
+  return String(value).split(',').map(item => item.trim()).filter(item => item !== '');
 }
 
 // ============================================================================
-// 4. IDEMPOTENCY KEY GENERATION
+// IDEMPOTENCY KEY GENERATION
 // ============================================================================
 
 function generateIdempotencyKey(normalized) {
@@ -235,16 +189,14 @@ function generateIdempotencyKey(normalized) {
 }
 
 // ============================================================================
-// 5. APPLY MAPPING (Sheet → Stackby targets)
+// APPLY MAPPING (Sheet → Stackby targets)
 // ============================================================================
 
 function applyMapping(normalized) {
   const targets = {};
-
-  // Mapeo directo con nombres de Stackby
   targets["Submitted On (UTC)"] = normalized.submitted_on;
   targets["¿En qué se desea matricular?"] = normalized.tipo_matricula;
-  targets["Selección de módulos"] = normalized.seleccion_modulos; // ya es array
+  targets["Selección de módulos"] = normalized.seleccion_modulos;
   targets["Título civil"] = normalized.titulo_civil;
   targets["Especificar otro título"] = normalized.otro_titulo;
   targets["Nombre"] = normalized.nombre;
@@ -263,30 +215,53 @@ function applyMapping(normalized) {
   targets["Teléfono de contacto"] = normalized.telefono;
   targets["Correo electrónico"] = normalized.email;
   targets["Firma del solicitante"] = normalized.firma_url;
-  // "ACEPTADO EN" NO se incluye aquí - se gestiona en filter_and_decide.js
-  // CREATE → "PENDIENTE", UPDATE → mantener valor existente
   targets["Thank You Screen"] = normalized.thank_you;
-
   return targets;
 }
 
 // ============================================================================
-// 6. MAIN LOGIC
+// MAIN LOGIC
 // ============================================================================
 
 try {
-  // Parse input
-  const rawData = typeof input === "string" ? JSON.parse(input) : input;
-
   // Log para debugging
-  console.log(`[${SCRIPT_NAME}] Processing row...`);
+  console.log(`[${SCRIPT_NAME}] v${SCRIPT_VERSION} - Procesando datos del Iterator (paso ${ITERATOR_STEP_NUMBER})...`);
 
-  // Verifica fila vacía
-  if (isEmptyRow(rawData)) {
-    return {
+  // Extraer datos del Iterator usando el objeto 'data' de Pabbly
+  const rawData = {
+    "Submitted On (UTC)": getField("Submitted On (UTC)"),
+    "Correo electrónico": getField("Correo electrónico"),
+    "Nombre": getField("Nombre"),
+    "Apellidos": getField("Apellidos"),
+    "DNI / Pasaporte / NIE": getField("DNI / Pasaporte / NIE"),
+    "¿En qué se desea matricular?": getField("¿En qué se desea matricular?"),
+    "Selección de Módulos": getField("Selección de Módulos"),
+    "Título civil": getField("Título civil"),
+    "Indique su título": getField("Indique su título"),
+    "Calle (vía)": getField("Calle (vía)"),
+    "Número, piso, puerta": getField("Número, piso, puerta"),
+    "Centro asociado al que pertenece": getField("Centro asociado al que pertenece"),
+    "Indique el nombre del centro": getField("Indique el nombre del centro"),
+    "Población": getField("Población"),
+    "Código postal": getField("Código postal"),
+    "Provincia": getField("Provincia"),
+    "Fecha de nacimiento": getField("Fecha de nacimiento"),
+    "Estado civil": getField("Estado civil"),
+    "Sexo": getField("Sexo"),
+    "Teléfono de contacto": getField("Teléfono de contacto"),
+    "Firma del solicitante": getField("Firma del solicitante"),
+    "Thank You Screen": getField("Thank You Screen")
+  };
+
+  // Verificar que hay datos
+  const hasAnyData = Object.values(rawData).some(v => v !== null && v !== undefined && v !== "");
+
+  if (!hasAnyData) {
+    // No hay datos - posible fila vacía o configuración incorrecta
+    output = {
       meta: {
         source_system: CONFIG.source.system,
-        source_ref: `sheet:${CONFIG.source.tab_name}:empty`,
+        source_ref: `sheet:${CONFIG.source.tab_name}:empty_or_config_error`,
         workflow: WORKFLOW_NAME,
         run_id: `skip:empty:${Date.now()}`,
         idempotency_key: `skip:empty:${Date.now()}`,
@@ -296,100 +271,112 @@ try {
       data: {
         raw: rawData,
         normalized: {},
-        targets: {}
+        targets: {},
+        _debug: {
+          iterator_step: ITERATOR_STEP_NUMBER,
+          sample_key: `${ITERATOR_STEP_NUMBER}. Nombre`,
+          available_keys: Object.keys(data || {}).slice(0, 10)
+        }
       },
       control: {
         action: "SKIP",
-        reason: "Fila vacía detectada",
+        reason: "Fila vacía o error de configuración. Verifica ITERATOR_STEP_NUMBER.",
         errors: []
+      }
+    };
+  } else {
+    // Hay datos - procesar normalmente
+
+    // FALLBACK DE NOMBRE: Si "Nombre" está vacío, usar "Indique su título"
+    const rawNombre = normalizeString(rawData["Nombre"]);
+    const rawIndiqueTitulo = normalizeString(rawData["Indique su título"]);
+    const usedFallbackNombre = !rawNombre && rawIndiqueTitulo;
+    const nombre_final = rawNombre || rawIndiqueTitulo;
+    const otro_titulo_final = usedFallbackNombre ? null : rawIndiqueTitulo;
+
+    // Normalizar todos los campos
+    const normalized = {
+      submitted_on: parseDateTime(rawData["Submitted On (UTC)"]),
+      tipo_matricula: normalizeString(rawData["¿En qué se desea matricular?"]),
+      seleccion_modulos: splitComma(rawData["Selección de Módulos"]),
+      titulo_civil: normalizeString(rawData["Título civil"]),
+      otro_titulo: otro_titulo_final,
+      nombre: nombre_final,
+      apellidos: normalizeString(rawData["Apellidos"]),
+      calle: normalizeString(rawData["Calle (vía)"]),
+      numero_piso: normalizeString(rawData["Número, piso, puerta"]),
+      centro_asociado: normalizeString(rawData["Centro asociado al que pertenece"]),
+      nombre_centro: normalizeString(rawData["Indique el nombre del centro"]),
+      poblacion: normalizeString(rawData["Población"]),
+      codigo_postal: normalizeString(rawData["Código postal"]),
+      provincia: normalizeString(rawData["Provincia"]),
+      dni: normalizeDNI(rawData["DNI / Pasaporte / NIE"]),
+      fecha_nacimiento: parseDate(rawData["Fecha de nacimiento"]),
+      estado_civil: normalizeString(rawData["Estado civil"]),
+      sexo: normalizeSexo(rawData["Sexo"]),
+      telefono: normalizePhone(rawData["Teléfono de contacto"]),
+      email: normalizeEmail(rawData["Correo electrónico"]),
+      firma_url: normalizeString(rawData["Firma del solicitante"]),
+      thank_you: normalizeString(rawData["Thank You Screen"]),
+      _nombre_fallback_used: usedFallbackNombre
+    };
+
+    // Generar idempotency key
+    const idempotencyKey = generateIdempotencyKey(normalized);
+    console.log(`[${SCRIPT_NAME}] Idempotency key: ${idempotencyKey}`);
+
+    // Validar campos requeridos
+    const validationErrors = validateRequired(normalized, CONFIG.required_fields);
+
+    // Validaciones adicionales
+    if (normalized.email && !validateEmail(normalized.email)) {
+      validationErrors.push(`Email inválido: ${normalized.email}`);
+    }
+    if (normalized.dni && !validateDNI(normalized.dni)) {
+      validationErrors.push(`DNI/NIE inválido: ${normalized.dni}`);
+    }
+
+    // Determinar acción
+    let action, reason;
+    if (validationErrors.length > 0) {
+      action = "ERROR";
+      reason = "Validación fallida: " + validationErrors.join("; ");
+    } else {
+      action = "UPSERT";
+      reason = "Datos válidos, listo para upsert en Stackby";
+    }
+
+    // Aplicar mapping
+    const targets = applyMapping(normalized);
+
+    // Build Envelope
+    output = {
+      meta: {
+        source_system: CONFIG.source.system,
+        source_ref: `sheet:${CONFIG.source.tab_name}:row`,
+        workflow: WORKFLOW_NAME,
+        run_id: `${WORKFLOW_NAME}:${idempotencyKey}:${Date.now()}`,
+        idempotency_key: idempotencyKey,
+        mapping_version: SCRIPT_VERSION,
+        ts_ingested: new Date().toISOString()
+      },
+      data: {
+        raw: rawData,
+        normalized: normalized,
+        targets: targets
+      },
+      control: {
+        action: action,
+        reason: reason,
+        errors: validationErrors
       }
     };
   }
 
-  // Normalize all fields
-  const normalized = {
-    submitted_on: parseDateTime(rawData["Submitted On (UTC)"]),
-    tipo_matricula: normalizeString(rawData["¿En qué se desea matricular?"]),
-    seleccion_modulos: splitComma(rawData["Selección de Módulos"]),
-    titulo_civil: normalizeString(rawData["Título civil"]),
-    otro_titulo: normalizeString(rawData["Indique su título"]),
-    nombre: normalizeString(rawData["Nombre"]),
-    apellidos: normalizeString(rawData["Apellidos"]),
-    calle: normalizeString(rawData["Calle (vía)"]),
-    numero_piso: normalizeString(rawData["Número, piso, puerta"]),
-    centro_asociado: normalizeString(rawData["Centro asociado al que pertenece"]),
-    nombre_centro: normalizeString(rawData["Indique el nombre del centro"]),
-    poblacion: normalizeString(rawData["Población"]),
-    codigo_postal: normalizeString(rawData["Código postal"]),
-    provincia: normalizeString(rawData["Provincia"]),
-    dni: normalizeDNI(rawData["DNI / Pasaporte / NIE"]),
-    fecha_nacimiento: parseDate(rawData["Fecha de nacimiento"]),
-    estado_civil: normalizeString(rawData["Estado civil"]),
-    sexo: normalizeSexo(rawData["Sexo"]),
-    telefono: normalizePhone(rawData["Teléfono de contacto"]),
-    email: normalizeEmail(rawData["Correo electrónico"]),
-    firma_url: normalizeString(rawData["Firma del solicitante"]),
-    // aceptado_en: NO se importa del Sheet - se gestiona internamente
-    thank_you: normalizeString(rawData["Thank You Screen"])
-  };
-
-  // Generate idempotency key (early, for tracking)
-  const idempotencyKey = generateIdempotencyKey(normalized);
-
-  console.log(`[${SCRIPT_NAME}] Idempotency key: ${idempotencyKey}`);
-
-  // Validate required fields
-  const validationErrors = validateRequired(normalized, CONFIG.required_fields);
-
-  // Additional validations
-  if (normalized.email && !validateEmail(normalized.email)) {
-    validationErrors.push(`Email inválido: ${normalized.email}`);
-  }
-  if (normalized.dni && !validateDNI(normalized.dni)) {
-    validationErrors.push(`DNI/NIE inválido: ${normalized.dni}`);
-  }
-
-  // Determine action
-  let action, reason;
-  if (validationErrors.length > 0) {
-    action = "ERROR";
-    reason = "Validación fallida: " + validationErrors.join("; ");
-  } else {
-    action = "UPSERT";
-    reason = "Datos válidos, listo para upsert en Stackby";
-  }
-
-  // Apply mapping to get targets
-  const targets = applyMapping(normalized);
-
-  // Build and return Envelope
-  return {
-    meta: {
-      source_system: CONFIG.source.system,
-      source_ref: `sheet:${CONFIG.source.tab_name}:row`,
-      workflow: WORKFLOW_NAME,
-      run_id: `${WORKFLOW_NAME}:${idempotencyKey}:${Date.now()}`,
-      idempotency_key: idempotencyKey,
-      mapping_version: SCRIPT_VERSION,
-      ts_ingested: new Date().toISOString()
-    },
-    data: {
-      raw: rawData,
-      normalized: normalized,
-      targets: targets
-    },
-    control: {
-      action: action,
-      reason: reason,
-      errors: validationErrors
-    }
-  };
-
 } catch (e) {
-  // Error handling - return valid Envelope even on exception
   console.log(`[${SCRIPT_NAME}] Exception: ${e.message}`);
 
-  return {
+  output = {
     meta: {
       source_system: CONFIG.source.system,
       source_ref: `sheet:${CONFIG.source.tab_name}:error`,
@@ -400,9 +387,15 @@ try {
       ts_ingested: new Date().toISOString()
     },
     data: {
-      raw: typeof input === 'string' ? input.slice(0, 500) : input,
+      raw: null,
       normalized: {},
-      targets: {}
+      targets: {},
+      _debug: {
+        error_message: e.message,
+        error_stack: e.stack ? e.stack.slice(0, 300) : null,
+        iterator_step: ITERATOR_STEP_NUMBER,
+        data_keys: Object.keys(data || {}).slice(0, 15)
+      }
     },
     control: {
       action: "ERROR",

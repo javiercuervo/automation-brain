@@ -349,6 +349,26 @@ Raw Data (truncated)→ {{step_4.data.raw}}
 - `Sexo`: Normaliza "Hombre"→"Masculino", "Mujer"→"Femenino"
 - `Fecha de nacimiento`: Parsea "Date: 07 Jul, 2004" → "2004-07-07"
 
+### Fallback de Nombre (v1.6.0+)
+
+En algunos registros del Sheet, el campo "Nombre" viene vacío y el nombre real aparece en "Indique su título".
+
+**Lógica implementada:**
+```
+nombre_final = Nombre || "Indique su título"
+```
+
+**Reglas:**
+| Escenario | Nombre | Indique su título | Resultado |
+|-----------|--------|-------------------|-----------|
+| Normal | "María" | "Licenciada" | nombre="María", otro_titulo="Licenciada" |
+| Fallback | "" | "Eneko" | nombre="Eneko", otro_titulo=null |
+| Vacío | "" | "" | nombre=null (ERROR validación) |
+
+**Campo debug:** `normalized._nombre_fallback_used` indica si se aplicó el fallback (true/false).
+
+**Propósito:** Evita que el nombre aparezca duplicado en "Especificar otro título" cuando se usó como fallback.
+
 ### Campo "ACEPTADO EN" (Gestionado Internamente)
 
 **Tipo**: Single Select
@@ -370,6 +390,136 @@ Raw Data (truncated)→ {{step_4.data.raw}}
 |--------|-----------|-----------|
 | `normalize_and_map.js` | `/scripts/pabbly/wf_001_deca_inscripcion/` | Normaliza, valida, genera Envelope |
 | `filter_and_decide.js` | `/scripts/pabbly/wf_001_deca_inscripcion/` | Filtra por clave compuesta, decide CREATE/UPDATE |
+
+---
+
+## Configurar inputs del Code step en Pabbly (OBLIGATORIO)
+
+### El problema
+
+En **Pabbly Connect**, el módulo **"Code by Pabbly"**:
+- NO tiene acceso automático a datos de pasos anteriores
+- NO permite usar `eval()` ni importar módulos externos
+- Los inputs deben mapearse **DENTRO del código** usando el selector de variables
+
+### Solución v1.5.0: Mapear inputs DENTRO del código
+
+La versión 1.5.0 usa un enfoque diferente: el objeto `PABBLY_INPUT` al inicio del script donde mapeas directamente los campos.
+
+#### Paso 1: Copiar el script
+
+1. Copia todo el contenido de `/scripts/pabbly/wf_001_deca_inscripcion/normalize_and_map.js`
+2. En Pabbly, ve al módulo **"Code by Pabbly: Run JavaScript"**
+3. Pega el script en el editor de código
+
+#### Paso 2: Localizar PABBLY_INPUT
+
+Busca esta sección al inicio del script (líneas ~42-72):
+
+```javascript
+const PABBLY_INPUT = {
+  // CAMPOS CRÍTICOS (OBLIGATORIOS)
+  "Submitted On (UTC)":           null,  // ← Mapea aquí
+  "Correo electrónico":           null,  // ← Mapea aquí
+  "Nombre":                       null,  // ← Mapea aquí
+  "Apellidos":                    null,  // ← Mapea aquí
+  "DNI / Pasaporte / NIE":        null,  // ← Mapea aquí
+
+  // CAMPOS OPCIONALES
+  "¿En qué se desea matricular?": null,
+  ...
+};
+```
+
+#### Paso 3: Mapear los campos (CRÍTICO)
+
+Para cada campo:
+
+1. **Haz clic** en el `null` que quieres reemplazar
+2. **Borra** la palabra `null`
+3. **Usa el selector de variables** de Pabbly (icono `{x}` o botón "Insert Data")
+4. **Selecciona** el campo correspondiente del paso Iterator
+
+**Ejemplo ANTES:**
+```javascript
+"Correo electrónico":           null,
+```
+
+**Ejemplo DESPUÉS** (Pabbly insertará algo así):
+```javascript
+"Correo electrónico":           "student+001@example.com",
+```
+
+#### Paso 4: Mapear al menos los 5 campos críticos
+
+| Campo en PABBLY_INPUT | Selecciona del Iterator |
+|-----------------------|-------------------------|
+| `"Submitted On (UTC)"` | Submitted On (UTC) |
+| `"Correo electrónico"` | Correo electrónico |
+| `"Nombre"` | Nombre |
+| `"Apellidos"` | Apellidos |
+| `"DNI / Pasaporte / NIE"` | DNI / Pasaporte / NIE |
+
+#### Paso 5: Guardar y probar
+
+1. Haz clic en **"Save & Send Test Request"**
+2. Verifica el output:
+   - `control.action = "UPSERT"` → ✅ Funciona
+   - `control.action = "ERROR"` → Revisa `control.errors` para ver qué falta
+
+### Ejemplo visual
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Code by Pabbly: Run JavaScript                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  JAVASCRIPT CODE                                                │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ const PABBLY_INPUT = {                                      ││
+│  │   "Submitted On (UTC)":    "17 Oct, 2025 08:10",  ← MAPEADO ││
+│  │   "Correo electrónico":    "student+001@example.com", ← OK  ││
+│  │   "Nombre":                "María",               ← MAPEADO ││
+│  │   "Apellidos":             "García López",        ← MAPEADO ││
+│  │   "DNI / Pasaporte / NIE": "12345678A",          ← MAPEADO ││
+│  │   "¿En qué se desea matricular?": null,  ← opcional        ││
+│  │   ...                                                       ││
+│  │ };                                                          ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                                                                 │
+│  [Save & Send Test Request]                                     │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Restricciones de Pabbly Connect
+
+| Restricción | Impacto | Solución en v1.5.0 |
+|-------------|---------|-------------------|
+| No `eval()` | No se pueden detectar variables dinámicamente | Objeto `PABBLY_INPUT` explícito |
+| No módulos externos | Solo crypto-js, lodash, moment | Script autocontenido |
+| NodeJS 18.x | Sintaxis moderna OK | ES6+ compatible |
+
+### Troubleshooting
+
+| Error | Causa | Solución |
+|-------|-------|----------|
+| `PABBLY_INPUT_NOT_CONFIGURED` | Los `null` no fueron reemplazados | Mapea los 5 campos críticos con el selector {x} |
+| `Campos faltantes: Submitted On...` | Campo específico no mapeado | Mapea ese campo usando el selector de Pabbly |
+| `action: SKIP` | Fila vacía | Normal, el script ignora filas vacías |
+| `Validación fallida` | Datos inválidos (email, DNI) | Revisa los datos en el Sheet original |
+
+### FAQ
+
+**P: ¿Puedo dejar campos opcionales como `null`?**
+
+R: Sí. Solo los 5 campos críticos son obligatorios. Los opcionales pueden quedar como `null` y se ignorarán.
+
+**P: ¿Qué pasa cuando ejecuto el workflow?**
+
+R: En cada ejecución, Pabbly reemplaza los valores mapeados con los datos reales de cada fila del Iterator. El `null` que ves en el editor es solo el placeholder.
+
+**P: ¿Cómo sé si mapeé bien?**
+
+R: Después de mapear, verás el valor de prueba en lugar de `null`. Si ejecutas "Save & Send Test Request" y obtienes `action: UPSERT`, está correcto.
 
 ---
 
@@ -403,6 +553,12 @@ Raw Data (truncated)→ {{step_4.data.raw}}
 
 | Versión | Fecha | Cambios |
 |---------|-------|---------|
+| 2.0.0 | Ene 2026 | Reescritura completa: usa `data['3. campo']` de Pabbly, sin configuración manual |
+| 1.7.0 | Ene 2026 | Fix Pabbly: usa `output=` en lugar de `return` (requerido por Pabbly) |
+| 1.6.0 | Ene 2026 | Fallback de Nombre: usa "Indique su título" si "Nombre" vacío, evita duplicidad |
+| 1.5.0 | Ene 2026 | Fix Pabbly definitivo: objeto PABBLY_INPUT (sin eval), compatible con restricciones |
+| 1.4.0 | Ene 2026 | Fix Pabbly robusto: soporte campos individuales + diagnóstico (usaba eval - no válido) |
+| 1.3.0 | Ene 2026 | Fix Pabbly: resolveInput() para detectar inputData/row/currentItem/input |
 | 1.2.0 | Ene 2026 | "ACEPTADO EN" gestionado internamente (no se importa del Sheet) |
 | 1.1.0 | Ene 2026 | Añadido paso 6b (filter_and_decide.js) para clave compuesta |
 | 1.0.0 | Ene 2026 | Versión inicial |
