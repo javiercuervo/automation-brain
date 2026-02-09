@@ -1,10 +1,31 @@
 # Matriz de Priorización de Automatizaciones IITD
 
 **Fecha:** 2026-02-02
-**Versión:** 1.1
-**Última actualización:** 2026-02-02
+**Versión:** 2.0
+**Última actualización:** 2026-02-09
 
-## Estado de Implementación del TOP 5
+## Sprint feb 2026 — 8 automatizaciones priorizadas (reunión 06/02/2026)
+
+| ID | Necesidad | Estado | Archivos |
+|----|-----------|--------|----------|
+| N01 | Notif alta/enrolamiento a secretaría | ✅ **IMPLEMENTADO** | `publisher.gs` (sendEnrollmentNotification) |
+| N02 | Datos alumno completos | ✅ **YA HECHO** | Stackby ALUMNOS (comunicar a Josete) |
+| N03 | Contacto OCH → Miriam | 📋 **GUÍA** | `docs/guias/reenvio-contacto-och.md` |
+| N04 | Auto nº expediente | ✅ **IMPLEMENTADO** | `alumnos-client.js` (getNextAlumnoId) |
+| N11 | RGPD consentimientos | 📋 **GUÍA** | `docs/guias/rgpd-formularios.md` |
+| N13 | Inventario SaaS | ✅ **IMPLEMENTADO** | `stackby/create-saas-table.mjs` |
+| N14 | Leads web → Stackby | ✅ **IMPLEMENTADO** | `apps-script/leads/publisher_leads.gs` |
+| N20 | ID único alumno + dedup | ✅ **IMPLEMENTADO** | `alumnos/dedup-alumnos.mjs`, `assign-ids.mjs` |
+
+### Pendiente de ejecución (necesita datos del equipo)
+- Ejecutar `dedup-alumnos.mjs` con STACKBY_API_KEY
+- Ejecutar `assign-ids.mjs --start-from <último nº PolarDoc>`
+- Ejecutar `create-saas-table.mjs` (crear tabla primero en Stackby)
+- Configurar leads publisher (falta Sheet ID de formulario contacto)
+
+---
+
+## Estado previo (TOP 5 original)
 
 | # | Automatización | Estado | Archivos |
 |---|----------------|--------|----------|
