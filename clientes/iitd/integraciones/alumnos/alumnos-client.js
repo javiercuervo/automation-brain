@@ -124,7 +124,9 @@ async function getNextAlumnoId() {
     `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}?maxRecords=5000`
   );
 
-  let maxNum = 0;
+  // Base: último nº expediente PolarDoc = 110000
+  const POLAR_LAST_ID = 110000;
+  let maxNum = POLAR_LAST_ID;
   if (rows.records) {
     for (const row of rows.records) {
       const id = row.field?.ID_ALUMNO || '';
@@ -133,7 +135,7 @@ async function getNextAlumnoId() {
     }
   }
 
-  return 'IITD-' + String(maxNum + 1).padStart(4, '0');
+  return 'IITD-' + String(maxNum + 1).padStart(6, '0');
 }
 
 /**

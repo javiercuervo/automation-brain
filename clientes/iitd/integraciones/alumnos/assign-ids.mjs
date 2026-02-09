@@ -54,8 +54,11 @@ async function updateRow(rowId, fields) {
 /**
  * Format ID with zero-padding: IITD-0001
  */
+// Último nº expediente PolarDoc
+const POLAR_LAST_ID = 110000;
+
 function formatId(num) {
-  return `${PREFIX}-${String(num).padStart(4, '0')}`;
+  return `${PREFIX}-${String(num).padStart(6, '0')}`;
 }
 
 /**
@@ -100,7 +103,10 @@ async function main() {
     nextNum = EXPLICIT_START + 1;
     console.log(`  Continuando desde: ${EXPLICIT_START} (flag --start-from)`);
   } else {
-    nextNum = maxId + 1;
+    // Use max of: found IDs, PolarDoc last ID
+    const base = Math.max(maxId, POLAR_LAST_ID);
+    nextNum = base + 1;
+    console.log(`  Base PolarDoc: ${POLAR_LAST_ID}`);
     console.log(`  Siguiente ID: ${formatId(nextNum)}`);
   }
 
