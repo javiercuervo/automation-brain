@@ -10,3 +10,9 @@ node_modules/
 dist/
 coverage/
 *.log
+
+# IITD automation
+screenshots/
+downloads/
+results.json
+service-account.json
