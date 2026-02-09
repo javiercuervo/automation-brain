@@ -115,6 +115,28 @@ async function findByEmail(email) {
 }
 
 /**
+ * Obtiene el siguiente ID_ALUMNO disponible (IITD-NNNN)
+ * Lee todos los registros, encuentra el max ID y devuelve el siguiente.
+ * @returns {Promise<string>} Next ID like "IITD-0042"
+ */
+async function getNextAlumnoId() {
+  const rows = await stackbyFetch(
+    `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}?maxRecords=5000`
+  );
+
+  let maxNum = 0;
+  if (rows.records) {
+    for (const row of rows.records) {
+      const id = row.field?.ID_ALUMNO || '';
+      const match = String(id).match(/(\d+)$/);
+      if (match) maxNum = Math.max(maxNum, parseInt(match[1]));
+    }
+  }
+
+  return 'IITD-' + String(maxNum + 1).padStart(4, '0');
+}
+
+/**
  * Crea un nuevo alumno
  * @param {Object} fields - Campos del alumno
  * @returns {Promise<Object>} Alumno creado
@@ -130,6 +152,11 @@ async function createAlumno(fields) {
   // Asegurar fecha de estado
   if (!fields['Fecha estado']) {
     fields['Fecha estado'] = new Date().toISOString().split('T')[0];
+  }
+
+  // Auto-asignar ID_ALUMNO si no viene (N04/N20)
+  if (!fields.ID_ALUMNO) {
+    fields.ID_ALUMNO = await getNextAlumnoId();
   }
 
   return stackbyFetch(
@@ -357,6 +384,7 @@ module.exports = {
   upsertByEmail,
   listarAlumnos,
   filtrarPorEstado,
+  getNextAlumnoId,
 
   // Operaciones de negocio
   crearDesdeSOLICITUD_DECA,

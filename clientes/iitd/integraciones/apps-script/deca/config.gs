@@ -28,7 +28,7 @@ const CONFIG = {
     ENABLED: true,
     // PRODUCCIÓN: 'alumnos@institutoteologia.org'
     // DESARROLLO: usar email de desarrollador para pruebas
-    TO: 'proportione@institutoteologia.org',  // TODO: Cambiar a alumnos@ cuando esté validado
+    TO: 'alumnos@institutoteologia.org',  // Cambiado 2026-02-09 (antes: proportione@institutoteologia.org)
     SUBJECT_PREFIX: '[DECA] Nueva solicitud: ',
     // URL base de Stackby para link directo (opcional)
     STACKBY_BASE_URL: 'https://stackby.com/stHbLS2nezlbb3BL78'
@@ -69,7 +69,14 @@ const CONFIG = {
 
     // Campo para validación manual por Miriam
     ES_ALUMNO: 27,                // AB: "Sí" / "No" / vacío - Miriam marca si es alumno
-    ALUMNO_CREATED_AT: 28         // AC: Timestamp cuando se creó en tabla ALUMNOS
+    ALUMNO_CREATED_AT: 28,        // AC: Timestamp cuando se creó en tabla ALUMNOS
+
+    // Columnas operativas (añadidas feb 2026, reunión 06/02)
+    MATRICULADO: 29,              // AD: No / Sí / Finalizado
+    PROFESOR: 30,                 // AE: Nombre del profesor asignado
+    ALTA_OCH: 31,                 // AF: No / Sin grupo / Con grupo
+    ENROLADO: 32,                 // AG: No / Sí
+    NUM_EXPEDIENTE: 33            // AH: IITD-NNNN (nº expediente auto)
   },
 
   // Campos obligatorios para considerar una fila "completa"

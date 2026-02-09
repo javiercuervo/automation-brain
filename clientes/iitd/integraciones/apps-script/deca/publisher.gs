@@ -778,6 +778,84 @@ function testNotification() {
 }
 
 // =====================================================
+// NOTIFICACIÓN ALTA/ENROLAMIENTO (N01)
+// =====================================================
+
+/**
+ * Envía notificación a secretaría cuando un alumno es dado de alta
+ * en la tabla ALUMNOS (marcado como "Es alumno = Sí" por Miriam).
+ *
+ * Complementa a sendNotificationEmail() que notifica solicitudes nuevas.
+ * Esta función notifica altas confirmadas.
+ *
+ * @param {Object} payload - Datos del alumno
+ */
+function sendEnrollmentNotification(payload) {
+  if (!CONFIG.NOTIFICATION || !CONFIG.NOTIFICATION.ENABLED) return;
+
+  try {
+    var nombreCompleto = ((payload.nombre || '') + ' ' + (payload.apellidos || '')).trim() || 'Sin nombre';
+
+    var subject = '[IITD] Alta de alumno: ' + nombreCompleto;
+
+    var body = [
+      'Se ha confirmado el alta de un nuevo alumno en el sistema.',
+      '',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      'DATOS DEL ALUMNO',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      '',
+      'Nombre: ' + nombreCompleto,
+      'Email: ' + (payload.email || 'No proporcionado'),
+      'Teléfono: ' + (payload.telefono || 'No proporcionado'),
+      'DNI: ' + (payload.dni || 'No proporcionado'),
+      'Programa: ' + (payload.programa || 'No especificado'),
+      '',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      '',
+      'Fecha alta: ' + new Date().toLocaleString('es-ES'),
+      '',
+      'Próximos pasos:',
+      '  1. Verificar documentación del alumno',
+      '  2. Dar de alta en OnlineCourseHost (si aplica)',
+      '  3. Asignar profesor/grupo',
+      '',
+      CONFIG.NOTIFICATION.STACKBY_BASE_URL ?
+        'Ver en Stackby: ' + CONFIG.NOTIFICATION.STACKBY_BASE_URL : '',
+      '',
+      '---',
+      'Mensaje automático del sistema de matriculaciones IITD.'
+    ].join('\n');
+
+    MailApp.sendEmail({
+      to: CONFIG.NOTIFICATION.TO,
+      subject: subject,
+      body: body
+    });
+
+    Logger.log('Notificación de alta enviada para: ' + payload.email);
+
+  } catch (e) {
+    Logger.log('ERROR enviando notificación de alta: ' + e.message);
+  }
+}
+
+/**
+ * Test de notificación de alta - ejecutar manualmente
+ */
+function testEnrollmentNotification() {
+  sendEnrollmentNotification({
+    nombre: 'Test',
+    apellidos: 'Alumno Alta',
+    email: 'test@example.com',
+    telefono: '666123456',
+    dni: '12345678A',
+    programa: 'DECA'
+  });
+  Logger.log('Test de notificación de alta completado.');
+}
+
+// =====================================================
 // CREACIÓN DE ALUMNO EN TABLA ALUMNOS
 // =====================================================
 
@@ -966,6 +1044,9 @@ function syncAlumnos() {
     // Asegurar que existen las columnas de control para alumnos
     ensureAlumnoColumns(sheet);
 
+    // Asegurar columnas operativas (Matriculado, Profesor, Alta OCH, Enrolado, Nº Expediente)
+    ensureOperationalColumns(sheet);
+
     // Leer todas las filas
     const lastRow = sheet.getLastRow();
     if (lastRow <= 1) {
@@ -1022,6 +1103,9 @@ function syncAlumnos() {
         Logger.log('Alumno creado: ' + payload.email + ' (fila ' + pending.rowIndex + ')');
         processed++;
 
+        // Notificar a secretaría del nuevo alumno (N01)
+        sendEnrollmentNotification(payload);
+
       } catch (e) {
         Logger.log('Error procesando fila ' + pending.rowIndex + ': ' + e.message);
         errors++;
@@ -1069,6 +1153,39 @@ function ensureAlumnoColumns(sheet) {
       lastCol++;
       sheet.getRange(1, lastCol).setValue(header);
       Logger.log('Columna añadida: ' + header + ' en posición ' + lastCol);
+    }
+  }
+}
+
+/**
+ * Asegura que existan las columnas operativas añadidas en feb 2026
+ * (Matriculado, Profesor, Alta OCH, Enrolado, Nº Expediente)
+ *
+ * IMPORTANTE: Estas columnas van DESPUÉS de AC para no romper Formly
+ */
+function ensureOperationalColumns(sheet) {
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var operationalHeaders = [
+    { index: CONFIG.COLUMNS.MATRICULADO, name: 'Matriculado' },
+    { index: CONFIG.COLUMNS.PROFESOR, name: 'Profesor' },
+    { index: CONFIG.COLUMNS.ALTA_OCH, name: 'Alta OCH' },
+    { index: CONFIG.COLUMNS.ENROLADO, name: 'Enrolado' },
+    { index: CONFIG.COLUMNS.NUM_EXPEDIENTE, name: 'Nº Expediente' }
+  ];
+
+  for (var i = 0; i < operationalHeaders.length; i++) {
+    var col = operationalHeaders[i];
+    var colNum = col.index + 1; // 1-based
+
+    // Extender la hoja si hace falta
+    if (colNum > sheet.getLastColumn()) {
+      sheet.insertColumnsAfter(sheet.getLastColumn(), colNum - sheet.getLastColumn());
+    }
+
+    var currentHeader = sheet.getRange(1, colNum).getValue();
+    if (!currentHeader || String(currentHeader).trim() === '') {
+      sheet.getRange(1, colNum).setValue(col.name);
+      Logger.log('Columna operativa añadida: ' + col.name + ' en posición ' + colNum);
     }
   }
 }
