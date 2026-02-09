@@ -1,0 +1,19 @@
+{
+  "name": "iitd-api-clients",
+  "version": "1.0.0",
+  "description": "Clientes API para las integraciones del Instituto de Teología",
+  "type": "module",
+  "scripts": {
+    "test:stackby": "node stackby/test_connection.js",
+    "test:acumbamail": "node acumbamail/test_connection.js",
+    "test:holded": "node holded/test_connection.js",
+    "test:onlinecoursehost": "node onlinecoursehost/test_connection.js",
+    "test:all": "npm run test:stackby && npm run test:acumbamail && npm run test:holded && npm run test:onlinecoursehost"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

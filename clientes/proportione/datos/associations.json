@@ -1,0 +1,2776 @@
+{
+  "contactToCompany": [
+    {
+      "contactId": "101",
+      "contactEmail": "jimmy.ventura@gmail.com",
+      "contactName": "Jimmy Ventura",
+      "companyId": "8411187167",
+      "companyName": "Elastic Path Software Inc"
+    },
+    {
+      "contactId": "151",
+      "contactEmail": "isabel.soria@mensoftlabs.com",
+      "contactName": "Isabel Soria",
+      "companyId": "8411187156",
+      "companyName": "Mensoft"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid"
+    },
+    {
+      "contactId": "251",
+      "contactEmail": "juan.povedano@capsa.es",
+      "contactName": "Juan Povedano",
+      "companyId": "8411145443",
+      "companyName": "CAPSA FOOD"
+    },
+    {
+      "contactId": "252",
+      "contactEmail": "enrique@ea-branding.com",
+      "contactName": "Enrique Acosta",
+      "companyId": "8411187174",
+      "companyName": "Campos de Uleila"
+    },
+    {
+      "contactId": "301",
+      "contactEmail": "mariaruiz@fundacionprodis.org",
+      "contactName": "María Ruiz",
+      "companyId": "8411145447",
+      "companyName": "Fundación Prodis"
+    },
+    {
+      "contactId": "351",
+      "contactEmail": "curro@singladura.es",
+      "contactName": "Curro Ortega",
+      "companyId": "8411145451",
+      "companyName": "SINGLADURA"
+    },
+    {
+      "contactId": "352",
+      "contactEmail": "eulogio@hispanidad.com",
+      "contactName": "Eulogio López",
+      "companyId": "8411145454",
+      "companyName": "Hispanidad"
+    },
+    {
+      "contactId": "401",
+      "contactEmail": "carmen.lanza@farma54.com",
+      "contactName": "Carmen Lanza",
+      "companyId": "8411145458",
+      "companyName": "Farma54"
+    },
+    {
+      "contactId": "451",
+      "contactEmail": "maria.piferrer@uxerschool.com",
+      "contactName": "María Piferrer",
+      "companyId": "8411187180",
+      "companyName": "UXER SCHOOL"
+    },
+    {
+      "contactId": "501",
+      "contactEmail": "mvieite@mapfre.com",
+      "contactName": "Marta Viéitez Roldán",
+      "companyId": "8415810805",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "551",
+      "contactEmail": "monica@porqueviven.org",
+      "contactName": "Mónica Cantón de Celis",
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven"
+    },
+    {
+      "contactId": "701",
+      "contactEmail": "sarah.harris@admiral.es",
+      "contactName": "Sarah Harris",
+      "companyId": "8446996176",
+      "companyName": "Admiral Europe Compañia De Seguros Sau"
+    },
+    {
+      "contactId": "702",
+      "contactEmail": "francisco.granados@grunenthal.com",
+      "contactName": "Francisco Granados",
+      "companyId": "8446970846",
+      "companyName": "GRUNENTHAL PHARMA SA"
+    },
+    {
+      "contactId": "703",
+      "contactEmail": "melcuera@mtp.es",
+      "contactName": "Mamdouh Elcuera",
+      "companyId": "8447020533",
+      "companyName": "MTP, Métodos y Tecnología"
+    },
+    {
+      "contactId": "704",
+      "contactEmail": "mpino@bancopichincha.es",
+      "contactName": "Manuel Del Pino Giráldez",
+      "companyId": "8446552793",
+      "companyName": "BANCO PICHINCHA ESPAÑA, S.A."
+    },
+    {
+      "contactId": "705",
+      "contactEmail": "montserrat.sivilla@grunenthal.com",
+      "contactName": "Montserrat Sivilla",
+      "companyId": "8446970846",
+      "companyName": "GRUNENTHAL PHARMA SA"
+    },
+    {
+      "contactId": "706",
+      "contactEmail": "eabadie@mapfre.com",
+      "contactName": "Enrique Abadie Alpañes",
+      "companyId": "8446996167",
+      "companyName": "MAPFRE ASISTENCIA COMPAÑÍA INTERNACIONAL DE SEGUROS Y REASEGUROS, S.A"
+    },
+    {
+      "contactId": "707",
+      "contactEmail": "jabelleira@bancopichincha.es",
+      "contactName": "José Luis Abelleira Méndez",
+      "companyId": "8446552793",
+      "companyName": "BANCO PICHINCHA ESPAÑA, S.A."
+    },
+    {
+      "contactId": "709",
+      "contactEmail": "elisa.blas@admiral.es",
+      "contactName": "Elisa De Blas",
+      "companyId": "8446996176",
+      "companyName": "Admiral Europe Compañia De Seguros Sau"
+    },
+    {
+      "contactId": "710",
+      "contactEmail": "mperez@grupoquero.com",
+      "contactName": "Manuela Perez",
+      "companyId": "8446970848",
+      "companyName": "QUEROTOOLS,S.L"
+    },
+    {
+      "contactId": "758",
+      "contactEmail": "begona.martinez@pibank.es",
+      "contactName": "Begoña Martínez",
+      "companyId": "8446552793",
+      "companyName": "BANCO PICHINCHA ESPAÑA, S.A."
+    },
+    {
+      "contactId": "761",
+      "contactEmail": "mercedes.schoendorff@inversis.com",
+      "contactName": "Mercedes Schoendorff Rodriguez",
+      "companyId": "8446433734",
+      "companyName": "Banco Inversis, S. A."
+    },
+    {
+      "contactId": "801",
+      "contactEmail": "m.martin@alcampo.es",
+      "contactName": "Mercedes Martín Romero",
+      "companyId": "8446464503",
+      "companyName": "AUCHAN RETAIL ESPAÑA SL"
+    },
+    {
+      "contactId": "803",
+      "contactEmail": "ignacio.samaniego@atisa.es",
+      "contactName": "Ignacio Samaniego Cuenca",
+      "companyId": "8447020532",
+      "companyName": "GRUPO ATISA BPO, S.A."
+    },
+    {
+      "contactId": "804",
+      "contactEmail": "svelez@aemps.es",
+      "contactName": "Santiago Vélez Castillo",
+      "companyId": "8446996169",
+      "companyName": "AGENCIA ESPAÑOLA DE MEDICAMENTO Y PRODUCTOS SANITARIOS"
+    },
+    {
+      "contactId": "810",
+      "contactEmail": "albanoguera@invisahoteles.com",
+      "contactName": "Alba Noguera",
+      "companyId": "8447067343",
+      "companyName": "Hoteles Trinidad, S.A."
+    },
+    {
+      "contactId": "811",
+      "contactEmail": "rosario.lopez@alcampo.es",
+      "contactName": "Charo López Hidalgo",
+      "companyId": "8446464503",
+      "companyName": "AUCHAN RETAIL ESPAÑA SL"
+    },
+    {
+      "contactId": "853",
+      "contactEmail": "sbilgin@mapfre.com",
+      "contactName": "Sema Bilgin",
+      "companyId": "8415810805",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "857",
+      "contactEmail": "jose.reollo@dedalus.com",
+      "contactName": "José Reollo Reollo",
+      "companyId": "8446970847",
+      "companyName": "DEDALUS GLOBAL SERVICES SA"
+    },
+    {
+      "contactId": "902",
+      "contactEmail": "jmferrer@mtp.es",
+      "contactName": "Juan Manuel Ferrer",
+      "companyId": "8447020533",
+      "companyName": "MTP, Métodos y Tecnología"
+    },
+    {
+      "contactId": "906",
+      "contactEmail": "isabel.valls@bbva.com",
+      "contactName": "Isabel Valls Gonzalez",
+      "companyId": "8446552803",
+      "companyName": "BANCO BILBAO VIZCAYA ARGENTARIA"
+    },
+    {
+      "contactId": "909",
+      "contactEmail": "elena.martin@biogran.es",
+      "contactName": "Elena Martin Toscano",
+      "companyId": "8446552804",
+      "companyName": "BIOGRAN SL"
+    },
+    {
+      "contactId": "910",
+      "contactEmail": "ana.sedano@ebury.com",
+      "contactName": "Ana Sedano",
+      "companyId": "8446552796",
+      "companyName": "EBURY PARTNERS BELGIUM, SUCURSAL EN ESPAÑA"
+    },
+    {
+      "contactId": "912",
+      "contactEmail": "ana.domingo@grupoingenium.com",
+      "contactName": "Ana  Domingo Callejón",
+      "companyId": "9109229774",
+      "companyName": "Grupo Ingenium"
+    },
+    {
+      "contactId": "953",
+      "contactEmail": "mescribano@food-experts.com",
+      "contactName": "Marina Escribano",
+      "companyId": "8447067339",
+      "companyName": "Food Experts, S.L."
+    },
+    {
+      "contactId": "957",
+      "contactEmail": "pedroj.mendez@grupobbva.com",
+      "contactName": "Pedro Mendez",
+      "companyId": "8446552803",
+      "companyName": "BANCO BILBAO VIZCAYA ARGENTARIA"
+    },
+    {
+      "contactId": "959",
+      "contactEmail": "nmunoz@food-experts.com",
+      "contactName": "Nazario Muñoz",
+      "companyId": "8447067339",
+      "companyName": "Food Experts, S.L."
+    },
+    {
+      "contactId": "960",
+      "contactEmail": "alargo@enagas.es",
+      "contactName": "Alejandra Largo Perrino",
+      "companyId": "8446481108",
+      "companyName": "ENAGAS SA"
+    },
+    {
+      "contactId": "963",
+      "contactEmail": "cfernandez2@caser.es",
+      "contactName": "Cristina Fernández Pacheco",
+      "companyId": "8446481112",
+      "companyName": "CASER- CAJA DE SEGUROS REUNIDOS, Compañía de Seguros y Reaseguros, S.A."
+    },
+    {
+      "contactId": "1001",
+      "contactEmail": "scuartas@enagas.es",
+      "contactName": "Silvia Cuartas",
+      "companyId": "8446481108",
+      "companyName": "ENAGAS SA"
+    },
+    {
+      "contactId": "1151",
+      "contactEmail": "n.martin@alcampo.es",
+      "contactName": "Natalia Martin",
+      "companyId": "8446464503",
+      "companyName": "AUCHAN RETAIL ESPAÑA SL"
+    },
+    {
+      "contactId": "1401",
+      "contactEmail": "vbravo@delaviuda.com",
+      "contactName": "Virginia Bravo Veguillas",
+      "companyId": "8447067337",
+      "companyName": "DELAVIUDA CONFECTIONERY GROUP"
+    },
+    {
+      "contactId": "1451",
+      "contactEmail": "olopez@ubtcompliance.com",
+      "contactName": "Oscar López Rodríguez",
+      "companyId": "8446433732",
+      "companyName": "UBT Compliance Services S.L."
+    },
+    {
+      "contactId": "1501",
+      "contactEmail": "alberto.recio@admiral.es",
+      "contactName": "​Alberto Recio",
+      "companyId": "8446996176",
+      "companyName": "Admiral Europe Compañia De Seguros Sau"
+    },
+    {
+      "contactId": "1503",
+      "contactEmail": "elena.barbellido@mtp.es",
+      "contactName": "Elena Barbellido",
+      "companyId": "8447020533",
+      "companyName": "MTP, Métodos y Tecnología"
+    },
+    {
+      "contactId": "1504",
+      "contactEmail": "amanzanera@enagas.es",
+      "contactName": "Antonio Manzanera",
+      "companyId": "8446481108",
+      "companyName": "ENAGAS SA"
+    },
+    {
+      "contactId": "1553",
+      "contactEmail": "begona.martinez@pibank.co",
+      "contactName": "Begoña Martinez",
+      "companyId": "8446552793",
+      "companyName": "BANCO PICHINCHA ESPAÑA, S.A."
+    },
+    {
+      "contactId": "1554",
+      "contactEmail": "ana-belen.horcajuelo@dsm.com",
+      "contactName": "Ana Belén Horcajuelo",
+      "companyId": "8446552794",
+      "companyName": "DSM Nutritional Products Iberia, S.A."
+    },
+    {
+      "contactId": "1555",
+      "contactEmail": "isabel.arribas@admiral.es",
+      "contactName": "Isabel Arribas",
+      "companyId": "8446996176",
+      "companyName": "Admiral Europe Compañia De Seguros Sau"
+    },
+    {
+      "contactId": "1558",
+      "contactEmail": "joseluis.moral@contesta.es",
+      "contactName": "José Luis Moral García",
+      "companyId": "8447039181",
+      "companyName": "CONTESTA TELESERVICIOS SA"
+    },
+    {
+      "contactId": "1601",
+      "contactEmail": "dayala@einsa.es",
+      "contactName": "David Ayala Galán",
+      "companyId": "8779033052",
+      "companyName": "EQUIPOS INDUSTRIALES DE MANUTENCION SA"
+    },
+    {
+      "contactId": "1602",
+      "contactEmail": "alejandrosancho@invisahoteles.com",
+      "contactName": "Alejandro Sancho Ferrer",
+      "companyId": "8447067343",
+      "companyName": "Hoteles Trinidad, S.A."
+    },
+    {
+      "contactId": "1604",
+      "contactEmail": "javier.cordobah@sgs-santalucia.es",
+      "contactName": "Javier Córdoba Hernandez",
+      "companyId": "8446970844",
+      "companyName": "SANTA LUCÍA, S.A, Compañía de Seguros y Reaseguros"
+    },
+    {
+      "contactId": "1701",
+      "contactEmail": "anaisabel.yanguas@inversis.com",
+      "contactName": "Ana Isabel Yanguas  Gutierrez,",
+      "companyId": "8446433734",
+      "companyName": "Banco Inversis, S. A."
+    },
+    {
+      "contactId": "1752",
+      "contactEmail": "ggisbert@bancopichincha.es",
+      "contactName": "Gema Gisbert",
+      "companyId": "8446552793",
+      "companyName": "BANCO PICHINCHA ESPAÑA, S.A."
+    },
+    {
+      "contactId": "1753",
+      "contactEmail": "lcarballes@chint.eu",
+      "contactName": "Leire Carballes",
+      "companyId": "8446464698",
+      "companyName": "CHINT ELECTRICS S.L"
+    },
+    {
+      "contactId": "1754",
+      "contactEmail": "maitef@developmentsystems.es",
+      "contactName": "Maite Fuentes",
+      "companyId": "8446970840",
+      "companyName": "DEVELOPMENT SYSTEMS"
+    },
+    {
+      "contactId": "1757",
+      "contactEmail": "cadeveg@mapfre.com",
+      "contactName": "Camino De Vega Navascues",
+      "companyId": "8446996167",
+      "companyName": "MAPFRE ASISTENCIA COMPAÑÍA INTERNACIONAL DE SEGUROS Y REASEGUROS, S.A"
+    },
+    {
+      "contactId": "1758",
+      "contactEmail": "asanjose.bce@cajarural.com",
+      "contactName": "Ana San José Martín",
+      "companyId": "8446481110",
+      "companyName": "BANCO COOPERATIVO ESPAÑOL SA"
+    },
+    {
+      "contactId": "1759",
+      "contactEmail": "m.ruiz@dedalus.com",
+      "contactName": "Pura Ruiz Ruiz",
+      "companyId": "8446970847",
+      "companyName": "DEDALUS GLOBAL SERVICES SA"
+    },
+    {
+      "contactId": "1803",
+      "contactEmail": "ana_vaquerizas_bce@cajarural.com",
+      "contactName": "Ana Vaquerizas",
+      "companyId": "8446481110",
+      "companyName": "BANCO COOPERATIVO ESPAÑOL SA"
+    },
+    {
+      "contactId": "1806",
+      "contactEmail": "i.gavilanes@alcampo.es",
+      "contactName": "Isabel Gavilanes Gómez",
+      "companyId": "8446464503",
+      "companyName": "AUCHAN RETAIL ESPAÑA SL"
+    },
+    {
+      "contactId": "1852",
+      "contactEmail": "franciscojavier.casadou@santalucia.es",
+      "contactName": "Javier Casado Ucieda Casado Ucieda",
+      "companyId": "8446970844",
+      "companyName": "SANTA LUCÍA, S.A, Compañía de Seguros y Reaseguros"
+    },
+    {
+      "contactId": "1853",
+      "contactEmail": "epescador@cesce.es",
+      "contactName": "Elena Pescador Moreno",
+      "companyId": "8447020534",
+      "companyName": "CESCE"
+    },
+    {
+      "contactId": "1857",
+      "contactEmail": "ramon.taix@arkopharma.com",
+      "contactName": "Ramón Taix",
+      "companyId": "8447039184",
+      "companyName": "ARKOPHARMA"
+    },
+    {
+      "contactId": "1858",
+      "contactEmail": null,
+      "contactName": "Anna Rigol",
+      "companyId": "8446433730",
+      "companyName": "Captrain España"
+    },
+    {
+      "contactId": "4201",
+      "contactEmail": "cmmonic@mapfre.com",
+      "contactName": "Monica Céspedes Mazur",
+      "companyId": "8415810805",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "4851",
+      "contactEmail": "belenmartinrajas@gmail.com",
+      "contactName": "Belén Martín Rajas",
+      "companyId": "8673308355",
+      "companyName": "Johnson Controls"
+    },
+    {
+      "contactId": "5401",
+      "contactEmail": "rllano@litigal.eu",
+      "contactName": "Rafa Llano",
+      "companyId": "8713049065",
+      "companyName": "Litigal"
+    },
+    {
+      "contactId": "5951",
+      "contactEmail": "nabiha.decorro@mapfre.com.pa",
+      "contactName": "Nabiha Sánchez",
+      "companyId": "8750853833",
+      "companyName": "PANAMA ASISTENCIA, S.A."
+    },
+    {
+      "contactId": "6001",
+      "contactEmail": "edusena@mapfre.com",
+      "contactName": "Eduardo Sena",
+      "companyId": "8750853833",
+      "companyName": "PANAMA ASISTENCIA, S.A."
+    },
+    {
+      "contactId": "6051",
+      "contactEmail": "miguel.alonso@hebronsa.es",
+      "contactName": "Miguel Alonso García",
+      "companyId": "8750881267",
+      "companyName": "HEBRON S.A."
+    },
+    {
+      "contactId": "6101",
+      "contactEmail": "aaron.perez@hebronsa.es",
+      "contactName": "Aarón Pérez Moral",
+      "companyId": "8750881267",
+      "companyName": "HEBRON S.A."
+    },
+    {
+      "contactId": "6151",
+      "contactEmail": "kilianmayorfreixes@gmail.com",
+      "contactName": "KILIAN MAYOR FREIXES",
+      "companyId": "8750881477",
+      "companyName": "CENTRO DE MEDICINA CORRECTIVA SL"
+    },
+    {
+      "contactId": "6201",
+      "contactEmail": "gloriabatlle@gotta.es",
+      "contactName": "Gloria Batlle Bosch",
+      "companyId": "8750881487",
+      "companyName": "Comercial Caus"
+    },
+    {
+      "contactId": "6251",
+      "contactEmail": "olga@kpsport.com",
+      "contactName": "Olga López Pastora",
+      "companyId": "8750881732",
+      "companyName": " Kit Personalización Sport s.l "
+    },
+    {
+      "contactId": "6301",
+      "contactEmail": "eclos@kpsport.com",
+      "contactName": "ENRIC CLOS MATEOS",
+      "companyId": "8750881732",
+      "companyName": " Kit Personalización Sport s.l "
+    },
+    {
+      "contactId": "6351",
+      "contactEmail": null,
+      "contactName": "FRANCISCO JAVIER GONZALEZ MARTIN",
+      "companyId": "8750852592",
+      "companyName": "Health Transportation Group"
+    },
+    {
+      "contactId": "6401",
+      "contactEmail": null,
+      "contactName": "Fermín Rodríguez Real",
+      "companyId": "8750852802",
+      "companyName": "Eurofragance"
+    },
+    {
+      "contactId": "6451",
+      "contactEmail": "gcasals@eurofragance.com",
+      "contactName": "Gerard Casals Pares",
+      "companyId": "8750852802",
+      "companyName": "Eurofragance"
+    },
+    {
+      "contactId": "6551",
+      "contactEmail": "dblanco@grupoitinere.com",
+      "contactName": "David Blanco",
+      "companyId": "8761723363",
+      "companyName": "Itínere Infraestructuras, S.A."
+    },
+    {
+      "contactId": "6601",
+      "contactEmail": "rodrigomartinez@krownsa.com",
+      "contactName": "Rodrigo Martínez",
+      "companyId": "8761723592",
+      "companyName": "KROWN"
+    },
+    {
+      "contactId": "6651",
+      "contactEmail": "noema.paniagua@bmum.es",
+      "contactName": "Noema Paniagua",
+      "companyId": "8761723578",
+      "companyName": "Bmum"
+    },
+    {
+      "contactId": "6701",
+      "contactEmail": "pedrom@consulting21.es",
+      "contactName": "Pedro Martos",
+      "companyId": "8761947345",
+      "companyName": "Consulting21"
+    },
+    {
+      "contactId": "7351",
+      "contactEmail": "ssanchez@einsa.es",
+      "contactName": "Susana Sánchez Ramos",
+      "companyId": "8779033052",
+      "companyName": "EQUIPOS INDUSTRIALES DE MANUTENCION SA"
+    },
+    {
+      "contactId": "7451",
+      "contactEmail": "fernandez.armando@fronius.com",
+      "contactName": "Armando Fernández",
+      "companyId": "8773747648",
+      "companyName": "Fronius International GmbH"
+    },
+    {
+      "contactId": "7951",
+      "contactEmail": "eduardo.costa@pci.pt",
+      "contactName": "Eduardo Costa",
+      "companyId": "8824502008",
+      "companyName": "Pci - incubadora da universidade"
+    },
+    {
+      "contactId": "8151",
+      "contactEmail": "ppmerino@ecommerce-news.es",
+      "contactName": "Pedro Pablo Merino",
+      "companyId": "8975316926",
+      "companyName": "Ecommerce News"
+    },
+    {
+      "contactId": "9851",
+      "contactEmail": "omar.rodriguez@mapfre.com",
+      "contactName": "Omar Rodríguez",
+      "companyId": "8415810805",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "9901",
+      "contactEmail": "nelida.aranda@mapfre.com.pa",
+      "contactName": "Nélida Aranda",
+      "companyId": "8750853833",
+      "companyName": "PANAMA ASISTENCIA, S.A."
+    },
+    {
+      "contactId": "9951",
+      "contactEmail": "amahijado@emergiacc.com",
+      "contactName": "Ana María Ahijado",
+      "companyId": "8446433731",
+      "companyName": "EMERGIA CONTACT CENTER SL"
+    },
+    {
+      "contactId": "13451",
+      "contactEmail": "mporcar@darwinbioprospecting.com",
+      "contactName": "Manel Porcar",
+      "companyId": "8975531216",
+      "companyName": "DarwinBioprospecting"
+    },
+    {
+      "contactId": "13501",
+      "contactEmail": "joseluis.vallejo@sngular.com",
+      "contactName": "José Luis Vallejo",
+      "companyId": "8975515836",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "13551",
+      "contactEmail": "felixlozan@gmail.com",
+      "contactName": "Félix Lozano",
+      "companyId": "8975633094",
+      "companyName": "Teamlabs"
+    },
+    {
+      "contactId": "13601",
+      "contactEmail": "arodriguez@eae.es",
+      "contactName": "Antonio Rodríguez",
+      "companyId": "8975633866",
+      "companyName": "EAE Business School"
+    },
+    {
+      "contactId": "13651",
+      "contactEmail": "fidel.rodriguez@fuam.uam.es",
+      "contactName": "Fidel Rodríguez Batalla",
+      "companyId": "8975674816",
+      "companyName": "Fundación Universidad Autónoma de Madrid"
+    },
+    {
+      "contactId": "13701",
+      "contactEmail": "content@sondersland.com",
+      "contactName": "Adriana Bisve",
+      "companyId": "8975703537",
+      "companyName": "Sondersland"
+    },
+    {
+      "contactId": "13751",
+      "contactEmail": "javierparedesalonso@gmail.com",
+      "contactName": "Javier Paredes",
+      "companyId": "8975725010",
+      "companyName": "Editorial san roman"
+    },
+    {
+      "contactId": "13801",
+      "contactEmail": "alexandra@naranjasperdine.com",
+      "contactName": "Alexandra Garcés",
+      "companyId": "8975704284",
+      "companyName": "Naranjas Perdine"
+    },
+    {
+      "contactId": "15751",
+      "contactEmail": "info@wonderfultimes.ch",
+      "contactName": "Christophe Scheafer",
+      "companyId": "9151903732",
+      "companyName": "Wonderfultimes"
+    },
+    {
+      "contactId": "16051",
+      "contactEmail": "mtortosalaso@gmail.com",
+      "contactName": "Mayte Tortosa Laso",
+      "companyId": "300906253504",
+      "companyName": "Proportione - Tecnología y Estrategia para un crecimiento exponencial"
+    },
+    {
+      "contactId": "19051",
+      "contactEmail": "silvia.rubio@bmigroup.com",
+      "contactName": "Silvia Rubio",
+      "companyId": "9235906499",
+      "companyName": "BMI Group"
+    },
+    {
+      "contactId": "22151",
+      "contactEmail": null,
+      "contactName": "Sergio Fernández de Isidro",
+      "companyId": "313627027697",
+      "companyName": "Salesforce"
+    },
+    {
+      "contactId": "23651",
+      "contactEmail": "win@win2wingroup.es",
+      "contactName": "WIN2WIN",
+      "companyId": "10642683626",
+      "companyName": "WIN2WIN WORLDWIDE S.L."
+    },
+    {
+      "contactId": "27951",
+      "contactEmail": "cristinaperez@puertoculturas.com",
+      "contactName": "Cristina Pérez",
+      "companyId": "9803647956",
+      "companyName": "CARTAGENA PUERTO DE CULTURAS S.A."
+    },
+    {
+      "contactId": "28001",
+      "contactEmail": "christnacher@schaefer-and-companions.art",
+      "contactName": "Gabin Christnacher",
+      "companyId": "9151903732",
+      "companyName": "Wonderfultimes"
+    },
+    {
+      "contactId": "28301",
+      "contactEmail": "jairo@win2wingroup.es",
+      "contactName": "jairo WIN2WIN",
+      "companyId": "10642683626",
+      "companyName": "WIN2WIN WORLDWIDE S.L."
+    },
+    {
+      "contactId": "31151",
+      "contactEmail": "prider@fammamoto.com",
+      "contactName": "Pilar Rider",
+      "companyId": "9888324538",
+      "companyName": "Famma Moto S.A."
+    },
+    {
+      "contactId": "31201",
+      "contactEmail": "beatriz@everyoneconsultores.com",
+      "contactName": "Beatriz",
+      "companyId": "9888324538",
+      "companyName": "Famma Moto S.A."
+    },
+    {
+      "contactId": "33851",
+      "contactEmail": "mhidalgo@camposdeuleila.es",
+      "contactName": "Mariola Hidalgo",
+      "companyId": "8411187174",
+      "companyName": "Campos de Uleila"
+    },
+    {
+      "contactId": "35902",
+      "contactEmail": "geadamo@eae.es",
+      "contactName": "Emmanuele Adamo",
+      "companyId": "8975633866",
+      "companyName": "EAE Business School"
+    },
+    {
+      "contactId": "36401",
+      "contactEmail": "1gdm23@gmail.com",
+      "contactName": "GIUSEPPE DI MARTINO",
+      "companyId": "10071559616",
+      "companyName": "Across Logistics"
+    },
+    {
+      "contactId": "36451",
+      "contactEmail": "jechu_salamanca@hotmail.es",
+      "contactName": "Jesus Garcia De la mano",
+      "companyId": "10071559906",
+      "companyName": "CODESGRA MEAT SL"
+    },
+    {
+      "contactId": "36501",
+      "contactEmail": "r.raurich@bricoceramic.com",
+      "contactName": "Roser Raurich Roura",
+      "companyId": "10071334078",
+      "companyName": "Bricoceramic"
+    },
+    {
+      "contactId": "36551",
+      "contactEmail": "afrances-fcs@fakolith.com",
+      "contactName": "Toni Francés Sempere",
+      "companyId": "10071334132",
+      "companyName": "Fakolith Chemical Systems"
+    },
+    {
+      "contactId": "36601",
+      "contactEmail": "pj@formigo.com",
+      "contactName": "Pere Joan Palahi Sera",
+      "companyId": "10071334376",
+      "companyName": "Formigons Alsina"
+    },
+    {
+      "contactId": "36751",
+      "contactEmail": "jfarfan@ilusiona.com",
+      "contactName": "Jaume Caqui Farfan",
+      "companyId": "10072047291",
+      "companyName": "ILUSIONA"
+    },
+    {
+      "contactId": "36801",
+      "contactEmail": "slloret@homsrentals.com",
+      "contactName": "Sergi Lloret Isiegas",
+      "companyId": "10072047345",
+      "companyName": "Homsrentals"
+    },
+    {
+      "contactId": "36851",
+      "contactEmail": "javier.costa@meroil.es",
+      "contactName": "Xavi Costa Rovira",
+      "companyId": "10072047577",
+      "companyName": "MEROIL"
+    },
+    {
+      "contactId": "36852",
+      "contactEmail": "daniel.adan@meroil.es",
+      "contactName": "Daniel Adán Alcántara",
+      "companyId": "10072047577",
+      "companyName": "MEROIL"
+    },
+    {
+      "contactId": "36901",
+      "contactEmail": "s.beltran@pressing.es",
+      "contactName": "Sergi Beltran Domenech",
+      "companyId": "10073558727",
+      "companyName": "Pressing"
+    },
+    {
+      "contactId": "37051",
+      "contactEmail": "monica.pons@pujol-automation.com",
+      "contactName": "Monica Pons Martinez",
+      "companyId": "10073559494",
+      "companyName": "AUTOMATISMOS PUJOL SL"
+    },
+    {
+      "contactId": "37101",
+      "contactEmail": "thilo.elmering@redi-spain.com",
+      "contactName": "Thilo Elmering",
+      "companyId": "10073560000",
+      "companyName": "Redi-Spain"
+    },
+    {
+      "contactId": "37151",
+      "contactEmail": "miquel.tunsch@redi-spain.com",
+      "contactName": "Miquel Tunsch",
+      "companyId": "10073560000",
+      "companyName": "Redi-Spain"
+    },
+    {
+      "contactId": "37201",
+      "contactEmail": "mireia.pena@tempelgroup.com",
+      "contactName": "Mireia Peña Guinjoan",
+      "companyId": "10072561086",
+      "companyName": "Tempel Group"
+    },
+    {
+      "contactId": "37251",
+      "contactEmail": "sergio.aspas@upl-ltd.com",
+      "contactName": "Sergio Aspas Catón",
+      "companyId": "10074295232",
+      "companyName": "UPL-"
+    },
+    {
+      "contactId": "37301",
+      "contactEmail": "jessica.garcia@upl-ltd.com",
+      "contactName": "Jéssica García Freire",
+      "companyId": "10074295232",
+      "companyName": "UPL-"
+    },
+    {
+      "contactId": "37751",
+      "contactEmail": "alarcher@minsait.com",
+      "contactName": "Ana Archer",
+      "companyId": "9743379189",
+      "companyName": "Minsait"
+    },
+    {
+      "contactId": "37901",
+      "contactEmail": "yasmery.morales@mapfre.cl",
+      "contactName": "Morales Abreu, Yasmery Chiquinquira",
+      "companyId": "10643853551",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "38701",
+      "contactEmail": "mf@xolary.com",
+      "contactName": "Miguel Fernández",
+      "companyId": "10329980370",
+      "companyName": "XOLARY, S.L."
+    },
+    {
+      "contactId": "40501",
+      "contactEmail": "fcontreras@ccile.org",
+      "contactName": "Francisco Contreras CCILE",
+      "companyId": "10329680596",
+      "companyName": "Cámara Luso Española"
+    },
+    {
+      "contactId": "45151",
+      "contactEmail": "alba.roldan@ccile.org",
+      "contactName": "Alba Roldán",
+      "companyId": "10329680596",
+      "companyName": "Cámara Luso Española"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "companyId": "9743379189",
+      "companyName": "Minsait"
+    },
+    {
+      "contactId": "48851",
+      "contactEmail": "gonzalo@algongames.com",
+      "contactName": "Gonzalo Algon Games",
+      "companyId": "10755153110",
+      "companyName": "Algon Games"
+    },
+    {
+      "contactId": "52101",
+      "contactEmail": "carolina.tello@mapfre.cl",
+      "contactName": "Carolina Waleska Tello Serrano",
+      "companyId": "10643853551",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "52701",
+      "contactEmail": "antonio_marin@algongames.com",
+      "contactName": "Antonio Marin",
+      "companyId": "10755153110",
+      "companyName": "Algon Games"
+    },
+    {
+      "contactId": "55751",
+      "contactEmail": "sebastian.gillibrand@mapfre.cl",
+      "contactName": "Sebastian Gilibrand",
+      "companyId": "10643853551",
+      "companyName": "MAPFRE"
+    },
+    {
+      "contactId": "3301758665",
+      "contactEmail": "avazquez@algongames.com",
+      "contactName": "Álvaro Vázquez",
+      "companyId": "10755153110",
+      "companyName": "Algon Games"
+    },
+    {
+      "contactId": "9274684388",
+      "contactEmail": "direccion@iitdistancia.org",
+      "contactName": "",
+      "companyId": "11345224148",
+      "companyName": "INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA"
+    },
+    {
+      "contactId": "17585167048",
+      "contactEmail": "angeles@farmapozuelo.es",
+      "contactName": "María Ángeles Requejo Pomar",
+      "companyId": "12086122938",
+      "companyName": "FARMAPOZUELO"
+    },
+    {
+      "contactId": "19836980451",
+      "contactEmail": "maxime.desmond@vincentlavergne.eu",
+      "contactName": "Maxime Desmond",
+      "companyId": "12521341418",
+      "companyName": "Vincent Lavergne"
+    },
+    {
+      "contactId": "168667016415",
+      "contactEmail": "rsilsbee@imbranded.com",
+      "contactName": "Ryan Silsbee",
+      "companyId": "12609456107",
+      "companyName": "iMBranded"
+    },
+    {
+      "contactId": "177081511120",
+      "contactEmail": "rgonzalez@camaratenerife.es",
+      "contactName": "Rossana González Abreu",
+      "companyId": "97849809136",
+      "companyName": "CABILDO DE TENERIFE"
+    },
+    {
+      "contactId": "193503407322",
+      "contactEmail": "cristinanevado@sipay.es",
+      "contactName": "Cristina Nevado",
+      "companyId": "95968426209",
+      "companyName": "Sipay"
+    },
+    {
+      "contactId": "193603199205",
+      "contactEmail": "j.gallego@ucm.es",
+      "contactName": "Jesús Gallego Maestro",
+      "companyId": "95968425148",
+      "companyName": "GUAIX UCM"
+    },
+    {
+      "contactId": "247284546797",
+      "contactEmail": "filipe.bergana@audazcapital.com",
+      "contactName": "Filipe Bergaña",
+      "companyId": "125103655138",
+      "companyName": "Audaz Capital"
+    },
+    {
+      "contactId": "292073285872",
+      "contactEmail": "direccion@institutoteologia.org",
+      "contactName": "José Castro Cea",
+      "companyId": "11345224148",
+      "companyName": "INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA"
+    },
+    {
+      "contactId": "300998238425",
+      "contactEmail": "javier.aguilera@mixerpack.es",
+      "contactName": "Javier Aguilera",
+      "companyId": "156550326503",
+      "companyName": "Mixer & Pack S.L."
+    },
+    {
+      "contactId": "364366348484",
+      "contactEmail": "concha.campos@farmaciaimas.com",
+      "contactName": "Concha Campos",
+      "companyId": "192347122900",
+      "companyName": "Farmacia I+"
+    },
+    {
+      "contactId": "435728081140",
+      "contactEmail": "raul@lejanbrand.com",
+      "contactName": "Raúl Rodríguez Mendo",
+      "companyId": "9152291515",
+      "companyName": "Lejan"
+    },
+    {
+      "contactId": "532590558408",
+      "contactEmail": "tavaresc@gmail.com",
+      "contactName": "Carlos Tavares Tavares",
+      "companyId": "294091838675",
+      "companyName": "VIEIRINOX"
+    },
+    {
+      "contactId": "532671351018",
+      "contactEmail": null,
+      "contactName": "Andreia Ferreira Ferreira",
+      "companyId": "295564219620",
+      "companyName": "Ramalhos"
+    },
+    {
+      "contactId": "533461654745",
+      "contactEmail": "javigaya@gmail.com",
+      "contactName": "Javier Gayá García-Manso Gayá García-Manso",
+      "companyId": "295401923812",
+      "companyName": "Lejan Brand"
+    },
+    {
+      "contactId": "533467989218",
+      "contactEmail": "jorgesoaresferreira@outlook.com",
+      "contactName": "Jorge Ferreira Ferreira",
+      "companyId": "292840618194",
+      "companyName": "Sea Soul Tech - Science for Manufacturing"
+    },
+    {
+      "contactId": "533483900108",
+      "contactEmail": null,
+      "contactName": "Nelson Machado Machado",
+      "companyId": "292930929893",
+      "companyName": "Prinemo"
+    },
+    {
+      "contactId": "533499963606",
+      "contactEmail": null,
+      "contactName": "Andreia Ferreira Ferreira",
+      "companyId": "295564219620",
+      "companyName": "Ramalhos"
+    },
+    {
+      "contactId": "533514073280",
+      "contactEmail": null,
+      "contactName": "Bruno Abreu Abreu",
+      "companyId": "295496031445",
+      "companyName": "SCUBIC - Smart Software Solutions"
+    },
+    {
+      "contactId": "533517863138",
+      "contactEmail": null,
+      "contactName": "Carlos Teixeira Teixeira",
+      "companyId": "294151156952",
+      "companyName": "CHETOCORPORATION"
+    },
+    {
+      "contactId": "533552837842",
+      "contactEmail": null,
+      "contactName": "Carlos Brandão Brandão",
+      "companyId": "295400124647",
+      "companyName": "CHATRON"
+    },
+    {
+      "contactId": "533567305922",
+      "contactEmail": null,
+      "contactName": "Bruno Abreu Abreu",
+      "companyId": "295567819984",
+      "companyName": "SCUBIC - Smart Software Solutions"
+    },
+    {
+      "contactId": "533572835549",
+      "contactEmail": null,
+      "contactName": "Jorge Mota Mota",
+      "companyId": "294071805164",
+      "companyName": "Rittal ES"
+    },
+    {
+      "contactId": "533572841684",
+      "contactEmail": null,
+      "contactName": "Helder Pires Pires",
+      "companyId": "297432180933",
+      "companyName": "SIM-SA Lights up your way"
+    },
+    {
+      "contactId": "533596397777",
+      "contactEmail": null,
+      "contactName": "Bruno Abreu Abreu",
+      "companyId": "292923673804",
+      "companyName": "SCUBIC - Smart Software Solutions"
+    },
+    {
+      "contactId": "536048565478",
+      "contactEmail": null,
+      "contactName": "Luis Henriques Henriques",
+      "companyId": "297398861019",
+      "companyName": "Heliflex"
+    },
+    {
+      "contactId": "536100948178",
+      "contactEmail": null,
+      "contactName": "Nuno Matos Sequeira Matos Sequeira",
+      "companyId": "297476004058",
+      "companyName": "Singularity Capital"
+    },
+    {
+      "contactId": "540544549054",
+      "contactEmail": "cjimenez@secuware.com",
+      "contactName": "Carlos Jimenez Jimenez",
+      "companyId": "300507417789",
+      "companyName": "Secuware"
+    },
+    {
+      "contactId": "540981574871",
+      "contactEmail": "avaleroe@gmail.com",
+      "contactName": "Ana V V",
+      "companyId": "300402993379",
+      "companyName": "BBVA Technology en Europa"
+    },
+    {
+      "contactId": "541205501176",
+      "contactEmail": null,
+      "contactName": "Zviad Tsotskolauri Tsotskolauri",
+      "companyId": "300871978204",
+      "companyName": "Signify"
+    },
+    {
+      "contactId": "541312377026",
+      "contactEmail": "jarmando.tellado@capsa.es",
+      "contactName": "José Armando Tellado Nogueira Tellado Nogueira",
+      "companyId": "8411145443",
+      "companyName": "CAPSA FOOD"
+    },
+    {
+      "contactId": "541986448607",
+      "contactEmail": null,
+      "contactName": "João Carlos Bastos Almeida Bastos Almeida",
+      "companyId": "300708094174",
+      "companyName": "Banco Millennium Atlântico"
+    },
+    {
+      "contactId": "542127478998",
+      "contactEmail": "sofia.fernandez@capsa.es",
+      "contactName": "Sofía Fernández-Gala Sirvent Fernández-Gala Sirvent",
+      "companyId": "8411145443",
+      "companyName": "CAPSA FOOD"
+    },
+    {
+      "contactId": "542342691015",
+      "contactEmail": null,
+      "contactName": "José Antonio Carbonell Cañado Carbonell Cañado",
+      "companyId": "301641861339",
+      "companyName": "Fiare Banca Etica"
+    },
+    {
+      "contactId": "542409806053",
+      "contactEmail": null,
+      "contactName": "José Antonio Carbonell Cañado Carbonell Cañado",
+      "companyId": "301641861339",
+      "companyName": "Fiare Banca Etica"
+    },
+    {
+      "contactId": "542411758783",
+      "contactEmail": "neilj@projectgestalt.com",
+      "contactName": "Neil G Jacobson Jacobson",
+      "companyId": "301176735991",
+      "companyName": "Project Gestalt, Inc."
+    },
+    {
+      "contactId": "542437114042",
+      "contactEmail": "delciogunza@gmail.com",
+      "contactName": "Délcio Gunza Gunza",
+      "companyId": "330812974301",
+      "companyName": "AIPEX Angola"
+    },
+    {
+      "contactId": "542486533310",
+      "contactEmail": null,
+      "contactName": "Alberto Alvarez Rodriguez Alvarez Rodriguez",
+      "companyId": "8411145443",
+      "companyName": "CAPSA FOOD"
+    },
+    {
+      "contactId": "542542312675",
+      "contactEmail": "leonardo@cuquejo.org",
+      "contactName": "Leonardo Cuquejo Cuquejo",
+      "companyId": "301550639342",
+      "companyName": "IQVIA"
+    },
+    {
+      "contactId": "544705706216",
+      "contactEmail": "monicacantondecelis@gmail.com",
+      "contactName": "Monica Cantón de Celis Calvo Cantón de Celis Calvo",
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven"
+    },
+    {
+      "contactId": "545526226161",
+      "contactEmail": null,
+      "contactName": "Emad Sharaki Sharaki",
+      "companyId": "303201335529",
+      "companyName": "AUTODOC"
+    },
+    {
+      "contactId": "549949705432",
+      "contactEmail": "fmenpom@ea.mde.es",
+      "contactName": "Francisco Javier Mendi Pompa",
+      "companyId": "309304318153",
+      "companyName": "Ministerio Defensa"
+    },
+    {
+      "contactId": "554630811841",
+      "contactEmail": "joseluis.ferrero@publicisgroupe.com",
+      "contactName": "José Luis Ferrero Ferrero",
+      "companyId": "309121174756",
+      "companyName": "Publicis Groupe España"
+    },
+    {
+      "contactId": "554630824125",
+      "contactEmail": null,
+      "contactName": "Valerie De Anda De Anda",
+      "companyId": "309108579542",
+      "companyName": "Universität Wien | University of Vienna"
+    },
+    {
+      "contactId": "554957525186",
+      "contactEmail": "alexolme21@gmail.com",
+      "contactName": "Alejandro José Olmedilla Olmedilla",
+      "companyId": "9152291314",
+      "companyName": "Universidadunie"
+    },
+    {
+      "contactId": "555291402454",
+      "contactEmail": "georgesinklizia@gmail.com",
+      "contactName": "Georges Inklizian Inklizian",
+      "companyId": "309108576482",
+      "companyName": "Sygris"
+    },
+    {
+      "contactId": "555351099578",
+      "contactEmail": "mariapatriciasoroa@gmail.com",
+      "contactName": "María Patricia Soroa de Carlos Soroa de Carlos",
+      "companyId": "308870894787",
+      "companyName": "Universidad Europea"
+    },
+    {
+      "contactId": "556348449980",
+      "contactEmail": "je.sanchezb@gmail.com",
+      "contactName": "Enrique Sánchez-Bayuela Sánchez-Bayuela",
+      "companyId": "309322336474",
+      "companyName": "Elastic"
+    },
+    {
+      "contactId": "556849052884",
+      "contactEmail": "aromeo@gmail.com",
+      "contactName": "alfredo romeo romeo",
+      "companyId": "309363866832",
+      "companyName": "Datta Capital"
+    },
+    {
+      "contactId": "556849122495",
+      "contactEmail": "dobrabant@yahoo.es",
+      "contactName": "Dominique Brabant Brabant",
+      "companyId": "309110575348",
+      "companyName": "Marketing Paradise"
+    },
+    {
+      "contactId": "556901257445",
+      "contactEmail": "jgarcia@mkparadise.com",
+      "contactName": "Jorge García Gómez García Gómez",
+      "companyId": "309354862787",
+      "companyName": "Marketing Paradise"
+    },
+    {
+      "contactId": "556906840307",
+      "contactEmail": "raul.rodriguez@ecoetus.com",
+      "contactName": "Raúl Rodríguez Rodríguez",
+      "companyId": "310545577181",
+      "companyName": "Lejan Brand"
+    },
+    {
+      "contactId": "556926079194",
+      "contactEmail": "raulcostoso@gmail.com",
+      "contactName": "Raul Lopez Costoso Lopez Costoso",
+      "companyId": "311559172306",
+      "companyName": "Universidad Internacional de La Rioja"
+    },
+    {
+      "contactId": "557875162361",
+      "contactEmail": "mikita.martynau@gmail.com",
+      "contactName": "Mikita Martynaū Martynaū",
+      "companyId": "308960237813",
+      "companyName": "Skarbe"
+    },
+    {
+      "contactId": "557881826535",
+      "contactEmail": "mpuente04@gmail.com",
+      "contactName": "Jesus González Enríquez Puente Gascón",
+      "companyId": "309461362899",
+      "companyName": "EBN Banco"
+    },
+    {
+      "contactId": "557900829899",
+      "contactEmail": "mvi@wsiworld.es",
+      "contactName": "Miguel Valle-Inclán Lapido Valle-Inclán Lapido",
+      "companyId": "311289123052",
+      "companyName": "WSI World"
+    },
+    {
+      "contactId": "557901189349",
+      "contactEmail": "jlvallejop@gmail.com",
+      "contactName": "José Luis Vallejo Pizarro Vallejo Pizarro",
+      "companyId": "312475726036",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "557903030509",
+      "contactEmail": "pedroalcaide18@gmail.com",
+      "contactName": "Pedro Alcaide Castro Alcaide Castro",
+      "companyId": "309108916421",
+      "companyName": "Metro de Madrid, S.A."
+    },
+    {
+      "contactId": "557993385189",
+      "contactEmail": "antoine.eripret@gmail.com",
+      "contactName": "Antoine Eripret Eripret",
+      "companyId": "308960261365",
+      "companyName": "Data SEO Academy"
+    },
+    {
+      "contactId": "558034805980",
+      "contactEmail": "diagramconsultores@gmail.com",
+      "contactName": "Dominique Gross Gross",
+      "companyId": "308855008489",
+      "companyName": "Diagram, Consultores para el Tercer Sector. Consigue más y mejor Impacto Social"
+    },
+    {
+      "contactId": "558184746185",
+      "contactEmail": "jccortizo@gmail.com",
+      "contactName": "Jose Carlos Cortizo Perez Cortizo Perez",
+      "companyId": "309461389544",
+      "companyName": "Product Hackers"
+    },
+    {
+      "contactId": "558502488254",
+      "contactEmail": "manuel.porcar@uv.es",
+      "contactName": "Manuel Porcar Porcar",
+      "companyId": "8975531216",
+      "companyName": "DarwinBioprospecting"
+    },
+    {
+      "contactId": "559088692435",
+      "contactEmail": null,
+      "contactName": "José Domingo Martín Ramirez Martín Ramirez",
+      "companyId": "10642683626",
+      "companyName": "WIN2WIN WORLDWIDE S.L."
+    },
+    {
+      "contactId": "559094711538",
+      "contactEmail": "comunicacionlbouza@gmail.com",
+      "contactName": "Lidia Ana García-Bouza García García-Bouza García",
+      "companyId": "9152291314",
+      "companyName": "Universidadunie"
+    },
+    {
+      "contactId": "559098360003",
+      "contactEmail": null,
+      "contactName": "Luis Estébanez Estébanez",
+      "companyId": "8804165582",
+      "companyName": "Laude"
+    },
+    {
+      "contactId": "559127291101",
+      "contactEmail": "agarinmuga@gmail.com",
+      "contactName": "Alba Garin-Muga Garin-Muga",
+      "companyId": "312679993539",
+      "companyName": "Vicomtech"
+    },
+    {
+      "contactId": "559824304349",
+      "contactEmail": "rvivas@xplane.com",
+      "contactName": "Rafael Vivas Vivas",
+      "companyId": "312660207839",
+      "companyName": "XPLANE Spain & LATAM"
+    },
+    {
+      "contactId": "559993877723",
+      "contactEmail": null,
+      "contactName": "Ana Archer Cabral Archer Cabral",
+      "companyId": "9743379189",
+      "companyName": "Minsait"
+    },
+    {
+      "contactId": "559993928917",
+      "contactEmail": "javier.recuenco@singulartargeting.com",
+      "contactName": "Javier G Recuenco G Recuenco",
+      "companyId": "10465344454",
+      "companyName": "ICEX"
+    },
+    {
+      "contactId": "560089588950",
+      "contactEmail": "alberto.turegano@lideresydigitales.com",
+      "contactName": "Alberto Turégano Schirmer Turégano Schirmer",
+      "companyId": "311845801201",
+      "companyName": "EOI Business School"
+    },
+    {
+      "contactId": "560147714283",
+      "contactEmail": null,
+      "contactName": "Pedro Machado von Poroszlay Machado von Poroszlay",
+      "companyId": "312077350135",
+      "companyName": "Redflexión Consultores"
+    },
+    {
+      "contactId": "560153969887",
+      "contactEmail": "miguel.dereina@gmail.com",
+      "contactName": "Miguel de Reina de Reina",
+      "companyId": "308984030429",
+      "companyName": "Brainy Commerce"
+    },
+    {
+      "contactId": "561370291416",
+      "contactEmail": null,
+      "contactName": "Rita Pinto Pinto",
+      "companyId": "313610029290",
+      "companyName": "Bombarda - Quarteirão Criativo"
+    },
+    {
+      "contactId": "561539310812",
+      "contactEmail": null,
+      "contactName": "Margarita Núñez Núñez",
+      "companyId": "314108329193",
+      "companyName": "Universidad Nebrija"
+    },
+    {
+      "contactId": "564978421970",
+      "contactEmail": "eva.m.ambiente@gmail.com",
+      "contactName": "Eva María Iglesias Guzmán Iglesias Guzmán",
+      "companyId": "314108329193",
+      "companyName": "Universidad Nebrija"
+    },
+    {
+      "contactId": "565016168659",
+      "contactEmail": "jorgerodelgo@gmail.com",
+      "contactName": "Jorge Rodelgo Rodelgo",
+      "companyId": "315783215339",
+      "companyName": "JR Estrategia e Innovación"
+    },
+    {
+      "contactId": "567099771124",
+      "contactEmail": "pablo@renaud.es",
+      "contactName": "Pablo Renaud Renaud",
+      "companyId": "317430400224",
+      "companyName": "Ziclo Distribution"
+    },
+    {
+      "contactId": "567860853988",
+      "contactEmail": "jsaizbriones@me.com",
+      "contactName": "Javier Saiz Briones Saiz Briones",
+      "companyId": "315124230336",
+      "companyName": "Universidad Rey Juan Carlos"
+    },
+    {
+      "contactId": "568036817138",
+      "contactEmail": "pablotenorio@pablotenorio.com",
+      "contactName": "Pablo J López Tenorio López Tenorio",
+      "companyId": "9152291314",
+      "companyName": "Universidadunie"
+    },
+    {
+      "contactId": "569958581471",
+      "contactEmail": null,
+      "contactName": "Sergi Bardají Bardají",
+      "companyId": "318416752882",
+      "companyName": "Sergi Bardaji Consultores"
+    },
+    {
+      "contactId": "578632122611",
+      "contactEmail": "llpo82@gmail.com",
+      "contactName": "Llorenç Palomas Palomas",
+      "companyId": "324548027637",
+      "companyName": "Doofinder"
+    },
+    {
+      "contactId": "579532651738",
+      "contactEmail": null,
+      "contactName": "Rafa Vargas Vargas",
+      "companyId": "325013083322",
+      "companyName": "Vargasia"
+    },
+    {
+      "contactId": "587725701364",
+      "contactEmail": "javi.demiguel.toa@gmail.com",
+      "contactName": "Javier de Miguel de Miguel",
+      "companyId": "327866650847",
+      "companyName": "Prodigioso Volcán"
+    },
+    {
+      "contactId": "587830764782",
+      "contactEmail": "cesar.ra.288@gmail.com",
+      "contactName": "César Rodríguez Alonso Rodríguez Alonso",
+      "companyId": "328531327201",
+      "companyName": "Realnaut"
+    },
+    {
+      "contactId": "587895057602",
+      "contactEmail": "raul.arrabales@gmail.com",
+      "contactName": "Raúl Arrabales Arrabales",
+      "companyId": "330559391932",
+      "companyName": "Gartner"
+    },
+    {
+      "contactId": "587895057621",
+      "contactEmail": "juliovillenaroman@gmail.com",
+      "contactName": "Julio Villena Román Villena Román",
+      "companyId": "330749808857",
+      "companyName": "Reddit, Inc."
+    },
+    {
+      "contactId": "587903160554",
+      "contactEmail": "daniespinoso@gmail.com",
+      "contactName": "Daniel González Rico González Rico",
+      "companyId": "330201075957",
+      "companyName": "iMBranded"
+    },
+    {
+      "contactId": "587903163641",
+      "contactEmail": "alima@netcourrier.com",
+      "contactName": "Alexandre Lima Lima",
+      "companyId": "330748009672",
+      "companyName": "Revolut"
+    },
+    {
+      "contactId": "587905139929",
+      "contactEmail": "cbeldarrain@minsait.com",
+      "contactName": "Carlos Beldarrain Beldarrain",
+      "companyId": "9743379189",
+      "companyName": "Minsait"
+    },
+    {
+      "contactId": "587930339523",
+      "contactEmail": null,
+      "contactName": "David Carrero Fernández-Baillo Carrero Fernández-Baillo",
+      "companyId": "328513274090",
+      "companyName": "Stackscale"
+    },
+    {
+      "contactId": "587930352836",
+      "contactEmail": "antonio.sotomayor.martinez@gmail.com",
+      "contactName": "Antonio Sotomayor Sotomayor",
+      "companyId": "330730271950",
+      "companyName": "Alastria Blockchain Ecosystem"
+    },
+    {
+      "contactId": "588073055423",
+      "contactEmail": "dbrandib@gmail.com",
+      "contactName": "Daniel Brandi Brandi",
+      "companyId": "328655101167",
+      "companyName": "Mapal Group"
+    },
+    {
+      "contactId": "588238191852",
+      "contactEmail": "fcondeg@gmail.com",
+      "contactName": "Fernando Conde Conde",
+      "companyId": "8975515836",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "588240116966",
+      "contactEmail": "carlos.bote.linkedin@gmail.com",
+      "contactName": "Carlos B B",
+      "companyId": "330721276104",
+      "companyName": "Vinoselección"
+    },
+    {
+      "contactId": "588245214429",
+      "contactEmail": null,
+      "contactName": "Emilio Calvo Garcia Calvo Garcia",
+      "companyId": "8975515836",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "588253873348",
+      "contactEmail": "4elisareyna@gmail.com",
+      "contactName": "Elisa Reyna Santos Reyna Santos",
+      "companyId": "330646649057",
+      "companyName": "Solucionia"
+    },
+    {
+      "contactId": "588294848759",
+      "contactEmail": "josemseoane@hotmail.com",
+      "contactName": "Jose Miguel Seoane Seoane",
+      "companyId": "330694231279",
+      "companyName": "repsol"
+    },
+    {
+      "contactId": "588294849747",
+      "contactEmail": "agovea27xel@gmail.com",
+      "contactName": "Arturo Govea Govea",
+      "companyId": "8975515836",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "588296665312",
+      "contactEmail": null,
+      "contactName": "Alberto Arrabal Arrabal",
+      "companyId": "330559391947",
+      "companyName": "O2O - One2One Digital Strategy"
+    },
+    {
+      "contactId": "588305511614",
+      "contactEmail": null,
+      "contactName": "Yannick Rault v Rault v",
+      "companyId": "330674472182",
+      "companyName": "Sheetgo"
+    },
+    {
+      "contactId": "588326644947",
+      "contactEmail": "josep.amoros@gmail.com",
+      "contactName": "Josep Amorós Amorós",
+      "companyId": "330516717817",
+      "companyName": "BBVA"
+    },
+    {
+      "contactId": "588328770762",
+      "contactEmail": "jmdelachica@gmail.com",
+      "contactName": "José Manuel de la Chica de la Chica",
+      "companyId": "330545263830",
+      "companyName": "Santander"
+    },
+    {
+      "contactId": "588337760459",
+      "contactEmail": "alvaro.delcastillo@gmail.com",
+      "contactName": "Alvaro Del Castillo Del Castillo",
+      "companyId": "330646647015",
+      "companyName": "Cobee"
+    },
+    {
+      "contactId": "588350347506",
+      "contactEmail": "alberto.lendez@gmail.com",
+      "contactName": "Alberto Léndez Sáez Léndez Sáez",
+      "companyId": "330345952467",
+      "companyName": "BBVA Technology en Europa"
+    },
+    {
+      "contactId": "588355745990",
+      "contactEmail": "camargo.cesar@icloud.com",
+      "contactName": "Cesar Camargo Camargo",
+      "companyId": "8975515836",
+      "companyName": "Sngular"
+    },
+    {
+      "contactId": "588539344086",
+      "contactEmail": "cdelalama@gmail.com",
+      "contactName": "Carlos de la Lama-Noriega Pfrimmer de la Lama-Noriega Pfrimmer",
+      "companyId": "330856449243",
+      "companyName": "frontiertower"
+    },
+    {
+      "contactId": "591288827089",
+      "contactEmail": null,
+      "contactName": "Jorge Gonzalez Marcos Gonzalez Marcos",
+      "companyId": "333295741173",
+      "companyName": "Ágora Digital"
+    },
+    {
+      "contactId": "591843223772",
+      "contactEmail": "fdelolmo@difadi.com",
+      "contactName": "Francisco del Olmo Macho del Olmo Macho",
+      "companyId": "333097716981",
+      "companyName": "Difadi.com"
+    },
+    {
+      "contactId": "592263454926",
+      "contactEmail": "calvotito@gmail.com",
+      "contactName": "Tito Calvo Calvo",
+      "companyId": "333327974632",
+      "companyName": "Sopra Steria Next"
+    },
+    {
+      "contactId": "592331087042",
+      "contactEmail": null,
+      "contactName": "Jose Angel Lopez Rubio Lopez Rubio",
+      "companyId": "333271812283",
+      "companyName": "Catcher"
+    },
+    {
+      "contactId": "597751858399",
+      "contactEmail": null,
+      "contactName": "Gloria Evelyn Hernández Olivares Hernández Olivares",
+      "companyId": "336495580372",
+      "companyName": "Ministerio de Educación, Ciencia y Tecnología de El Salvador"
+    },
+    {
+      "contactId": "598410579142",
+      "contactEmail": null,
+      "contactName": "Mayra Romero Romero",
+      "companyId": "336495580372",
+      "companyName": "Ministerio de Educación, Ciencia y Tecnología de El Salvador"
+    },
+    {
+      "contactId": "598867428568",
+      "contactEmail": null,
+      "contactName": "Elizabeth Castellón de Iraheta Castellón de Iraheta",
+      "companyId": "336495580372",
+      "companyName": "Ministerio de Educación, Ciencia y Tecnología de El Salvador"
+    },
+    {
+      "contactId": "598961268938",
+      "contactEmail": null,
+      "contactName": "Oscar Girón Girón",
+      "companyId": "336976615652",
+      "companyName": "Banco Hipotecario de El Salvador"
+    },
+    {
+      "contactId": "598983529661",
+      "contactEmail": null,
+      "contactName": "Rebeca Batista Batista",
+      "companyId": "336495580372",
+      "companyName": "Ministerio de Educación, Ciencia y Tecnología de El Salvador"
+    },
+    {
+      "contactId": "611228250333",
+      "contactEmail": "amoreno333@gmail.com",
+      "contactName": "1971 Moreno Inocencio",
+      "companyId": "8975633866",
+      "companyName": "EAE Business School"
+    },
+    {
+      "contactId": "621274981619",
+      "contactEmail": "aristides.senra@upm.es",
+      "contactName": "Arístides Senra Díaz Senra Díaz",
+      "companyId": "349990798584",
+      "companyName": "Universidad Politécnica de Madrid"
+    },
+    {
+      "contactId": "621274994904",
+      "contactEmail": "rafallano@me.com",
+      "contactName": "Rafael Llano Vázquez Llano Vázquez",
+      "companyId": "348164237548",
+      "companyName": "Newberg Living"
+    },
+    {
+      "contactId": "621307034819",
+      "contactEmail": "cuetos.garcia@gmail.com",
+      "contactName": "María García García",
+      "companyId": "8411145443",
+      "companyName": "CAPSA FOOD"
+    },
+    {
+      "contactId": "621405783279",
+      "contactEmail": "jotaelemoro@gmail.com",
+      "contactName": "1965 Moro Valentín-Gamazo",
+      "companyId": "348265297093",
+      "companyName": "Pingüino Torreblanca"
+    },
+    {
+      "contactId": "621489541367",
+      "contactEmail": "ruben@mansolivar.com",
+      "contactName": "Ruben Manso Olivar Manso Olivar",
+      "companyId": "348185280726",
+      "companyName": "MANSOLIVAR Consultoría Financiera y Contable"
+    },
+    {
+      "contactId": "621489542376",
+      "contactEmail": "shl40@hotmail.com",
+      "contactName": "1979 HURTADO LARA",
+      "companyId": "348174916798",
+      "companyName": "Cooperativas Agro-alimentarias Castilla - La Mancha"
+    },
+    {
+      "contactId": "621491127528",
+      "contactEmail": "aalvarezca@nebrija.es",
+      "contactName": "1970 Alvarez Castro",
+      "companyId": "314108329193",
+      "companyName": "Universidad Nebrija"
+    },
+    {
+      "contactId": "621491582153",
+      "contactEmail": null,
+      "contactName": "Rafael Benítez Benítez",
+      "companyId": "348269079797",
+      "companyName": "SPARRING"
+    },
+    {
+      "contactId": "621491584197",
+      "contactEmail": "p.saisset@eulerian.com",
+      "contactName": "1974 Saisset",
+      "companyId": "348269080764",
+      "companyName": "Eulerian Iberia"
+    },
+    {
+      "contactId": "621491635401",
+      "contactEmail": "adlape95@gmail.com",
+      "contactName": "1995 Latorre Pérez",
+      "companyId": "8975531216",
+      "companyName": "DarwinBioprospecting"
+    },
+    {
+      "contactId": "621491656934",
+      "contactEmail": "pjmassot@hotmail.com",
+      "contactName": "Pere Joan Masso Masso",
+      "companyId": "348276198620",
+      "companyName": "Argal Alimentación"
+    },
+    {
+      "contactId": "621491658943",
+      "contactEmail": "inakiortegac@gmail.com",
+      "contactName": "1972 Ortega Cachón",
+      "companyId": "348157211843",
+      "companyName": "LLYC"
+    },
+    {
+      "contactId": "621495896259",
+      "contactEmail": "cmhf67@gmail.com",
+      "contactName": "1967 Hernández",
+      "companyId": "348164236510",
+      "companyName": "Foro de Economía Digital Business School"
+    },
+    {
+      "contactId": "621554768089",
+      "contactEmail": "mariaredondo@dolcevento.com",
+      "contactName": "María Montaña Redondo Antón Redondo Antón",
+      "companyId": "348151735512",
+      "companyName": "Formagrup"
+    },
+    {
+      "contactId": "621557549279",
+      "contactEmail": "pedropablo_83@hotmail.com",
+      "contactName": "PedroPablo Merino León Merino León",
+      "companyId": "8975316926",
+      "companyName": "Ecommerce News"
+    },
+    {
+      "contactId": "621559283904",
+      "contactEmail": "danidesantiago@gmail.com",
+      "contactName": "1976 De Santiago",
+      "companyId": "348265381098",
+      "companyName": "Avioparts - A Proponent company"
+    },
+    {
+      "contactId": "621559284979",
+      "contactEmail": "declaramonte@gmail.com",
+      "contactName": "1985 de Claramonte Molina",
+      "companyId": "348178025689",
+      "companyName": "Enlace Capital"
+    },
+    {
+      "contactId": "621559355637",
+      "contactEmail": "fernando.monfort@gmail.com",
+      "contactName": "1969 Monfort",
+      "companyId": "348187061451",
+      "companyName": "Connecting Visions"
+    },
+    {
+      "contactId": "621559425271",
+      "contactEmail": null,
+      "contactName": "1980 Corsin Lafuente",
+      "companyId": "330516717817",
+      "companyName": "BBVA"
+    },
+    {
+      "contactId": "621559506129",
+      "contactEmail": "cristinacasas78@hotmail.com",
+      "contactName": "1980 Casas",
+      "companyId": "311845801201",
+      "companyName": "EOI Business School"
+    },
+    {
+      "contactId": "622124110025",
+      "contactEmail": null,
+      "contactName": "Felix Tena Briceño Tena Briceño",
+      "companyId": "350549173444",
+      "companyName": "Alika Technologies"
+    },
+    {
+      "contactId": "622207658209",
+      "contactEmail": null,
+      "contactName": "Jaana Dogan Dogan",
+      "companyId": "350562272467",
+      "companyName": "Google"
+    },
+    {
+      "contactId": "626589527253",
+      "contactEmail": null,
+      "contactName": "Vera Daves De Sousa De Sousa",
+      "companyId": "352925276393",
+      "companyName": "Ministério das Finanças de Angola"
+    },
+    {
+      "contactId": "628868590791",
+      "contactEmail": "abenedi@gmail.com",
+      "contactName": "Aurelio Benedí Matas Benedí Matas",
+      "companyId": "353644625124",
+      "companyName": "Wam Global"
+    },
+    {
+      "contactId": "630184587489",
+      "contactEmail": null,
+      "contactName": "Jonathan Canto Facchini Canto Facchini",
+      "companyId": "354568928455",
+      "companyName": "Ambrosia Delicat"
+    },
+    {
+      "contactId": "644689866966",
+      "contactEmail": "guillermo.olivie@mtp.es",
+      "contactName": "Guillermo Olivié",
+      "companyId": "8804165582",
+      "companyName": "Laude"
+    },
+    {
+      "contactId": "644733775074",
+      "contactEmail": "jcsanchez1987@gmail.com",
+      "contactName": "Lord Juancar Sánchez Sánchez",
+      "companyId": "364638988476",
+      "companyName": "Startups Institute"
+    },
+    {
+      "contactId": "645115075806",
+      "contactEmail": "delevalt@gmail.com",
+      "contactName": "1976 Deleval",
+      "companyId": "333327974632",
+      "companyName": "Sopra Steria Next"
+    },
+    {
+      "contactId": "646025032902",
+      "contactEmail": "criviser@gmail.com",
+      "contactName": "1989 Vilanova",
+      "companyId": "8975531216",
+      "companyName": "DarwinBioprospecting"
+    },
+    {
+      "contactId": "657213974719",
+      "contactEmail": null,
+      "contactName": "Noema Paniagua Ferrer Paniagua Ferrer",
+      "companyId": "372214227142",
+      "companyName": "Moda re-"
+    }
+  ],
+  "contactToDeal": [
+    {
+      "contactId": "101",
+      "contactEmail": "jimmy.ventura@gmail.com",
+      "contactName": "Jimmy Ventura",
+      "dealId": "8821000909",
+      "dealName": "Elastic Path Software Inc - Nuevo negocio"
+    },
+    {
+      "contactId": "151",
+      "contactEmail": "isabel.soria@mensoftlabs.com",
+      "contactName": "Isabel Soria",
+      "dealId": "11013292254",
+      "dealName": "Mantenimiento Mensoft"
+    },
+    {
+      "contactId": "151",
+      "contactEmail": "isabel.soria@mensoftlabs.com",
+      "contactName": "Isabel Soria",
+      "dealId": "375137811687",
+      "dealName": "Propuesta Comercial – Canal YouTube “Mensoft Labs” y Plan de Edición & Diseminación de Contenido"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "dealId": "8821000913",
+      "dealName": "Diseño inicial de programa - Universidad Complutense de Madrid"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "dealId": "10379011033",
+      "dealName": "Curso Claves para gestionar equipos docentes UCM - junio 2024"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "dealId": "12775254006",
+      "dealName": "PROGRAMA INTERNACIONAL DESARROLLO HABILIDADES DE COACHING EN LIDERES, GERENTES Y DIRECTORES- ESP- PROPORTIONE 2024"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "dealId": "12776402401",
+      "dealName": "Rtrain Plus EN"
+    },
+    {
+      "contactId": "201",
+      "contactEmail": "marrgonz@edu.ucm.es",
+      "contactName": "Charo González Martín",
+      "dealId": "236266441950",
+      "dealName": "Formación UCM- Claves de gestión"
+    },
+    {
+      "contactId": "252",
+      "contactEmail": "enrique@ea-branding.com",
+      "contactName": "Enrique Acosta",
+      "dealId": "12438803692",
+      "dealName": "EA Branding mantenimiento"
+    },
+    {
+      "contactId": "252",
+      "contactEmail": "enrique@ea-branding.com",
+      "contactName": "Enrique Acosta",
+      "dealId": "14248950506",
+      "dealName": "Cotswold Tree Care - New Deal"
+    },
+    {
+      "contactId": "351",
+      "contactEmail": "curro@singladura.es",
+      "contactName": "Curro Ortega",
+      "dealId": "8838353369",
+      "dealName": "Singladura - nuevo negocio digital"
+    },
+    {
+      "contactId": "551",
+      "contactEmail": "monica@porqueviven.org",
+      "contactName": "Mónica Cantón de Celis",
+      "dealId": "14663577284",
+      "dealName": "Fundación Porqueviven - App de padres"
+    },
+    {
+      "contactId": "551",
+      "contactEmail": "monica@porqueviven.org",
+      "contactName": "Mónica Cantón de Celis",
+      "dealId": "139606549720",
+      "dealName": "Gestión de usuarios del CAPPI"
+    },
+    {
+      "contactId": "551",
+      "contactEmail": "monica@porqueviven.org",
+      "contactName": "Mónica Cantón de Celis",
+      "dealId": "334166384867",
+      "dealName": "Proyecto plataforma aprendizaje gamificada para formar a equipos médicos socio sanitarios"
+    },
+    {
+      "contactId": "902",
+      "contactEmail": "jmferrer@mtp.es",
+      "contactName": "Juan Manuel Ferrer",
+      "dealId": "9698568399",
+      "dealName": "Laude- Evaluación Personal crítico"
+    },
+    {
+      "contactId": "902",
+      "contactEmail": "jmferrer@mtp.es",
+      "contactName": "Juan Manuel Ferrer",
+      "dealId": "343762183378",
+      "dealName": "MTP Estrategia de marketing global"
+    },
+    {
+      "contactId": "4201",
+      "contactEmail": "cmmonic@mapfre.com",
+      "contactName": "Monica Céspedes Mazur",
+      "dealId": "9000232131",
+      "dealName": "MAPFRE - Nuevo negocio"
+    },
+    {
+      "contactId": "4851",
+      "contactEmail": "belenmartinrajas@gmail.com",
+      "contactName": "Belén Martín Rajas",
+      "dealId": "9245964487",
+      "dealName": "Johnson Controls- Programa One to One"
+    },
+    {
+      "contactId": "5951",
+      "contactEmail": "nabiha.decorro@mapfre.com.pa",
+      "contactName": "Nabiha Sánchez",
+      "dealId": "9747952357",
+      "dealName": "Mawdy Panamá"
+    },
+    {
+      "contactId": "5951",
+      "contactEmail": "nabiha.decorro@mapfre.com.pa",
+      "contactName": "Nabiha Sánchez",
+      "dealId": "14238514671",
+      "dealName": "MAPFRE PANAMA - New Deal"
+    },
+    {
+      "contactId": "14701",
+      "contactEmail": "conchagil@ucm.es",
+      "contactName": "Concha Gil",
+      "dealId": "12775254006",
+      "dealName": "PROGRAMA INTERNACIONAL DESARROLLO HABILIDADES DE COACHING EN LIDERES, GERENTES Y DIRECTORES- ESP- PROPORTIONE 2024"
+    },
+    {
+      "contactId": "14701",
+      "contactEmail": "conchagil@ucm.es",
+      "contactName": "Concha Gil",
+      "dealId": "12776402401",
+      "dealName": "Rtrain Plus EN"
+    },
+    {
+      "contactId": "15751",
+      "contactEmail": "info@wonderfultimes.ch",
+      "contactName": "Christophe Scheafer",
+      "dealId": "9852112081",
+      "dealName": " Schaefer&Companions - Relojes suizos"
+    },
+    {
+      "contactId": "23651",
+      "contactEmail": "win@win2wingroup.es",
+      "contactName": "WIN2WIN",
+      "dealId": "11495684062",
+      "dealName": "Mejora posicionamiento https://www.elhangareventos.com/simulador#reservas"
+    },
+    {
+      "contactId": "23651",
+      "contactEmail": "win@win2wingroup.es",
+      "contactName": "WIN2WIN",
+      "dealId": "21275012334",
+      "dealName": "5decos.com - bebeco5d"
+    },
+    {
+      "contactId": "23651",
+      "contactEmail": "win@win2wingroup.es",
+      "contactName": "WIN2WIN",
+      "dealId": "174952260850",
+      "dealName": "WIN2WIN WORLDWIDE S.L. - Hosting y monitorización de la web https://win2winevents.com/"
+    },
+    {
+      "contactId": "27951",
+      "contactEmail": "cristinaperez@puertoculturas.com",
+      "contactName": "Cristina Pérez",
+      "dealId": "10795459262",
+      "dealName": "CPC- Estrategias para la mejora de la autogestión ante los desafíos en personas 2024 en CPC"
+    },
+    {
+      "contactId": "27951",
+      "contactEmail": "cristinaperez@puertoculturas.com",
+      "contactName": "Cristina Pérez",
+      "dealId": "11853660658",
+      "dealName": "Consultoría eCommerce"
+    },
+    {
+      "contactId": "31151",
+      "contactEmail": "prider@fammamoto.com",
+      "contactName": "Pilar Rider",
+      "dealId": "10784680395",
+      "dealName": "Fammamoto web"
+    },
+    {
+      "contactId": "33851",
+      "contactEmail": "mhidalgo@camposdeuleila.es",
+      "contactName": "Mariola Hidalgo",
+      "dealId": "10918150118",
+      "dealName": "Campos de Uleila - Auditoría, estrategia, correcciones e implementación SEO"
+    },
+    {
+      "contactId": "33851",
+      "contactEmail": "mhidalgo@camposdeuleila.es",
+      "contactName": "Mariola Hidalgo",
+      "dealId": "15099581140",
+      "dealName": "Mantenimiento y soporte Campos de Uleila"
+    },
+    {
+      "contactId": "37751",
+      "contactEmail": "alarcher@minsait.com",
+      "contactName": "Ana Archer",
+      "dealId": "11853651911",
+      "dealName": "Marketplace Caldas da Rainha"
+    },
+    {
+      "contactId": "37751",
+      "contactEmail": "alarcher@minsait.com",
+      "contactName": "Ana Archer",
+      "dealId": "11853651919",
+      "dealName": "Marketplace Porto"
+    },
+    {
+      "contactId": "37751",
+      "contactEmail": "alarcher@minsait.com",
+      "contactName": "Ana Archer",
+      "dealId": "11853660870",
+      "dealName": "Sao Pedro do Sul"
+    },
+    {
+      "contactId": "37751",
+      "contactEmail": "alarcher@minsait.com",
+      "contactName": "Ana Archer",
+      "dealId": "175217180908",
+      "dealName": "Minsait - Negocios B2B"
+    },
+    {
+      "contactId": "38701",
+      "contactEmail": "mf@xolary.com",
+      "contactName": "Miguel Fernández",
+      "dealId": "11137807583",
+      "dealName": "Programa One to One Xolary"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "11853651911",
+      "dealName": "Marketplace Caldas da Rainha"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "11853651919",
+      "dealName": "Marketplace Porto"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "11853660870",
+      "dealName": "Sao Pedro do Sul"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "14206036431",
+      "dealName": "Marketplace Shopify - Albergaria a Velha"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "18283878602",
+      "dealName": "Funchal Marketplace"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "18453061819",
+      "dealName": "Elvás marketplace"
+    },
+    {
+      "contactId": "45601",
+      "contactEmail": "raalvesc@minsait.com",
+      "contactName": "Alves Castilho Dias, Rui André",
+      "dealId": "108620182734",
+      "dealName": "Município de Oliveira do Bairro - New Deal"
+    },
+    {
+      "contactId": "52101",
+      "contactEmail": "carolina.tello@mapfre.cl",
+      "contactName": "Carolina Waleska Tello Serrano",
+      "dealId": "11496081347",
+      "dealName": "Procesos One to One (5-10 pax)"
+    },
+    {
+      "contactId": "9274684388",
+      "contactEmail": "direccion@iitdistancia.org",
+      "contactName": "",
+      "dealId": "21322428626",
+      "dealName": "Auditoria, consultoría, marca e identidad digital y página web corporativa y prueba de concepto"
+    },
+    {
+      "contactId": "16337097959",
+      "contactEmail": "oscar@labuenagente.com",
+      "contactName": "Óscar Gutiérrez",
+      "dealId": "14304915188",
+      "dealName": "Smileat - Programa de fidelización"
+    },
+    {
+      "contactId": "17585167048",
+      "contactEmail": "angeles@farmapozuelo.es",
+      "contactName": "María Ángeles Requejo Pomar",
+      "dealId": "14210884819",
+      "dealName": "Farmapozuelo"
+    },
+    {
+      "contactId": "19836980451",
+      "contactEmail": "maxime.desmond@vincentlavergne.eu",
+      "contactName": "Maxime Desmond",
+      "dealId": "15120101307",
+      "dealName": "Programa One to One- Vincent Lavergne Architecture Urbanisme"
+    },
+    {
+      "contactId": "21241344478",
+      "contactEmail": "dgonzalez@imbranded.com",
+      "contactName": "Daniel Gonzalez",
+      "dealId": "22108201673",
+      "dealName": "Imbranded Strategic consultant "
+    },
+    {
+      "contactId": "33483207658",
+      "contactEmail": "secretariageneral@iitdistancia.org",
+      "contactName": "Gema Molina",
+      "dealId": "21322428626",
+      "dealName": "Auditoria, consultoría, marca e identidad digital y página web corporativa y prueba de concepto"
+    },
+    {
+      "contactId": "168667016415",
+      "contactEmail": "rsilsbee@imbranded.com",
+      "contactName": "Ryan Silsbee",
+      "dealId": "22108201673",
+      "dealName": "Imbranded Strategic consultant "
+    },
+    {
+      "contactId": "177081511120",
+      "contactEmail": "rgonzalez@camaratenerife.es",
+      "contactName": "Rossana González Abreu",
+      "dealId": "133567406328",
+      "dealName": "Propuesta de participación en Congreso Export Lab  01042025"
+    },
+    {
+      "contactId": "193503407322",
+      "contactEmail": "cristinanevado@sipay.es",
+      "contactName": "Cristina Nevado",
+      "dealId": "153376821479",
+      "dealName": "SIPAY - Propuesta de servicios AREA de PERSONAS"
+    },
+    {
+      "contactId": "193603199205",
+      "contactEmail": "j.gallego@ucm.es",
+      "contactName": "Jesús Gallego Maestro",
+      "dealId": "148632406221",
+      "dealName": "GUAIX UCM - PROPUESTA DE TALLER FORMATIVO PARA GUAIX"
+    },
+    {
+      "contactId": "291103760602",
+      "contactEmail": "taniaalmeidasantos@bombarda.pt",
+      "contactName": "Tania Almeida Santos",
+      "dealId": "209378831584",
+      "dealName": "Bombarda showroom"
+    },
+    {
+      "contactId": "292073285872",
+      "contactEmail": "direccion@institutoteologia.org",
+      "contactName": "José Castro Cea",
+      "dealId": "13640737224",
+      "dealName": "Fase 2 - Desarrollo e implementación gradual de LMS, ERP (si procede) y CRM (si procede), digitalización de evaluaciones y unificación de marca y contenidos y acompañamiento negocio y Business plan "
+    },
+    {
+      "contactId": "292073285872",
+      "contactEmail": "direccion@institutoteologia.org",
+      "contactName": "José Castro Cea",
+      "dealId": "21322428626",
+      "dealName": "Auditoria, consultoría, marca e identidad digital y página web corporativa y prueba de concepto"
+    },
+    {
+      "contactId": "300998238425",
+      "contactEmail": "javier.aguilera@mixerpack.es",
+      "contactName": "Javier Aguilera",
+      "dealId": "224285842671",
+      "dealName": "Mixer consultoría de Automatización"
+    },
+    {
+      "contactId": "340634867907",
+      "contactEmail": "secretariageneral@institutoteologia.org",
+      "contactName": "",
+      "dealId": "386783543531",
+      "dealName": "IITD Continuidad 2026"
+    },
+    {
+      "contactId": "364366348484",
+      "contactEmail": "concha.campos@farmaciaimas.com",
+      "contactName": "Concha Campos",
+      "dealId": "263011842239",
+      "dealName": "Farmacia I+ – integración ChatGPT y WhatsApp"
+    },
+    {
+      "contactId": "539252242629",
+      "contactEmail": "rlopga1@ea.mde.es",
+      "contactName": "Rubén  López García",
+      "dealId": "372005342429",
+      "dealName": "Riesgo aviar"
+    },
+    {
+      "contactId": "548848910540",
+      "contactEmail": "presidir@institutoteologia.org",
+      "contactName": "",
+      "dealId": "386783543531",
+      "dealName": "IITD Continuidad 2026"
+    },
+    {
+      "contactId": "548848910546",
+      "contactEmail": "joseangel.agejas@institutoteologia.org",
+      "contactName": "",
+      "dealId": "386783543531",
+      "dealName": "IITD Continuidad 2026"
+    },
+    {
+      "contactId": "559098360003",
+      "contactEmail": null,
+      "contactName": "Luis Estébanez Estébanez",
+      "dealId": "343762183378",
+      "dealName": "MTP Estrategia de marketing global"
+    },
+    {
+      "contactId": "598157445337",
+      "contactEmail": null,
+      "contactName": "Elías Humberto Peraza Castaneda",
+      "dealId": "409391175921",
+      "dealName": "El Salvador: Educación en IA"
+    }
+  ],
+  "companyToDeal": [
+    {
+      "companyId": "8411145447",
+      "companyName": "Fundación Prodis",
+      "dealId": "420368664766",
+      "dealName": "Prodis eCommerce"
+    },
+    {
+      "companyId": "8411145451",
+      "companyName": "SINGLADURA",
+      "dealId": "8838353369",
+      "dealName": "Singladura - nuevo negocio digital"
+    },
+    {
+      "companyId": "8411187156",
+      "companyName": "Mensoft",
+      "dealId": "11013292254",
+      "dealName": "Mantenimiento Mensoft"
+    },
+    {
+      "companyId": "8411187156",
+      "companyName": "Mensoft",
+      "dealId": "375137811687",
+      "dealName": "Propuesta Comercial – Canal YouTube “Mensoft Labs” y Plan de Edición & Diseminación de Contenido"
+    },
+    {
+      "companyId": "8411187167",
+      "companyName": "Elastic Path Software Inc",
+      "dealId": "8821000909",
+      "dealName": "Elastic Path Software Inc - Nuevo negocio"
+    },
+    {
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid",
+      "dealId": "8821000913",
+      "dealName": "Diseño inicial de programa - Universidad Complutense de Madrid"
+    },
+    {
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid",
+      "dealId": "10379011033",
+      "dealName": "Curso Claves para gestionar equipos docentes UCM - junio 2024"
+    },
+    {
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid",
+      "dealId": "12775254006",
+      "dealName": "PROGRAMA INTERNACIONAL DESARROLLO HABILIDADES DE COACHING EN LIDERES, GERENTES Y DIRECTORES- ESP- PROPORTIONE 2024"
+    },
+    {
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid",
+      "dealId": "12776402401",
+      "dealName": "Rtrain Plus EN"
+    },
+    {
+      "companyId": "8411187170",
+      "companyName": "Universidad Complutense de Madrid",
+      "dealId": "236266441950",
+      "dealName": "Formación UCM- Claves de gestión"
+    },
+    {
+      "companyId": "8411187174",
+      "companyName": "Campos de Uleila",
+      "dealId": "10918150118",
+      "dealName": "Campos de Uleila - Auditoría, estrategia, correcciones e implementación SEO"
+    },
+    {
+      "companyId": "8411187174",
+      "companyName": "Campos de Uleila",
+      "dealId": "15099581140",
+      "dealName": "Mantenimiento y soporte Campos de Uleila"
+    },
+    {
+      "companyId": "8415810805",
+      "companyName": "MAPFRE",
+      "dealId": "9000232131",
+      "dealName": "MAPFRE - Nuevo negocio"
+    },
+    {
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven",
+      "dealId": "14663577284",
+      "dealName": "Fundación Porqueviven - App de padres"
+    },
+    {
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven",
+      "dealId": "139606549720",
+      "dealName": "Gestión de usuarios del CAPPI"
+    },
+    {
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven",
+      "dealId": "334166384867",
+      "dealName": "Proyecto plataforma aprendizaje gamificada para formar a equipos médicos socio sanitarios"
+    },
+    {
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven",
+      "dealId": "420370822372",
+      "dealName": "Fundación Porqueviven - Mantenimiento web"
+    },
+    {
+      "companyId": "8421280191",
+      "companyName": "Fundación Porqueviven",
+      "dealId": "420675772625",
+      "dealName": "Fundación Porqueviven - eCommerce"
+    },
+    {
+      "companyId": "8673308355",
+      "companyName": "Johnson Controls",
+      "dealId": "9245964487",
+      "dealName": "Johnson Controls- Programa One to One"
+    },
+    {
+      "companyId": "8750853833",
+      "companyName": "PANAMA ASISTENCIA, S.A.",
+      "dealId": "9747952357",
+      "dealName": "Mawdy Panamá"
+    },
+    {
+      "companyId": "8804165582",
+      "companyName": "Laude",
+      "dealId": "9698568399",
+      "dealName": "Laude- Evaluación Personal crítico"
+    },
+    {
+      "companyId": "9151903732",
+      "companyName": "Wonderfultimes",
+      "dealId": "9852112081",
+      "dealName": " Schaefer&Companions - Relojes suizos"
+    },
+    {
+      "companyId": "9152291515",
+      "companyName": "Lejan",
+      "dealId": "305589488877",
+      "dealName": "LEJAN – Shopify Plus (3 años)"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "11853651911",
+      "dealName": "Marketplace Caldas da Rainha"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "11853651919",
+      "dealName": "Marketplace Porto"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "11853660870",
+      "dealName": "Sao Pedro do Sul"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "18283878602",
+      "dealName": "Funchal Marketplace"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "18453061819",
+      "dealName": "Elvás marketplace"
+    },
+    {
+      "companyId": "9743379189",
+      "companyName": "Minsait",
+      "dealId": "175217180908",
+      "dealName": "Minsait - Negocios B2B"
+    },
+    {
+      "companyId": "9803647956",
+      "companyName": "CARTAGENA PUERTO DE CULTURAS S.A.",
+      "dealId": "10795459262",
+      "dealName": "CPC- Estrategias para la mejora de la autogestión ante los desafíos en personas 2024 en CPC"
+    },
+    {
+      "companyId": "9803647956",
+      "companyName": "CARTAGENA PUERTO DE CULTURAS S.A.",
+      "dealId": "11853660658",
+      "dealName": "Consultoría eCommerce"
+    },
+    {
+      "companyId": "10329980370",
+      "companyName": "XOLARY, S.L.",
+      "dealId": "11137807583",
+      "dealName": "Programa One to One Xolary"
+    },
+    {
+      "companyId": "10642683626",
+      "companyName": "WIN2WIN WORLDWIDE S.L.",
+      "dealId": "11495684062",
+      "dealName": "Mejora posicionamiento https://www.elhangareventos.com/simulador#reservas"
+    },
+    {
+      "companyId": "10642683626",
+      "companyName": "WIN2WIN WORLDWIDE S.L.",
+      "dealId": "174952260850",
+      "dealName": "WIN2WIN WORLDWIDE S.L. - Hosting y monitorización de la web https://win2winevents.com/"
+    },
+    {
+      "companyId": "10643853551",
+      "companyName": "MAPFRE",
+      "dealId": "11496081347",
+      "dealName": "Procesos One to One (5-10 pax)"
+    },
+    {
+      "companyId": "11345224148",
+      "companyName": "INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA",
+      "dealId": "13640737224",
+      "dealName": "Fase 2 - Desarrollo e implementación gradual de LMS, ERP (si procede) y CRM (si procede), digitalización de evaluaciones y unificación de marca y contenidos y acompañamiento negocio y Business plan "
+    },
+    {
+      "companyId": "11345224148",
+      "companyName": "INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA",
+      "dealId": "21322428626",
+      "dealName": "Auditoria, consultoría, marca e identidad digital y página web corporativa y prueba de concepto"
+    },
+    {
+      "companyId": "11345224148",
+      "companyName": "INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA",
+      "dealId": "386783543531",
+      "dealName": "IITD Continuidad 2026"
+    },
+    {
+      "companyId": "12086122938",
+      "companyName": "FARMAPOZUELO",
+      "dealId": "14210884819",
+      "dealName": "Farmapozuelo"
+    },
+    {
+      "companyId": "12099839685",
+      "companyName": "MAPFRE PANAMA",
+      "dealId": "14238514671",
+      "dealName": "MAPFRE PANAMA - New Deal"
+    },
+    {
+      "companyId": "12105170936",
+      "companyName": "Cotswold Tree Care",
+      "dealId": "14248950506",
+      "dealName": "Cotswold Tree Care - New Deal"
+    },
+    {
+      "companyId": "12128530163",
+      "companyName": "Labuenagente",
+      "dealId": "14304915188",
+      "dealName": "Smileat - Programa de fidelización"
+    },
+    {
+      "companyId": "12521341418",
+      "companyName": "Vincent Lavergne",
+      "dealId": "15120101307",
+      "dealName": "Programa One to One- Vincent Lavergne Architecture Urbanisme"
+    },
+    {
+      "companyId": "12609456107",
+      "companyName": "iMBranded",
+      "dealId": "15273286859",
+      "dealName": "iMBranded"
+    },
+    {
+      "companyId": "12609456107",
+      "companyName": "iMBranded",
+      "dealId": "22108201673",
+      "dealName": "Imbranded Strategic consultant "
+    },
+    {
+      "companyId": "83078484205",
+      "companyName": "Município de Oliveira do Bairro",
+      "dealId": "108620182734",
+      "dealName": "Município de Oliveira do Bairro - New Deal"
+    },
+    {
+      "companyId": "95968425148",
+      "companyName": "GUAIX UCM",
+      "dealId": "148632406221",
+      "dealName": "GUAIX UCM - PROPUESTA DE TALLER FORMATIVO PARA GUAIX"
+    },
+    {
+      "companyId": "95968426209",
+      "companyName": "Sipay",
+      "dealId": "153376821479",
+      "dealName": "SIPAY - Propuesta de servicios AREA de PERSONAS"
+    },
+    {
+      "companyId": "97849809136",
+      "companyName": "CABILDO DE TENERIFE",
+      "dealId": "133567406328",
+      "dealName": "Propuesta de participación en Congreso Export Lab  01042025"
+    },
+    {
+      "companyId": "156550326503",
+      "companyName": "Mixer & Pack S.L.",
+      "dealId": "224285842671",
+      "dealName": "Mixer consultoría de Automatización"
+    },
+    {
+      "companyId": "192347122900",
+      "companyName": "Farmacia I+",
+      "dealId": "263011842239",
+      "dealName": "Farmacia I+ – integración ChatGPT y WhatsApp"
+    },
+    {
+      "companyId": "299669886172",
+      "companyName": "Estado Mayor del Aire",
+      "dealId": "372005342429",
+      "dealName": "Riesgo aviar"
+    },
+    {
+      "companyId": "337078118595",
+      "companyName": "Ministerio de Educación, Ciencia y Tecnología",
+      "dealId": "409391175921",
+      "dealName": "El Salvador: Educación en IA"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "iitd-stripe-webhook",
+  "version": "1.0.0",
+  "description": "Webhook handler para integración Stripe → Stackby",
+  "main": "stripe-webhook-handler.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-webhook.js"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,5 @@
+Email,Nombre,Apellidos,Telefono,DNI,Estado,Fecha estado,Programa,Docs estado,Estado pago,Fecha pago,OCH Student ID,Ultimo acceso,Progreso,Fuente,Notas
+maria.garcia@ejemplo.com,Maria,Garcia Lopez,612345678,12345678A,solicitud,2026-02-01,DECA,pendiente,pendiente,,,,,formulario_deca,
+juan.perez@ejemplo.com,Juan,Perez Martinez,698765432,87654321B,admitido,2026-01-15,DECA,completo,pendiente,,,,,formulario_deca,Documentacion verificada
+ana.rodriguez@ejemplo.com,Ana,Rodriguez Sanchez,655123456,11223344C,pagado,2026-01-10,Experto,completo,pagado,2026-01-12,STU-001,,,polar,Pago por transferencia
+carlos.lopez@ejemplo.com,Carlos,Lopez Fernandez,677889900,99887766D,activo,2025-12-01,Master,verificado,pagado,2025-12-05,STU-002,2026-02-01,45,och,Alumno activo en plataforma

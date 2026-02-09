@@ -1,0 +1,19 @@
+{
+  "name": "flipbooklets-uploader",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright script to upload PDFs to FlipBooklets.com",
+  "type": "module",
+  "scripts": {
+    "upload": "node upload.mjs",
+    "upload:headed": "HEADED=true node upload.mjs"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "googleapis": "^171.4.0",
+    "playwright": "^1.50.0"
+  }
+}

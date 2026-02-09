@@ -1,18 +1,33 @@
 # macOS
 .DS_Store
 
-# env
+# Credentials & secrets
 .env
 .env.*
+*.env
+credentials.env
+client_secret*.json
+**/client_secret*.json
+service-account.json
+.credentials/
 
-# node / js
+# Clasp (project IDs)
+.clasp.json
+.clasprc.json
+
+# Node
 node_modules/
 dist/
 coverage/
 *.log
 
-# IITD automation
+# Automation artifacts
 screenshots/
 downloads/
 results.json
-service-account.json
+network-captures/
+**/upbase-storage-state.json
+
+# Backups
+*.bak
+*~

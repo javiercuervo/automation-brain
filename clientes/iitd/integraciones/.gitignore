@@ -1,0 +1,11 @@
+# Credenciales y secrets
+credentials.env
+*.env
+.env*
+.credentials/
+
+# Archivos de sistema
+.DS_Store
+
+# Clasp
+.clasprc.json

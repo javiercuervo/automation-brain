@@ -2,43 +2,47 @@
 
 Repositorio central de automatizaciones: scripts, mappings, microservicios y knowledge bases para orquestar flujos entre Google Sheets, Pabbly Connect, Stackby, FlipBooklets, SiteGround y GitHub Actions.
 
-## Proyectos
-
-### WF_001 — DECA Inscripcion (Pabbly + Stackby)
-Automatizacion del formulario de inscripcion DECA: normaliza datos de Google Sheets, decide CREATE/UPDATE y persiste en Stackby.
-
-- **Scripts**: `scripts/pabbly/wf_001_deca_inscripcion/` (JS v2, v3, Python v3)
-- **Microservicio**: `services/pabbly-mapper/` (Cloud Run, Express, GitHub Actions)
-- **Flujo**: Sheets → Pabbly Iterator → Normalize → Stackby Search → Filter & Decide → Persist
-
-### IITD — PDFs y Scorms (tarea recurrente)
-Subida de contenidos educativos: PDFs a FlipBooklets.com (Playwright) y Scorms HTML5 a SiteGround (SSH/rsync). Actualiza Google Sheet con embed codes y URLs.
-
-- **Scripts**: `scripts/IITD/PDFs y Scorms/` (pipeline.mjs, upload.mjs)
-- **Destinos**: `pdf.proportione.com` (FlipBooklets), `scorm.institutoteologia.org` (SiteGround)
-
-## Layout
+## Estructura
 
 ```
-docs/knowledge/          # Knowledge bases (Pabbly, Python, Syntax, Patterns, APIs)
-scripts/pabbly/          # Scripts para Code by Pabbly
-scripts/IITD/            # Scripts para cliente IITD
-services/pabbly-mapper/  # Microservicio Cloud Run
-.github/workflows/       # GitHub Actions (pabbly-dispatch)
-mappings/                # Mappings JSON por dominio/tabla
-schemas/                 # Schemas (Envelope, etc.)
-samples/                 # Payloads y outputs esperados
+comunes/                    Recursos compartidos entre clientes
+  conocimiento/             Knowledge bases (Pabbly, Stackby, Apps Script, etc.)
+  referencia/               Documentacion de referencia
+  apis/                     Clientes API reutilizables (Stackby, Acumbamail, Holded, OCH)
+  servicios/                Microservicios desplegables (Cloud Run)
+  schemas/                  Schemas de datos
+  prompts/                  Prompts para IA
+
+clientes/                   Contenido por cliente
+  iitd/                     Instituto Internacional de Terapia Deportiva
+  proportione/              CRM Proportione (migracion HubSpot, completado)
 ```
 
-## Knowledge Bases
+## Clientes
 
-| Archivo | Contenido |
-|---------|-----------|
-| `pabbly-connect-knowledge-base.md` | Pabbly Connect: arquitectura, Code by Pabbly (JS), limites |
-| `pabbly_python_kb.md` | Python 3.9 en Pabbly: modulos, input/output |
-| `PABBLY_SYNTAX.md` | Tokens, variables, iterators, headers |
-| `integration-patterns-and-architecture.md` | Envelope, patrones E2E, directivas Claude Code |
-| `OnlineCourseHost_API_KB.md` | API de OnlineCourseHost |
+### IITD — Instituto Internacional de Terapia Deportiva
+Automatizaciones de inscripcion, diplomas, sincronizacion OCH, webhooks Stripe, subida de contenidos educativos.
+
+- **Workflows**: `clientes/iitd/workflows/` (WF-001 DECA inscripcion)
+- **Scripts**: `clientes/iitd/scripts/` (Pabbly, PDFs/Scorms)
+- **Integraciones**: `clientes/iitd/integraciones/` (Apps Script, OCH, Stripe, Polar)
+- **Docs**: `clientes/iitd/docs/` (manuales, necesidades, investigacion)
+
+### Proportione — CRM Migration (completado)
+Migracion completa de HubSpot a Stackby: 911 contactos, 303 empresas, 62 oportunidades, 711 actividades.
+
+- **Scripts**: `clientes/proportione/scripts/` (exportar, migrar, deduplicar, vincular)
+- **Datos**: `clientes/proportione/datos/` (CSVs originales + exports Stackby)
+
+## Recursos comunes
+
+| Recurso | Ruta | Descripcion |
+|---------|------|-------------|
+| Stackby API | `comunes/conocimiento/stackby-api.md` | KB completa + hallazgos practicos |
+| Pabbly Connect | `comunes/conocimiento/pabbly-connect.md` | Arquitectura y patrones |
+| Apps Script | `comunes/conocimiento/apps-script-operativa.md` | Guia operativa |
+| API Clients | `comunes/apis/` | Stackby, Acumbamail, Holded, OCH |
+| Pabbly Mapper | `comunes/servicios/pabbly-mapper/` | Cloud Run Express |
 
 ## Principios
 

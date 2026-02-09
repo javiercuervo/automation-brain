@@ -1,0 +1,19 @@
+{
+  "name": "upbase-automation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playwright automation for Upbase.io task/project management",
+  "type": "module",
+  "scripts": {
+    "auth": "node auth-setup.mjs --headed",
+    "discover": "node discover.mjs",
+    "discover:headed": "node discover.mjs --headed"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "playwright": "^1.50.0"
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "mapping_name": "DECA Inscripción → SOLICITUDES_DECA",
+  "mapping_version": "1.2.0",
+  "automation_id": "WF_001_DECA_INSCRIPCION",
+  "description": "Sincroniza formulario de inscripción DECA desde Google Sheets a Stackby",
+
+  "source": {
+    "system": "google_sheets",
+    "sheet_id": "1FK0TPur-qCYyVGM0bRuHMa6I8Q7vp_TpFWz3_2M56DQ",
+    "tab_name": "DECA Inscripción",
+    "headers_row": 1
+  },
+
+  "destination": {
+    "system": "stackby",
+    "stack_id": "stHbLS2nezlbb3BL78",
+    "stack_name": "IITD Matriculación",
+    "table_id": "tbcoXCDU2ArgKH4eQJ",
+    "table_name": "SOLICITUDES_DECA"
+  },
+
+  "unique_key": {
+    "fields": ["Correo electrónico", "Submitted On (UTC)"],
+    "source_paths": ["data.normalized.email", "data.normalized.submitted_on"],
+    "description": "Email + timestamp de envío para identificar cada solicitud única"
+  },
+
+  "idempotency_key": {
+    "pattern": "stackby:SOLICITUDES_DECA:{email}:{submitted_on_iso}",
+    "example": "stackby:SOLICITUDES_DECA:eneko2004pr@gmail.com:2025-10-17T08:10:00Z"
+  },
+
+  "field_map": {
+    "Submitted On (UTC)": {
+      "source": "Submitted On (UTC)",
+      "target": "Submitted On (UTC)",
+      "type": "datetime",
+      "required": true,
+      "transform": "parseDateTime",
+      "format_in": "DD MMM, YYYY HH:mm",
+      "format_out": "ISO-8601"
+    },
+    "¿En qué se desea matricular?": {
+      "source": "¿En qué se desea matricular?",
+      "target": "¿En qué se desea matricular?",
+      "type": "select",
+      "required": true,
+      "allowed_values": [
+        "Curso completo (24 ECTS)",
+        "Matriculación por módulos",
+        "Quiero solicitar convalidación"
+      ]
+    },
+    "Selección de módulos": {
+      "source": "Selección de Módulos",
+      "target": "Selección de módulos",
+      "type": "multiselect",
+      "required": false,
+      "transform": "splitComma",
+      "notes": "Sheet usa 'Módulos' (mayúscula), Stackby usa 'módulos' (minúscula)"
+    },
+    "Título civil": {
+      "source": "Título civil",
+      "target": "Título civil",
+      "type": "select",
+      "required": false,
+      "allowed_values": ["Sr.", "Sra.", "Dr.", "Dra.", "Otro"]
+    },
+    "Especificar otro título": {
+      "source": "Indique su título",
+      "target": "Especificar otro título",
+      "type": "text",
+      "required": false,
+      "notes": "Sheet: 'Indique su título' → Stackby: 'Especificar otro título'"
+    },
+    "Nombre": {
+      "source": "Nombre",
+      "target": "Nombre",
+      "type": "text",
+      "required": true,
+      "transform": "trim"
+    },
+    "Apellidos": {
+      "source": "Apellidos",
+      "target": "Apellidos",
+      "type": "text",
+      "required": true,
+      "transform": "trim"
+    },
+    "Calle (vía)": {
+      "source": "Calle (vía)",
+      "target": "Calle (vía)",
+      "type": "text",
+      "required": false,
+      "transform": "trim"
+    },
+    "Número, piso, puerta": {
+      "source": "Número, piso, puerta",
+      "target": "Número, piso, puerta",
+      "type": "text",
+      "required": false,
+      "transform": "trim"
+    },
+    "Centro asociado al que pertenece": {
+      "source": "Centro asociado al que pertenece",
+      "target": "Centro asociado al que pertenece",
+      "type": "select",
+      "required": false
+    },
+    "Otro centro asociado": {
+      "source": null,
+      "target": "Otro centro asociado",
+      "type": "text",
+      "required": false,
+      "notes": "Campo solo en Stackby, no existe en Sheet origen"
+    },
+    "Indique el nombre del centro": {
+      "source": "Indique el nombre del centro",
+      "target": "Indique el nombre del centro",
+      "type": "text",
+      "required": false,
+      "transform": "trim"
+    },
+    "Población": {
+      "source": "Población",
+      "target": "Población",
+      "type": "text",
+      "required": false,
+      "transform": "trim"
+    },
+    "Código postal": {
+      "source": "Código postal",
+      "target": "Código postal",
+      "type": "text",
+      "required": false,
+      "transform": "trim",
+      "notes": "Mantener como texto para preservar ceros iniciales (ej: 01234)"
+    },
+    "Provincia": {
+      "source": "Provincia",
+      "target": "Provincia",
+      "type": "select",
+      "required": false
+    },
+    "DNI / Pasaporte / NIE": {
+      "source": "DNI / Pasaporte / NIE",
+      "target": "DNI / Pasaporte / NIE",
+      "type": "text",
+      "required": true,
+      "transform": "normalizeNIF"
+    },
+    "Fecha de nacimiento": {
+      "source": "Fecha de nacimiento",
+      "target": "Fecha de nacimiento",
+      "type": "date",
+      "required": false,
+      "transform": "parseDate",
+      "format_in": "Date: DD MMM, YYYY",
+      "format_out": "YYYY-MM-DD"
+    },
+    "Estado civil": {
+      "source": "Estado civil",
+      "target": "Estado civil",
+      "type": "select",
+      "required": false,
+      "allowed_values": ["Soltero", "Casado", "Casada", "Pareja de hecho", "Divorciado", "Viudo"]
+    },
+    "Sexo": {
+      "source": "Sexo",
+      "target": "Sexo",
+      "type": "select",
+      "required": false,
+      "allowed_values": ["Masculino", "Femenino", "Hombre", "Mujer"],
+      "transform": "normalizeSexo",
+      "normalize_map": {
+        "Hombre": "Masculino",
+        "Mujer": "Femenino"
+      }
+    },
+    "Teléfono de contacto": {
+      "source": "Teléfono de contacto",
+      "target": "Teléfono de contacto",
+      "type": "phone",
+      "required": false,
+      "transform": "normalizePhone"
+    },
+    "Correo electrónico": {
+      "source": "Correo electrónico",
+      "target": "Correo electrónico",
+      "type": "email",
+      "required": true,
+      "transform": "normalizeEmail"
+    },
+    "Firma del solicitante": {
+      "source": "Firma del solicitante",
+      "target": "Firma del solicitante",
+      "type": "url",
+      "required": false
+    },
+    "ACEPTADO EN": {
+      "source": null,
+      "target": "ACEPTADO EN",
+      "type": "select",
+      "required": false,
+      "allowed_values": ["PENDIENTE", "UNO", "DOS", "TRES", "COMPLETO", "CONVALIDACIÓN"],
+      "default": "PENDIENTE",
+      "managed_by": "system",
+      "notes": "NO se mapea desde Google Sheets. Se gestiona internamente: CREATE → 'PENDIENTE', UPDATE → mantener valor existente. El campo 'ADMITIDO EN' del Sheet se IGNORA."
+    },
+    "Thank You Screen": {
+      "source": "Thank You Screen",
+      "target": "Thank You Screen",
+      "type": "text",
+      "required": false,
+      "notes": "Campo de confirmación del formulario, puede ignorarse en sync"
+    }
+  },
+
+  "defaults": {
+    "¿En qué se desea matricular?": null,
+    "Estado civil": null,
+    "Sexo": null,
+    "ACEPTADO EN ": null
+  },
+
+  "required_for_create": [
+    "Correo electrónico",
+    "Nombre",
+    "Apellidos",
+    "DNI / Pasaporte / NIE",
+    "Submitted On (UTC)"
+  ],
+
+  "required_for_update": [
+    "Correo electrónico",
+    "Submitted On (UTC)"
+  ],
+
+  "validation": {
+    "Correo electrónico": {
+      "type": "email",
+      "regex": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+      "required": true
+    },
+    "DNI / Pasaporte / NIE": {
+      "type": "text",
+      "regex": "^[0-9A-Za-z]{8,12}[A-Za-z]?$",
+      "required": true
+    },
+    "Teléfono de contacto": {
+      "type": "phone",
+      "regex": "^[+]?[0-9\\s]{9,15}$",
+      "required": false
+    }
+  },
+
+  "changelog": {
+    "1.2.0": "ACEPTADO EN: gestionado internamente (Single Select), no se importa del Sheet",
+    "1.0.0": "Initial mapping: Google Sheets DECA Inscripción → Stackby SOLICITUDES_DECA"
+  }
+}
