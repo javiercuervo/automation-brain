@@ -7,13 +7,17 @@
   "scripts": {
     "auth": "node auth-setup.mjs --headed",
     "discover": "node discover.mjs",
-    "discover:headed": "node discover.mjs --headed"
+    "discover:headed": "node discover.mjs --headed",
+    "tasks": "node tasks.mjs",
+    "mcp": "node mcp-server.mjs"
   },
   "engines": {
     "node": ">=22.0.0"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "dotenv": "^16.4.7",
-    "playwright": "^1.50.0"
+    "playwright": "^1.50.0",
+    "zod": "^4.3.6"
   }
 }
