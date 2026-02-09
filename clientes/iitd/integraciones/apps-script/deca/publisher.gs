@@ -738,7 +738,10 @@ function sendNotificationEmail(payload) {
         'Ver en Stackby: ' + CONFIG.NOTIFICATION.STACKBY_BASE_URL : '',
       '',
       '---',
-      'Este es un mensaje automático del sistema de matriculaciones IITD.'
+      'Este es un mensaje automático del sistema de matriculaciones IITD.',
+      '',
+      '',
+      CONFIG.NOTIFICATION.RGPD_FOOTER || ''
     ].join('\n');
 
     MailApp.sendEmail({
@@ -824,7 +827,10 @@ function sendEnrollmentNotification(payload) {
         'Ver en Stackby: ' + CONFIG.NOTIFICATION.STACKBY_BASE_URL : '',
       '',
       '---',
-      'Mensaje automático del sistema de matriculaciones IITD.'
+      'Mensaje automático del sistema de matriculaciones IITD.',
+      '',
+      '',
+      CONFIG.NOTIFICATION.RGPD_FOOTER || ''
     ].join('\n');
 
     MailApp.sendEmail({

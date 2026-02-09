@@ -257,7 +257,10 @@ function sendLeadNotification(payload) {
         'Ver en Stackby: ' + LEADS_CONFIG.NOTIFICATION.STACKBY_BASE_URL : '',
       '',
       '---',
-      'Mensaje automático del sistema IITD.'
+      'Mensaje automático del sistema IITD.',
+      '',
+      '',
+      LEADS_CONFIG.NOTIFICATION.RGPD_FOOTER || ''
     ].join('\n');
 
     MailApp.sendEmail({

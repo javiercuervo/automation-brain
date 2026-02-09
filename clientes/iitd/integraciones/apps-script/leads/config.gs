@@ -23,7 +23,19 @@ const LEADS_CONFIG = {
     ENABLED: true,
     TO: 'alumnos@institutoteologia.org',
     SUBJECT_PREFIX: '[IITD] Nuevo lead: ',
-    STACKBY_BASE_URL: 'https://stackby.com/stHbLS2nezlbb3BL78'
+    STACKBY_BASE_URL: 'https://stackby.com/stHbLS2nezlbb3BL78',
+    // Pie legal RGPD obligatorio en todos los emails (N40)
+    RGPD_FOOTER: 'Este mensaje y cualquier fichero que incluya van dirigidos, exclusivamente, ' +
+      'a su destinatario y son confidenciales. Si usted lo recibe o accede a él por error, ' +
+      'debe tener en cuenta que la información que contiene es reservada y que no puede leerlo, ' +
+      'usarlo, copiarlo, distribuirlo o comunicarlo, por lo que le rogamos que lo destruya ' +
+      'inmediatamente, notificándonoslo a esta misma dirección de e-mail.\n\n' +
+      'En caso de que usted nos facilite datos personales, serán tratados por ' +
+      'INSTITUTO INTERNACIONAL DE TEOLOGÍA A DISTANCIA para atender su solicitud, ' +
+      'consulta o comunicación. Puede ejercer sus derechos de acceso, rectificación, ' +
+      'supresión, limitación del tratamiento, portabilidad y oposición. Encontrará ' +
+      'el resto de información sobre protección de datos personales en la Política ' +
+      'de Privacidad de la página web www.iitdistancia.org/home'
   },
 
   // Columnas del formulario de contacto (ajustar según formulario real)
