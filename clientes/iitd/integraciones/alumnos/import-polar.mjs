@@ -77,6 +77,14 @@ async function getExistingEmails() {
   return map;
 }
 
+function stripInternal(obj) {
+  const clean = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (!k.startsWith('_')) clean[k] = v;
+  }
+  return clean;
+}
+
 async function createRows(records) {
   // Stackby API accepts max 10 records per request
   const BATCH = 10;
@@ -85,7 +93,7 @@ async function createRows(records) {
     const batch = records.slice(i, i + BATCH);
     await stackbyFetch(`/rowcreate/${STACK_ID}/${TABLE_ID}`, {
       method: 'POST',
-      body: JSON.stringify({ records: batch.map(r => ({ field: r })) }),
+      body: JSON.stringify({ records: batch.map(r => ({ field: stripInternal(r) })) }),
     });
     created += batch.length;
     process.stdout.write(`\r  Creados: ${created}/${records.length}`);
@@ -238,12 +246,10 @@ async function main() {
     const fechaUltima = parseDate(row['Fecha última Matricula'] || row['Fecha ultima Matricula']);
 
     alumnos.push({
-      'ID_ALUMNO': idAlumno,
       'Email': email,
       'Nombre': nombre,
       'Apellidos': apellidos,
       'Telefono': String(row['TELEF1'] || '').trim(),
-      'DNI': '', // PolarDoc no exporta DNI en este fichero
       'Programa': row._estudios.join(', '),
       'Estado': 'activo',
       'Fecha estado': fechaUltima || '',
@@ -251,16 +257,18 @@ async function main() {
       'Estado pago': 'pagado',     // asumimos pagado si están activos
       'Fuente': 'polar',
       'Notas': [
-        `Importado de PolarDoc (exp. ${numexp})`,
+        `Nº Exp: ${idAlumno} (PolarDoc: ${numexp})`,
         `Centro: ${String(row['CENTRO'] || '').trim()}`,
         `1ª matrícula: ${fechaPrimera || '?'}`,
         `Título civil: ${String(row['Titulo Civil'] || row['Titulo civil'] || '').trim()}`,
       ].join('\n'),
+      // Internal: keep for display/logging, not sent to Stackby
+      _idAlumno: idAlumno,
     });
   }
 
   // Sort by expedition number
-  alumnos.sort((a, b) => a.ID_ALUMNO.localeCompare(b.ID_ALUMNO));
+  alumnos.sort((a, b) => (a._idAlumno || '').localeCompare(b._idAlumno || ''));
 
   console.log(`  Alumnos a importar: ${alumnos.length}`);
   console.log();
@@ -268,7 +276,7 @@ async function main() {
   // 5. Preview
   console.log('Muestra (primeros 10):');
   for (const a of alumnos.slice(0, 10)) {
-    console.log(`  ${a.ID_ALUMNO} | ${a.Nombre} ${a.Apellidos} | ${a.Email} | ${a.Programa.substring(0, 40)}`);
+    console.log(`  ${a._idAlumno} | ${a.Nombre} ${a.Apellidos} | ${a.Email} | ${a.Programa.substring(0, 40)}`);
   }
   console.log();
 
