@@ -1,6 +1,6 @@
 # Informe de Estado y Planificación — IITD
 
-**Fecha:** 9 de febrero de 2026
+**Fecha:** 9 de febrero de 2026 (actualizado 10 de febrero)
 **Para:** Dirección IITD, Miriam, Josete
 **Referencia:** Reunión de priorización del 6 de febrero de 2026
 **Preparado por:** Proportione
@@ -75,8 +75,8 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 | N02 | Datos de alumnos completos y descargables | ✅ Hecho |
 | N03 | Formulario contacto OCH llegue a Miriam | 📋 Guía entregada |
 | N04 | Asignación automática nº expediente | 🔧 Implementado |
-| N40 | Incluir texto legal RGPD en todos los emails automáticos | ⏳ Pendiente |
-| N42 | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | ⏳ Pendiente |
+| N40 | Incluir texto legal RGPD en todos los emails automáticos | ✅ Hecho |
+| N42 | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | 📋 Textos entregados |
 
 ### Urgentes pero requieren más tiempo
 
@@ -84,7 +84,7 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 |----|-----------|--------|
 | N05 | Listados de alumnos por curso para profesores | ⏳ Pendiente |
 | N06 | Calificaciones numéricas y gestión de trabajos | ⏳ Pendiente |
-| N07 | Expediente académico completo en base de datos | ⏳ Pendiente |
+| N07 | Expediente académico completo en base de datos | 🔧 Importados 1.583 alumnos activos |
 | N08 | Recibos y facturas de matrícula (PDF automático) | ⏳ Pendiente |
 | N09 | Certificados DECA automáticos | ⏳ Pendiente |
 | N10 | Facturación a centros asociados | ⏳ Pendiente |
@@ -92,9 +92,9 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 | N12 | Política de conservación y borrado de datos RGPD | ⏳ Pendiente |
 | N13 | Inventario de herramientas SaaS y DPAs | 🔧 Implementado |
 | N14 | Captura automática de leads web en Stackby | 🔧 Implementado |
-| N15 | Pipeline DECA completo (solicitud → matrícula → enrolamiento) | ⏳ Pendiente (parcial) |
+| N15 | Pipeline DECA completo (solicitud → matrícula → enrolamiento) | 🚫 Bloqueado (token OCH) |
 | N16 | Panel de control operativo diario para Miriam | ⏳ Pendiente |
-| N17 | Sincronización de actividad del LMS con Stackby | ⏳ Pendiente (parcial) |
+| N17 | Sincronización de actividad del LMS con Stackby | 🚫 Bloqueado (API OCH limitada) |
 | N18 | Migración de Golden Soft a Holded (caduca junio 2026) | ⏳ Pendiente |
 | N19 | KPIs DECA automáticos | ⏳ Pendiente |
 | N20 | Identificador único de alumno + deduplicación | 🔧 Implementado |
@@ -137,11 +137,11 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | Estado | Cantidad |
 |--------|----------|
-| ✅ Hecho | 1 |
-| 🔧 Implementado (pendiente despliegue) | 5 |
-| 📋 Guía entregada (acción del equipo) | 2 |
-| ⏳ Pendiente | 34 |
-| 🚫 Bloqueado | 4 |
+| ✅ Hecho | 3 |
+| 🔧 Implementado (pendiente despliegue/config) | 6 |
+| 📋 Guía/textos entregados (acción del equipo) | 3 |
+| ⏳ Pendiente | 28 |
+| 🚫 Bloqueado | 6 |
 | **Total** | **46** |
 
 ---
@@ -204,12 +204,14 @@ Hoy PolarDoc sigue siendo necesario para: generar nº de expediente, registrar e
 ```
 1. Identificador único de alumno (N20)              ✅ HECHO
 2. Número de expediente automático (N04)             ✅ HECHO
-3. Expediente académico en base de datos (N07)       ⏳ SIGUIENTE PASO
-4. Calificaciones numéricas (N06)                    ⏳ Pendiente
+3. Expediente académico en base de datos (N07)       ✅ 1.583 alumnos importados
+4. Calificaciones numéricas (N06)                    ⏳ SIGUIENTE PASO
 5. Certificados DECA automáticos (N09)               ⏳ Pendiente
 ```
 
-Los pasos 1 y 2 ya están resueltos. El **siguiente paso crítico** es el expediente académico (N07): diseñar las tablas de asignaturas, matrículas y calificaciones en Stackby, e importar los datos históricos de PolarDoc.
+Los pasos 1, 2 y 3 ya están resueltos. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable.
+
+El **siguiente paso crítico** es crear la tabla CALIFICACIONES en Stackby (N06) para registrar notas fuera de PolarDoc. Se ha entregado la guía con la estructura de tablas a crear.
 
 Hasta que no se complete el paso 5, **PolarDoc no se puede apagar**.
 
