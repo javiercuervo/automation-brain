@@ -1,6 +1,6 @@
 # Informe de Estado y Planificación — IITD
 
-**Fecha:** 9 de febrero de 2026 (actualizado 10 de febrero)
+**Fecha:** 10 de febrero de 2026
 **Para:** Dirección IITD, Miriam, Josete
 **Referencia:** Reunión de priorización del 6 de febrero de 2026
 **Preparado por:** Proportione
@@ -9,11 +9,15 @@
 
 ## 1. Resumen ejecutivo
 
-En la reunión del 6 de febrero se priorizaron **8 automatizaciones urgentes** para ejecutar en 2 semanas. A fecha de hoy, las 8 están resueltas a nivel técnico (código implementado o guía entregada).
+Se han completado **3 sprints** con un total de **15 necesidades resueltas** (código, guías o configuración).
 
-Lo que queda para que funcionen en producción son **configuraciones manuales** y **datos que debe proporcionar el equipo IITD** (ver sección 4).
+El **camino crítico para abandonar PolarDoc** está al 80%: solo falta N06 (tabla de calificaciones). Los certificados, recibos, listados y la base de datos de alumnos ya están operativos.
 
-Además, se ha actualizado el inventario completo de las **46 necesidades** identificadas (N01-N46), con una propuesta de planificación por sprints hasta abril de 2026.
+Se ha integrado **BreezeDoc** para envío de contratos/consentimientos con firma electrónica (matrícula, convenios con centros, RGPD).
+
+La **firma digital automática de PDFs** queda **aparcada**: el pipeline actual (QR + hash de verificación) es funcional. Cuando el director obtenga su certificado FNMT (.p12), solo hay que copiarlo a `certs/` — cero cambios en código.
+
+Inventario completo: **46 necesidades** (N01-N46), planificación por sprints hasta abril.
 
 ---
 
@@ -82,11 +86,11 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | ID | Necesidad | Estado |
 |----|-----------|--------|
-| N05 | Listados de alumnos por curso para profesores | 🔧 Implementado |
+| N05 | Listados de alumnos por curso para profesores | ✅ Hecho |
 | N06 | Calificaciones numéricas y gestión de trabajos | ⏳ Pendiente |
 | N07 | Expediente académico completo en base de datos | 🔧 Importados 1.583 alumnos activos |
-| N08 | Recibos y facturas de matrícula (PDF automático) | 🔧 Implementado |
-| N09 | Certificados DECA automáticos | 🔧 Implementado (mock) |
+| N08 | Recibos y facturas de matrícula (PDF automático) | ✅ Hecho |
+| N09 | Certificados DECA automáticos | ✅ Hecho (con QR + hash) |
 | N10 | Facturación a centros asociados | ⏳ Pendiente |
 | N11 | Separación consentimientos RGPD | 📋 Guía entregada |
 | N12 | Política de conservación y borrado de datos RGPD | ⏳ Pendiente |
@@ -137,8 +141,8 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | Estado | Cantidad |
 |--------|----------|
-| ✅ Hecho | 3 |
-| 🔧 Implementado (pendiente despliegue/config) | 9 |
+| ✅ Hecho | 6 |
+| 🔧 Implementado (pendiente despliegue/config) | 6 |
 | 📋 Guía/textos entregados (acción del equipo) | 3 |
 | ⏳ Pendiente | 25 |
 | 🚫 Bloqueado | 6 |
@@ -154,24 +158,36 @@ N01, N02, N03, N04, N11, N13, N14, N20
 
 Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resueltas.
 
-### Sprint 2: Camino crítico PolarDoc + Legal urgente (10-23 febrero)
-
-| ID | Necesidad | Por qué ahora |
-|----|-----------|---------------|
-| N07 | Expediente académico en base de datos | Es el cuello de botella principal. Sin esto no hay certificados ni se puede dejar PolarDoc |
-| N15 | Pipeline DECA completo | Completar el flujo solicitud → matrícula → enrolamiento |
-| N17 | Sincronización de actividad del LMS | Saber qué alumnos están activos y su progreso |
-| N40 | Texto legal RGPD en emails automáticos | Obligación legal, afecta a todos los emails |
-| N42 | Páginas legales en la web | Obligación legal, los textos ya están escritos |
-
-### Sprint 3: Calificaciones y certificados (24 febrero - 9 marzo) — EN CURSO
+### Sprint 2: Camino crítico PolarDoc + Legal urgente (10-23 febrero) — COMPLETADO
 
 | ID | Necesidad | Estado |
 |----|-----------|--------|
-| N05 | Listados de alumnos por curso | 🔧 Implementado (listados.mjs — resumen, filtro, CSV) |
-| N08 | Recibos y facturas PDF | 🔧 Implementado (recibo-pdf.mjs — genera PDF por alumno) |
-| N09 | Certificados DECA automáticos | 🔧 Implementado (certificado-pdf.mjs — 2 modelos, modo mock) |
+| N07 | Expediente académico en base de datos | ✅ 1.583 alumnos importados de PolarDoc a Stackby |
+| N40 | Texto legal RGPD en emails automáticos | ✅ Footer implementado |
+| N42 | Páginas legales en la web | 📋 Textos entregados |
+| N15 | Pipeline DECA + BreezeDoc | 🔧 Script BreezeDoc creado. Pendiente: crear templates en BreezeDoc UI + token OCH |
+| N17 | Sincronización actividad LMS | 🚫 Bloqueado (API OCH limitada a 2 endpoints) |
+
+**Integración BreezeDoc:**
+- `breezedoc-enrollment.mjs` — Envía contratos/consentimientos al alumno para firma electrónica
+- Templates a crear en BreezeDoc UI: Matrícula DECA, Convenio Centro Asociado, Consentimiento RGPD
+- Una vez creados los templates, configurar IDs en `.env` (`BREEZEDOC_TEMPLATE_MATRICULA`, etc.)
+
+### Sprint 3: Calificaciones y certificados (24 febrero - 9 marzo) — COMPLETADO
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N05 | Listados de alumnos por curso | ✅ Hecho — Google Sheet "Panel IITD" con pestañas por programa (1.585 alumnos) |
+| N08 | Recibos y facturas PDF | ✅ Hecho — Genera PDF + sube a Google Drive + registra en Sheet |
+| N09 | Certificados DECA automáticos | ✅ Hecho — PDF con QR (pxl.to) + hash verificación + sube a diplomas.institutoteologia.org + registra en Sheet |
 | N06 | Calificaciones numéricas | ⏳ Pendiente (necesita tabla CALIFICACIONES en Stackby) |
+
+**Infraestructura nueva creada:**
+- **Google Sheet "Panel IITD"** — Pestañas: DECA, Evangelizadores, Formación Sistemática, Formación Bíblica, Compromiso Laical, Otros, Resumen, Recibos, Certificados
+- **Carpeta Drive "Recibos IITD"** — Almacena los PDFs de recibos
+- **Subdominio diplomas.institutoteologia.org** — Hosting de certificados/diplomas vía SiteGround SSH
+- **pxl.to** — Short links + QR codes para diplomas (500 req/día)
+- **BreezeDoc** — Cuenta configurada, API funcional. Script `breezedoc-enrollment.mjs` para enviar contratos de matrícula, convenios y consentimientos RGPD a firmar por email. Los diplomas usan QR + hash de verificación (firma digital aparcada hasta que el director obtenga certificado FNMT)
 
 ### Sprint 4: Operaciones y migración (10-23 marzo)
 
@@ -206,7 +222,7 @@ Hoy PolarDoc sigue siendo necesario para: generar nº de expediente, registrar e
 2. Número de expediente automático (N04)             ✅ HECHO
 3. Expediente académico en base de datos (N07)       ✅ 1.583 alumnos importados
 4. Calificaciones numéricas (N06)                    ⏳ SIGUIENTE PASO
-5. Certificados DECA automáticos (N09)               🔧 Generador implementado (mock)
+5. Certificados DECA automáticos (N09)               ✅ HECHO (QR + hash + upload + Sheet)
 ```
 
 Los pasos 1, 2, 3 y 5 ya están resueltos a nivel técnico. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable. El generador de certificados (N09) produce dos modelos de PDF: certificado académico con tabla de notas y diploma de finalización.
@@ -231,21 +247,48 @@ Hasta que no se complete el paso 5, **PolarDoc no se puede apagar**.
 
 ## 9. Próximos pasos inmediatos
 
-1. **Esta semana (10-14 feb):**
-   - Sonia configura reenvío de email OCH (guía entregada)
-   - Proportione despliega scripts actualizados en Apps Script
-   - El equipo crea tablas LEADS e INVENTARIO_SAAS en Stackby
-   - Se comunica a Josete el acceso a datos de alumnos en Stackby
+### Prioridad 1: Cerrar pendientes (esta semana)
 
-2. **Próxima semana (17-21 feb):**
-   - Inicio del Sprint 2: diseño del expediente académico (N07)
-   - Implementación del footer RGPD en emails (N40)
-   - Creación de páginas legales en la web (N42)
+| Tarea | Tipo | Quién |
+|-------|------|-------|
+| Crear tabla CALIFICACIONES en Stackby (N06) | Config manual | Miriam/Josete |
+| Crear templates en BreezeDoc UI (matrícula, convenio, RGPD) | Config manual | Proportione |
+| Proporcionar datos institucionales (NIF, dirección, teléfono) | Datos | Miriam |
+| Configurar IDs de templates BreezeDoc en .env | Config | Proportione |
 
-3. **Pendiente del equipo:**
-   - Miriam: exportar CSV de PolarDoc
-   - Sonia: proporcionar Sheet ID formulario contacto
-   - Gema: información sobre contabilidad para migración Holded
+### Prioridad 2: Deploy de lo implementado
+
+| Need | Acción pendiente | Quién |
+|------|-----------------|-------|
+| N01 | Configurar email alumnos@institutoteologia.org | Sonia |
+| N03 | Configurar reenvío Gmail OCH → alumnos@ | Sonia |
+| N13 | Crear tabla INVENTARIO_SAAS en Stackby | Miriam |
+| N14 | Proporcionar Sheet ID del formulario web | Sonia |
+
+### Prioridad 3: Sprint 4 (marzo)
+
+| Need | Qué | Esfuerzo est. |
+|------|-----|----------|
+| N16 | Dashboard operativo para Miriam | ~4h |
+| N18 | Migración Golden Soft → Holded | Depende de Gema |
+| N19 | KPIs DECA automáticos | ~3h |
+| N21 | Validación datos migrados | ~2h |
+
+### Prioridad 4: Sprint 5 — RGPD (marzo-abril)
+
+N12, N41, N43, N44 — cumplimiento RGPD completo antes de abril.
+
+---
+
+## 10. Firma digital de diplomas — Estado
+
+La firma digital automática de PDFs queda **aparcada**. Motivos:
+
+- Los certificados SSL/TLS del servidor NO sirven para firmar PDFs (Key Usage incompatible)
+- Se necesita un certificado personal del director (FNMT, .p12)
+- El pipeline actual ya funciona: QR + hash de verificación apuntan a `diplomas.institutoteologia.org`
+
+**Cuando el director tenga su certificado FNMT:** solo hay que copiarlo a `certs/iitd-cert.p12` y actualizar `CERT_P12_PASSWORD` en `.env`. El código (`pdf-signer.mjs`) ya está implementado — cero cambios necesarios.
 
 ---
 

@@ -14,7 +14,7 @@ Le informamos a continuaci&oacute;n, en forma de preguntas y respuestas, de las 
 ## &iquest;Qui&eacute;n es el responsable del tratamiento de sus datos?
 
 - **Identidad:** INSTITUTO INTERNACIONAL DE TEOLOG&Iacute;A A DISTANCIA. CIF: R2800617I
-- **Direcci&oacute;n postal:** C/ Jos&eacute; Ortega y Gasset, 62, 1, 28006 &ndash; Madrid.
+- **Direcci&oacute;n postal:** Calle Iriarte, 3, 28028 &ndash; Madrid.
 - **Tel&eacute;fono:** 91 402 18 06
 - **Correo electr&oacute;nico:** informacion@iitdistancia.org
 

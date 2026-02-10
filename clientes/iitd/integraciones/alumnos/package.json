@@ -10,7 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@signpdf/placeholder-pdfkit": "^3.3.0",
+    "@signpdf/signer-p12": "^3.3.0",
+    "@signpdf/signpdf": "^3.3.0",
+    "node-forge": "^1.3.3",
     "pdfkit": "^0.17.2",
+    "qrcode": "^1.5.4",
     "xlsx": "^0.18.5"
   }
 }

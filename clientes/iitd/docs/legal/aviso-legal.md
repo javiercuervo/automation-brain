@@ -5,7 +5,7 @@
 
 ---
 
-El titular de esta p&aacute;gina Web es **INSTITUTO INTERNACIONAL DE TEOLOG&Iacute;A A DISTANCIA**, con CIF R2800617I, domicilio en C/ Jos&eacute; Ortega y Gasset n.&ordm; 62, 28006 de Madrid, direcci&oacute;n de e-mail informacion@iitdistancia.org, tel&eacute;fono 91 401 50 62. La Entidad se encuentra constituida en fecha 13 de julio de 1978 y aprobada por el Excmo. Rvdmo. Sr. Cardenal D. Vicente Enrique y Taranc&oacute;n e inscrito en el Registro de Asociaciones del Ministerio de Justicia, el 10 de abril de 1981 con el n&uacute;mero 268-SE C.
+El titular de esta p&aacute;gina Web es **INSTITUTO INTERNACIONAL DE TEOLOG&Iacute;A A DISTANCIA**, con CIF R2800617I, domicilio en Calle Iriarte, 3, 28028 Madrid, direcci&oacute;n de e-mail informacion@iitdistancia.org, tel&eacute;fono 91 401 50 62. La Entidad se encuentra constituida en fecha 13 de julio de 1978 y aprobada por el Excmo. Rvdmo. Sr. Cardenal D. Vicente Enrique y Taranc&oacute;n e inscrito en el Registro de Asociaciones del Ministerio de Justicia, el 10 de abril de 1981 con el n&uacute;mero 268-SE C.
 
 ## Condiciones de uso
 
