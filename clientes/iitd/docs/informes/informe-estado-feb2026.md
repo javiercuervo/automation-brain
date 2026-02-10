@@ -82,11 +82,11 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | ID | Necesidad | Estado |
 |----|-----------|--------|
-| N05 | Listados de alumnos por curso para profesores | ⏳ Pendiente |
+| N05 | Listados de alumnos por curso para profesores | 🔧 Implementado |
 | N06 | Calificaciones numéricas y gestión de trabajos | ⏳ Pendiente |
 | N07 | Expediente académico completo en base de datos | 🔧 Importados 1.583 alumnos activos |
-| N08 | Recibos y facturas de matrícula (PDF automático) | ⏳ Pendiente |
-| N09 | Certificados DECA automáticos | ⏳ Pendiente |
+| N08 | Recibos y facturas de matrícula (PDF automático) | 🔧 Implementado |
+| N09 | Certificados DECA automáticos | 🔧 Implementado (mock) |
 | N10 | Facturación a centros asociados | ⏳ Pendiente |
 | N11 | Separación consentimientos RGPD | 📋 Guía entregada |
 | N12 | Política de conservación y borrado de datos RGPD | ⏳ Pendiente |
@@ -138,9 +138,9 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 | Estado | Cantidad |
 |--------|----------|
 | ✅ Hecho | 3 |
-| 🔧 Implementado (pendiente despliegue/config) | 6 |
+| 🔧 Implementado (pendiente despliegue/config) | 9 |
 | 📋 Guía/textos entregados (acción del equipo) | 3 |
-| ⏳ Pendiente | 28 |
+| ⏳ Pendiente | 25 |
 | 🚫 Bloqueado | 6 |
 | **Total** | **46** |
 
@@ -164,14 +164,14 @@ Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resuel
 | N40 | Texto legal RGPD en emails automáticos | Obligación legal, afecta a todos los emails |
 | N42 | Páginas legales en la web | Obligación legal, los textos ya están escritos |
 
-### Sprint 3: Calificaciones y certificados (24 febrero - 9 marzo)
+### Sprint 3: Calificaciones y certificados (24 febrero - 9 marzo) — EN CURSO
 
-| ID | Necesidad | Por qué ahora |
-|----|-----------|---------------|
-| N06 | Calificaciones numéricas | Los profesores necesitan registrar notas. OCH solo permite Aprobado/Suspenso |
-| N08 | Recibos y facturas PDF | PolarDoc los genera automáticamente. Hay que replicar esta función |
-| N09 | Certificados DECA automáticos | La arquitectura ya está diseñada. Es el paso final para abandonar PolarDoc |
-| N05 | Listados de alumnos por curso | Los profesores necesitan saber qué alumnos tienen |
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N05 | Listados de alumnos por curso | 🔧 Implementado (listados.mjs — resumen, filtro, CSV) |
+| N08 | Recibos y facturas PDF | 🔧 Implementado (recibo-pdf.mjs — genera PDF por alumno) |
+| N09 | Certificados DECA automáticos | 🔧 Implementado (certificado-pdf.mjs — 2 modelos, modo mock) |
+| N06 | Calificaciones numéricas | ⏳ Pendiente (necesita tabla CALIFICACIONES en Stackby) |
 
 ### Sprint 4: Operaciones y migración (10-23 marzo)
 
@@ -206,12 +206,12 @@ Hoy PolarDoc sigue siendo necesario para: generar nº de expediente, registrar e
 2. Número de expediente automático (N04)             ✅ HECHO
 3. Expediente académico en base de datos (N07)       ✅ 1.583 alumnos importados
 4. Calificaciones numéricas (N06)                    ⏳ SIGUIENTE PASO
-5. Certificados DECA automáticos (N09)               ⏳ Pendiente
+5. Certificados DECA automáticos (N09)               🔧 Generador implementado (mock)
 ```
 
-Los pasos 1, 2 y 3 ya están resueltos. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable.
+Los pasos 1, 2, 3 y 5 ya están resueltos a nivel técnico. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable. El generador de certificados (N09) produce dos modelos de PDF: certificado académico con tabla de notas y diploma de finalización.
 
-El **siguiente paso crítico** es crear la tabla CALIFICACIONES en Stackby (N06) para registrar notas fuera de PolarDoc. Se ha entregado la guía con la estructura de tablas a crear.
+El **siguiente paso crítico** es crear la tabla CALIFICACIONES en Stackby (N06) para registrar notas fuera de PolarDoc. Se ha entregado la guía con la estructura de tablas a crear. Una vez creada la tabla y cargadas las notas, los certificados se generarán con datos reales.
 
 Hasta que no se complete el paso 5, **PolarDoc no se puede apagar**.
 

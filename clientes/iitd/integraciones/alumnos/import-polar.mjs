@@ -68,12 +68,23 @@ async function stackbyFetch(endpoint, options = {}) {
 }
 
 async function getExistingEmails() {
-  const result = await stackbyFetch(`/rowlist/${STACK_ID}/${TABLE_ID}?maxRecords=5000`);
   const map = new Map();
-  for (const row of (result.records || [])) {
-    const email = (row.field?.Email || '').toLowerCase().trim();
-    if (email) map.set(email, row);
+  let offset = 0;
+  const PAGE_SIZE = 100;
+
+  while (true) {
+    const result = await stackbyFetch(
+      `/rowlist/${STACK_ID}/${TABLE_ID}` + (offset ? `?offset=${offset}` : '')
+    );
+    const records = Array.isArray(result) ? result : (result.records || []);
+    for (const row of records) {
+      const email = (row.field?.Email || '').toLowerCase().trim();
+      if (email) map.set(email, row);
+    }
+    if (records.length < PAGE_SIZE) break;
+    offset += records.length;
   }
+
   return map;
 }
 
