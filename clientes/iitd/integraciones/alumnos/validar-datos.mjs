@@ -306,9 +306,8 @@ async function writeSheet(alumnos, issues, countByRule, validCount, duplicates) 
     process.exit(1);
   }
 
-  const { google } = await import('googleapis');
-  const auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
-  const sheets = google.sheets({ version: 'v4', auth: await auth.getClient() });
+  const { getSheetsClient } = await import('./google-auth.mjs');
+  const sheets = await getSheetsClient();
 
   const TAB = 'Validación';
 

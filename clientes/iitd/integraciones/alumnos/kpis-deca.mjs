@@ -250,9 +250,8 @@ async function writeToSheet(alumnos, label, computed) {
     return;
   }
 
-  const { google } = await import('googleapis');
-  const auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
-  const sheets = google.sheets({ version: 'v4', auth: await auth.getClient() });
+  const { getSheetsClient } = await import('./google-auth.mjs');
+  const sheets = await getSheetsClient();
 
   const TAB = ALL_PROGRAMS ? 'KPIs General' : 'KPIs DECA';
   const { funnel, snapshot, rates, variants, recent } = computed;
