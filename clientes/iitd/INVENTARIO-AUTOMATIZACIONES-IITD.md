@@ -11,10 +11,10 @@
 
 | Estado | Descripción | Cantidad | % |
 |--------|-------------|----------|---|
-| ✅ | Hecho (Funcional y en uso) | 16 | 30.8% |
-| 🔧 | Implementado (Código listo, pendiente deploy/config) | 6 | 11.5% |
+| ✅ | Hecho (Funcional y en uso) | 20 | 38.5% |
+| 🔧 | Implementado (Código listo, pendiente deploy/config) | 3 | 5.8% |
 | 📋 | Guía entregada (Documentación entregada, acción manual) | 3 | 5.8% |
-| ⏳ | Pendiente (No iniciado) | 22 | 42.3% |
+| ⏳ | Pendiente (No iniciado) | 21 | 40.4% |
 | 🚫 | Bloqueado (Limitaciones externas) | 5 | 9.6% |
 | **TOTAL** | | **52** | **100%** |
 
@@ -76,14 +76,14 @@
 
 | Código | Necesidad | Estado | Qué hace | Cómo probarla | Archivos clave |
 |--------|-----------|--------|----------|---------------|----------------|
-| **N12** | Política de conservación y borrado de datos RGPD | ⏳ | Automatiza borrado de datos según plazos RGPD | **Pendiente Sprint 5 (marzo-abril 2026)** | (Por implementar) |
-| **N13** | Inventario de herramientas SaaS y contratos DPA | 🔧 | Tabla en Stackby con herramientas SaaS, costos, DPAs y renovaciones | **Pendiente:** Crear tabla INVENTARIO_SAAS en Stackby | (Tabla por crear en Stackby) |
+| **N12** | Política de conservación y borrado de datos RGPD | ✅ | Informe retención + anonimización automática según plazos RGPD (baja 5a, solicitud 1a, fiscal 4a) | 1. `node rgpd-retencion.mjs` (informe consola)<br>2. `node rgpd-retencion.mjs --sheet` (pestaña Panel IITD)<br>3. `node rgpd-retencion.mjs --purge --dry-run` (preview)<br>4. `node rgpd-retencion.mjs --purge --confirm` (ejecutar) | `/integraciones/alumnos/rgpd-retencion.mjs` |
+| **N13** | Inventario de herramientas SaaS y contratos DPA | ✅ | Tabla INVENTARIO_SAAS en Stackby: 14 columnas, 12 herramientas pre-pobladas (Stackby, OCH, Google, Stripe, BreezeDoc, pxl.to, Acumbamail, FlipBooklets, SiteGround, Holded, Pabbly, WordPress) | 1. Abrir Stackby → INVENTARIO_SAAS<br>2. Verificar 12 herramientas<br>3. Completar: Coste, Fecha DPA, Renovación | Tabla Stackby `tbx3UGrWC0XTA5Rd2e` |
 | **N23** | Minimización del uso del DNI | 🚫 | Reducir campos DNI en formularios/registros | **Bloqueado:** Requiere decisión dirección + asesor legal | (Decisión estratégica pendiente) |
 | **N40** | Incluir texto legal RGPD en todos los emails automáticos | ✅ | Footer automático con aviso legal RGPD en emails | Integrado en templates de email de los scripts | Implementado en scripts de email |
 | **N41** | Banner de cookies en la web | ⏳ | Banner consentimiento cookies en institutoteologia.org | **Pendiente Sprint 5** | (Por implementar) |
 | **N42** | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | 📋 | Textos legales entregados para publicación web | **Manual:** Publicar en WordPress | `/docs/legal/politica-privacidad.md`<br>`/docs/legal/aviso-legal.md`<br>`/docs/legal/politica-cookies.md` |
 | **N43** | Portal para ejercicio de derechos RGPD (ARCO+) | ⏳ | Formulario web para ejercer derechos RGPD | **Pendiente Sprint 5** | (Por implementar) |
-| **N44** | Exportación de datos de alumno (portabilidad RGPD) | ⏳ | Script que exporta todos los datos de un alumno | **Pendiente Sprint 5** | (Por implementar) |
+| **N44** | Exportación de datos de alumno (portabilidad RGPD) | ✅ | Exporta datos ALUMNOS + CALIFICACIONES en JSON y/o CSV (Art. 20 RGPD) | 1. `node exportar-alumno.mjs --email alumno@email.com` (JSON)<br>2. `node exportar-alumno.mjs --email alumno@email.com --csv`<br>3. `node exportar-alumno.mjs --email alumno@email.com --all` (archivos) | `/integraciones/alumnos/exportar-alumno.mjs` |
 | **N45** | Registro de auditoría y notificación de brechas de seguridad | ⏳ | Sistema de logging + alertas de brechas | **Pendiente** | (Por implementar) |
 | **N46** | Caducidad y control de acceso a grabaciones | ⏳ | Gestión automática de acceso temporal a grabaciones | **Pendiente** | (Por implementar) |
 
@@ -95,7 +95,7 @@
 |--------|-----------|--------|----------|---------------|----------------|
 | **N10** | Facturación a centros asociados | ⏳ | Generación automática de facturas para centros | **Pendiente** | (Por implementar) |
 | **N18** | Migración Golden Soft → Holded (caduca junio 2026) | ⏳ | Migrar contabilidad de Golden Soft a Holded | **Pospuesto:** Gema no disponible<br>**Urgente:** Caduca junio 2026 | (Sprint futuro) |
-| **N36** | Pago Stripe → matrícula → factura Holded (pipeline completo) | 🔧 | Webhook Stripe actualiza estado pago en Stackby | 1. `cd integraciones/stripe-webhook`<br>2. `node test-webhook.js` (test local) | `/integraciones/stripe-webhook/` |
+| **N36** | Pago Stripe → matrícula → factura Holded (pipeline completo) | ✅ | Webhook Stripe en Cloud Run: recibe eventos checkout.session.completed, invoice.paid, payment_intent.succeeded → actualiza Stackby | 1. GET `https://iitd-stripe-webhook-621601343355.europe-west1.run.app/health`<br>2. Verificar Stripe Dashboard → Webhooks<br>3. `stripe trigger checkout.session.completed` | `/integraciones/stripe-webhook/`<br>Cloud Run: `iitd-stripe-webhook` |
 
 ---
 
@@ -123,17 +123,17 @@
 
 ## Desglose Detallado por Estado
 
-### ✅ Completados (16)
-N02, N04, N05, N06, N07, N08, N09, N16, N19, N20, N21, N40, N48, N49, N50, N51, N52
+### ✅ Completados (20)
+N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N36, N40, N44, N48, N49, N50, N51, N52
 
-### 🔧 Implementados, pendiente deploy/config (6)
-N01, N13, N14, N15, N36, N47
+### 🔧 Implementados, pendiente deploy/config (3)
+N01, N14, N15, N47
 
 ### 📋 Guías entregadas (3)
 N03, N11, N42
 
-### ⏳ Pendientes (22)
-N10, N12, N18, N24-N35, N37-N38, N41, N43-N46
+### ⏳ Pendientes (21)
+N10, N18, N24-N35, N37-N38, N41, N43, N45-N46
 
 ### 🚫 Bloqueados (5)
 N17, N22, N23, N27, N39
@@ -146,7 +146,9 @@ N17, N22, N23, N27, N39
 
 **Camino crítico PolarDoc: CERRADO (100%).** Los 5 pasos completados: ID único (N20) → Expediente (N04) → BD alumnos (N07) → Calificaciones (N06) → Certificados (N09). PolarDoc ya no es necesario.
 
-**Próximo Sprint (marzo 2026):** Enfocado en N18 (migración Holded — urgente, caduca junio) y cumplimiento RGPD (N12, N41, N43-N44).
+**Sprint 5 (feb 2026):** N36 (Stripe webhook Cloud Run), N44 (portabilidad RGPD), N12 (retención RGPD), N13 (inventario SaaS).
+
+**Próximo Sprint (marzo 2026):** Enfocado en N18 (migración Holded — urgente, caduca junio) y cumplimiento RGPD restante (N41, N43, N45).
 
 ---
 

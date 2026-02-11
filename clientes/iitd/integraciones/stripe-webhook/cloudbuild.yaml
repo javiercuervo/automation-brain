@@ -1,0 +1,45 @@
+# Cloud Build configuration for IITD Stripe Webhook
+#
+# PREREQUISITOS (ejecutar ANTES del primer deploy):
+#
+# 1. Crear secrets:
+#    gcloud secrets create iitd-stripe-secret-key --replication-policy="automatic"
+#    echo -n "sk_live_xxx" | gcloud secrets versions add iitd-stripe-secret-key --data-file=-
+#
+#    gcloud secrets create iitd-stripe-webhook-secret --replication-policy="automatic"
+#    echo -n "whsec_xxx" | gcloud secrets versions add iitd-stripe-webhook-secret --data-file=-
+#
+#    gcloud secrets create iitd-stackby-api-key --replication-policy="automatic"
+#    echo -n "xxx" | gcloud secrets versions add iitd-stackby-api-key --data-file=-
+#
+# 2. Dar permisos al service account de Cloud Run:
+#    PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format='value(projectNumber)')
+#    for SECRET in iitd-stripe-secret-key iitd-stripe-webhook-secret iitd-stackby-api-key; do
+#      gcloud secrets add-iam-policy-binding $SECRET \
+#        --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+#        --role="roles/secretmanager.secretAccessor"
+#    done
+#
+# DEPLOY (usa --source, más simple que build+push manual):
+#    cd clientes/iitd/integraciones/stripe-webhook
+#    gcloud run deploy iitd-stripe-webhook \
+#      --source . \
+#      --region europe-west1 \
+#      --platform managed \
+#      --allow-unauthenticated \
+#      --memory 256Mi --cpu 1 --min-instances 0 --max-instances 5 --timeout 60s \
+#      --set-env-vars "STACKBY_STACK_ID=stHbLS2nezlbb3BL78,STACKBY_ALUMNOS_TABLE_ID=tbJ6m2vPBrLEBvZ3VQ" \
+#      --set-secrets "STRIPE_SECRET_KEY=iitd-stripe-secret-key:latest,STRIPE_WEBHOOK_SECRET=iitd-stripe-webhook-secret:latest,STACKBY_API_KEY=iitd-stackby-api-key:latest"
+#
+# POST-DEPLOY (si la org policy bloquea allUsers):
+#    gcloud run services update iitd-stripe-webhook --region=europe-west1 --no-invoker-iam-check
+#
+# SERVICIO DESPLEGADO:
+#    URL: https://iitd-stripe-webhook-621601343355.europe-west1.run.app
+#    Health: GET /health
+#    Webhook: POST /webhook
+#
+# STRIPE WEBHOOK:
+#    ID: we_1Szfi52Ni6F9uaDOgTUnKjVq
+#    Eventos: checkout.session.completed, invoice.paid, payment_intent.succeeded, customer.subscription.created
+#    Signing secret en GCP Secret Manager: iitd-stripe-webhook-secret

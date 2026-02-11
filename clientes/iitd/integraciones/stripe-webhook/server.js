@@ -14,7 +14,7 @@ const express = require('express');
 const { expressHandler } = require('./stripe-webhook-handler');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // IMPORTANTE: El webhook de Stripe necesita el body raw para verificar la firma
 app.post('/webhook', express.raw({ type: 'application/json' }), expressHandler);
