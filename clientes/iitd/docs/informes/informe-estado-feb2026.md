@@ -1,6 +1,6 @@
 # Informe de Estado y Planificación — IITD
 
-**Fecha:** 10 de febrero de 2026
+**Fecha:** 11 de febrero de 2026
 **Para:** Dirección IITD, Miriam, Josete
 **Referencia:** Reunión de priorización del 6 de febrero de 2026
 **Preparado por:** Proportione
@@ -9,7 +9,7 @@
 
 ## 1. Resumen ejecutivo
 
-Se han completado **3 sprints** con un total de **15 necesidades resueltas** (código, guías o configuración).
+Se han completado **4 sprints** con un total de **18 necesidades resueltas** (código, guías o configuración).
 
 El **camino crítico para abandonar PolarDoc** está al 80%: solo falta N06 (tabla de calificaciones). Los certificados, recibos, listados y la base de datos de alumnos ya están operativos.
 
@@ -97,12 +97,12 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 | N13 | Inventario de herramientas SaaS y DPAs | 🔧 Implementado |
 | N14 | Captura automática de leads web en Stackby | 🔧 Implementado |
 | N15 | Pipeline DECA completo (solicitud → matrícula → enrolamiento) | 🚫 Bloqueado (token OCH) |
-| N16 | Panel de control operativo diario para Miriam | ⏳ Pendiente |
+| N16 | Panel de control operativo diario para Miriam | ✅ Hecho (dashboard.mjs) |
 | N17 | Sincronización de actividad del LMS con Stackby | 🚫 Bloqueado (API OCH limitada) |
 | N18 | Migración de Golden Soft a Holded (caduca junio 2026) | ⏳ Pendiente |
-| N19 | KPIs DECA automáticos | ⏳ Pendiente |
+| N19 | KPIs DECA automáticos | ✅ Hecho (kpis-deca.mjs) |
 | N20 | Identificador único de alumno + deduplicación | 🔧 Implementado |
-| N21 | Validación de los datos migrados | ⏳ Pendiente |
+| N21 | Validación de los datos migrados | ✅ Hecho (validar-datos.mjs) |
 | N41 | Banner de cookies en la web | ⏳ Pendiente |
 | N43 | Portal para ejercicio de derechos RGPD (ARCO+) | ⏳ Pendiente |
 | N44 | Exportación de datos de alumno (portabilidad RGPD) | ⏳ Pendiente |
@@ -141,10 +141,10 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | Estado | Cantidad |
 |--------|----------|
-| ✅ Hecho | 6 |
+| ✅ Hecho | 9 |
 | 🔧 Implementado (pendiente despliegue/config) | 6 |
 | 📋 Guía/textos entregados (acción del equipo) | 3 |
-| ⏳ Pendiente | 25 |
+| ⏳ Pendiente | 22 |
 | 🚫 Bloqueado | 6 |
 | **Total** | **46** |
 
@@ -189,14 +189,15 @@ Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resuel
 - **pxl.to** — Short links + QR codes para diplomas (500 req/día)
 - **BreezeDoc** — Cuenta configurada, API funcional. Script `breezedoc-enrollment.mjs` para enviar contratos de matrícula, convenios y consentimientos RGPD a firmar por email. Los diplomas usan QR + hash de verificación (firma digital aparcada hasta que el director obtenga certificado FNMT)
 
-### Sprint 4: Operaciones y migración (10-23 marzo)
+### Sprint 4: Operaciones y validación (11 febrero) — EN CURSO
 
-| ID | Necesidad | Por qué ahora |
-|----|-----------|---------------|
-| N16 | Panel de control operativo | Miriam necesita visión consolidada de todo |
-| N18 | Migración Golden Soft → Holded | La licencia de Golden Soft caduca en junio 2026 |
-| N19 | KPIs DECA automáticos | Seguimiento semanal de solicitudes y matrículas |
-| N21 | Validación de datos migrados | Asegurar que los datos de PolarDoc están completos |
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N21 | Validación de datos migrados | ✅ Hecho — 1585 registros auditados, 5 problemas reales |
+| N16 | Panel de control operativo | ✅ Hecho — Dashboard con pipeline, alertas y actividad |
+| N19 | KPIs DECA automáticos | ✅ Hecho — Funnel, tasas de conversión, histórico |
+| N06 | Calificaciones numéricas | ⏳ Pendiente — necesita Table ID de CALIFICACIONES |
+| N18 | Migración Golden Soft → Holded | ⏳ Pospuesto (Gema no disponible) |
 
 ### Sprint 5: Cumplimiento RGPD completo (24 marzo - 6 abril)
 
@@ -265,14 +266,14 @@ Hasta que no se complete el paso 5, **PolarDoc no se puede apagar**.
 | N13 | Crear tabla INVENTARIO_SAAS en Stackby | Miriam |
 | N14 | Proporcionar Sheet ID del formulario web | Sonia |
 
-### Prioridad 3: Sprint 4 (marzo)
+### Prioridad 3: Sprint 4 — pendientes
 
-| Need | Qué | Esfuerzo est. |
-|------|-----|----------|
-| N16 | Dashboard operativo para Miriam | ~4h |
-| N18 | Migración Golden Soft → Holded | Depende de Gema |
-| N19 | KPIs DECA automáticos | ~3h |
-| N21 | Validación datos migrados | ~2h |
+| Need | Qué | Estado |
+|------|-----|--------|
+| N06 | Calificaciones (sync Sheet ↔ Stackby) | Bloqueado — necesita Table ID de CALIFICACIONES |
+| N18 | Migración Golden Soft → Holded | Pospuesto (Gema no disponible) |
+
+**Ya completados en Sprint 4:** N16 (dashboard), N19 (KPIs DECA), N21 (validación datos).
 
 ### Prioridad 4: Sprint 5 — RGPD (marzo-abril)
 
