@@ -1,141 +1,96 @@
 # Funcionalidades Implementadas - IITD
 
-**Fecha:** Febrero 2026
-**Versión:** 1.0
+**Fecha:** 11 de febrero de 2026
+**Version:** 2.0 (actualizado tras Sprint 4)
 
 ---
 
-## Resumen visual
+## Resumen
+
+**19 de 46 necesidades resueltas** en 4 sprints (6-11 febrero 2026).
+Camino critico PolarDoc: cerrado (5/5 pasos completados).
+
+---
+
+## Funcionando ahora (10 funcionalidades)
+
+| # | ID | Funcionalidad | Script/Recurso |
+|---|-----|---------------|----------------|
+| 1 | N02 | Datos de alumnos completos (1.585 en Stackby) | `sync-sheets.mjs` |
+| 2 | N04 | Numero de expediente automatico (IITD-110001+) | Apps Script `publisher.gs` |
+| 3 | N05 | Listados por programa en Google Sheet | `sync-sheets.mjs`, `listados.mjs` |
+| 4 | N06 | Calificaciones: sync Sheet ↔ Stackby (9 modulos DECA) | `calificaciones-client.mjs`, `sync-calificaciones.mjs` |
+| 5 | N07 | Expediente academico (1.583 alumnos importados de PolarDoc) | `import-polar.mjs` |
+| 6 | N08 | Recibos PDF + upload Drive + registro en Sheet | `recibo-pdf.mjs` |
+| 7 | N09 | Certificados DECA con QR + upload SiteGround | `certificado-pdf.mjs` |
+| 8 | N16 | Dashboard operativo diario (pipeline, alertas, actividad) | `dashboard.mjs` |
+| 9 | N19 | KPIs DECA (funnel, tasas conversion, historico) | `kpis-deca.mjs` |
+| 10 | N21 | Validacion de datos migrados (auditoria automatica) | `validar-datos.mjs` |
+
+## Implementado, pendiente deploy/config (6)
+
+| # | ID | Funcionalidad | Que falta |
+|---|-----|---------------|-----------|
+| 1 | N01 | Notificacion email de nuevas inscripciones | Configurar email alumnos@ |
+| 2 | N04 | Asignacion expediente en flujo automatico | Deploy Apps Script actualizado |
+| 3 | N13 | Inventario SaaS y DPAs | Crear tabla INVENTARIO_SAAS en Stackby |
+| 4 | N14 | Captura leads web → Stackby | Sheet ID del formulario web (Sonia) |
+| 5 | N20 | Deduplicacion avanzada | Integrado en scripts, listo |
+| 6 | N40 | Footer RGPD en emails automaticos | Integrado en scripts |
+
+## Guias/textos entregados (3)
+
+| # | ID | Que se entrego |
+|---|-----|----------------|
+| 1 | N03 | Guia reenvio emails OCH → Miriam |
+| 2 | N11 | Guia separacion consentimientos RGPD en formularios |
+| 3 | N42 | Textos legales web (privacidad, aviso legal, cookies) |
+
+---
+
+## Cadena PolarDoc (cerrada)
 
 ```
-FORMULARIO WEB          STACKBY              ACCIONES
-     |                     |                    |
-     v                     v                    v
-[Inscripción] ──────> [SOLICITUDES] ──────> [Email aviso]
-     DECA                 DECA                   │
-                           │                     │
-                           v                     │
-                    [ALUMNOS] <── Miriam marca "Sí"
+1. ID unico alumno (N20)          ✅
+2. Numero expediente (N04)         ✅
+3. Expediente en BD (N07)          ✅ 1.583 alumnos
+4. Calificaciones (N06)            ✅ Sheet ↔ Stackby
+5. Certificados DECA (N09)         ✅ QR + hash + SiteGround
 ```
 
 ---
 
-## Estado de cada funcionalidad
+## Infraestructura creada
 
-### Funcionando ahora
-
-| # | Funcionalidad | Qué hace | Cómo se usa |
-|---|--------------|----------|-------------|
-| 1 | **Inscripciones DECA** | Formulario → Stackby automático | Automático |
-| 2 | **Notificaciones email** | Aviso cuando hay solicitud nueva | Automático |
-| 3 | **Crear alumno** | Registro en tabla ALUMNOS | Escribir "Sí" en Sheet |
-| 4 | **Detección duplicados** | No crea registros repetidos | Automático |
-| 5 | **Reintentos automáticos** | Si falla, lo intenta de nuevo | Automático |
-
-### Listo para activar
-
-| # | Funcionalidad | Qué hace | Qué falta |
-|---|--------------|----------|-----------|
-| 6 | **Pagos Stripe** | Actualiza estado al pagar | Configurar webhook |
-| 7 | **Email marketing** | Alta en Acumbamail | Activar integración |
-| 8 | **Sync con LMS** | Trae datos de cursos | Configurar cron |
-
-### Documentado (requiere configuración manual)
-
-| # | Funcionalidad | Qué hace | Dónde configurar |
-|---|--------------|----------|------------------|
-| 9 | **Dashboard** | Vistas filtradas en Stackby | En Stackby directamente |
-| 10 | **Migración POLAR** | Importar datos históricos | Script Node.js |
+| Recurso | Para que |
+|---------|----------|
+| Google Sheet "Panel IITD" | Dashboard, KPIs, validacion, listados |
+| Google Sheet "Calificaciones IITD" | Entrada de notas por profesores (3.573 filas prepobladas) |
+| Carpeta Drive "Recibos IITD" | Almacen PDFs de recibos |
+| Subdominio diplomas.institutoteologia.org | Hosting certificados/diplomas |
+| Service Account Google | Auth Drive/Sheets para scripts |
+| Tabla CALIFICACIONES en Stackby | 11 columnas para notas |
+| pxl.to | Short links + QR para diplomas |
+| BreezeDoc | Firma electronica (matricula, convenio, RGPD) |
 
 ---
 
-## Detalle de cada funcionalidad
+## Scripts en `integraciones/alumnos/`
 
-### 1. Inscripciones DECA automáticas
-- **Origen:** Formulario Getformly en la web
-- **Destino:** Tabla SOLICITUDES_DECA en Stackby
-- **Frecuencia:** Cada 5 minutos
-- **Campos:** Todos los del formulario (nombre, email, programa, documentos, etc.)
-
-### 2. Notificaciones por email
-- **Destinatario:** proportione@institutoteologia.org (cambiar a alumnos@ cuando esté listo)
-- **Asunto:** [DECA] Nueva solicitud: Nombre del solicitante
-- **Contenido:** Datos básicos + programa solicitado + centro
-
-### 3. Crear alumno desde solicitud
-- **Trigger:** Miriam escribe "Sí" en columna AB del Sheet
-- **Resultado:** Registro en tabla ALUMNOS_ACTUALES
-- **Datos copiados:** Email, nombre, apellidos, teléfono, DNI, programa
-
-### 4. Detección de duplicados
-- **Criterio:** Email del solicitante
-- **Comportamiento:** Actualiza el registro existente en lugar de crear duplicado
-
-### 5. Reintentos automáticos
-- **Máximo:** 5 intentos
-- **Espera:** Progresiva (1s, 2s, 4s, 8s, 16s)
-- **Si falla todo:** Queda marcado en columna AA con el error
+| Script | Uso |
+|--------|-----|
+| `sync-sheets.mjs` | `node sync-sheets.mjs` — Stackby → Sheet (pestanas por programa) |
+| `listados.mjs` | `node listados.mjs --programa DECA --csv` — listados filtrados |
+| `recibo-pdf.mjs` | `node recibo-pdf.mjs --email X --upload` — recibo + Drive |
+| `certificado-pdf.mjs` | `node certificado-pdf.mjs --email X --upload` — certificado + SiteGround |
+| `calificaciones-client.mjs` | `node calificaciones-client.mjs list` o `find <email>` |
+| `sync-calificaciones.mjs` | `node sync-calificaciones.mjs` — Sheet → Stackby (--init-sheet, --reverse) |
+| `dashboard.mjs` | `node dashboard.mjs` — dashboard → Sheet (--dry-run, --email) |
+| `kpis-deca.mjs` | `node kpis-deca.mjs` — KPIs → Sheet (--dry-run, --all-programs) |
+| `validar-datos.mjs` | `node validar-datos.mjs` — auditoria (--csv, --sheet) |
+| `import-polar.mjs` | `node import-polar.mjs <xlsx>` — importar PolarDoc |
+| `google-auth.mjs` | Auth compartido (Service Account con fallback ADC) |
 
 ---
 
-## Integraciones preparadas
-
-### 6. Pagos Stripe
-```
-Cliente paga → Stripe → Webhook → Stackby actualiza estado
-```
-- Cambia "Estado pago" a "Pagado"
-- Registra fecha e importe
-- Guarda referencia de Stripe
-
-### 7. Email marketing (Acumbamail)
-```
-Nuevo alumno + consentimiento → Alta en lista de emails
-```
-- Lista configurada: ID 1214096
-- Campos: email, nombre, origen, fecha
-
-### 8. Sincronización LMS (OnlineCourseHost)
-```
-Alumno matriculado en OCH → Registro actualizado en Stackby
-```
-- Trae: cursos, progreso, última actividad
-- Frecuencia recomendada: Diaria (6:00 AM)
-
----
-
-## Tablas en Stackby
-
-| Tabla | Propósito | Estado |
-|-------|-----------|--------|
-| SOLICITUDES_DECA | Solicitudes de inscripción | Activa |
-| ALUMNOS_ACTUALES | Registro de alumnos confirmados | Activa |
-
----
-
-## Archivos del sistema
-
-| Componente | Ubicación | Tecnología |
-|------------|-----------|------------|
-| Publisher DECA | Google Apps Script | JavaScript |
-| Cliente Acumbamail | Node.js | JavaScript |
-| Sync OCH | Node.js | JavaScript |
-| Webhook Stripe | Node.js | JavaScript |
-
----
-
-## Métricas de uso
-
-- **Solicitudes procesadas:** Todas las que lleguen al formulario
-- **Tiempo de procesamiento:** < 5 minutos desde el envío
-- **Tasa de éxito:** > 99% (con reintentos automáticos)
-
----
-
-## Contacto
-
-Para incidencias o mejoras, contactar al equipo técnico.
-
----
-
-*Documento generado como parte del proyecto de automatización IITD.*
+*Documento actualizado automaticamente. Fuente de verdad: `informe-estado-feb2026.md`.*

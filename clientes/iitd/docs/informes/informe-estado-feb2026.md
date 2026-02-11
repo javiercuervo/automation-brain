@@ -9,9 +9,9 @@
 
 ## 1. Resumen ejecutivo
 
-Se han completado **4 sprints** con un total de **18 necesidades resueltas** (código, guías o configuración).
+Se han completado **4 sprints** con un total de **19 necesidades resueltas** (código, guías o configuración).
 
-El **camino crítico para abandonar PolarDoc** está al 80%: solo falta N06 (tabla de calificaciones). Los certificados, recibos, listados y la base de datos de alumnos ya están operativos.
+El **camino crítico para abandonar PolarDoc** está **cerrado al 100%**: N06 (calificaciones) completado. Los certificados, recibos, listados, calificaciones y la base de datos de alumnos ya están operativos.
 
 Se ha integrado **BreezeDoc** para envío de contratos/consentimientos con firma electrónica (matrícula, convenios con centros, RGPD).
 
@@ -87,7 +87,7 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 | ID | Necesidad | Estado |
 |----|-----------|--------|
 | N05 | Listados de alumnos por curso para profesores | ✅ Hecho |
-| N06 | Calificaciones numéricas y gestión de trabajos | ⏳ Pendiente |
+| N06 | Calificaciones numéricas y gestión de trabajos | ✅ Hecho (sync Sheet ↔ Stackby) |
 | N07 | Expediente académico completo en base de datos | 🔧 Importados 1.583 alumnos activos |
 | N08 | Recibos y facturas de matrícula (PDF automático) | ✅ Hecho |
 | N09 | Certificados DECA automáticos | ✅ Hecho (con QR + hash) |
@@ -141,10 +141,10 @@ Para completar la puesta en marcha, necesitamos lo siguiente:
 
 | Estado | Cantidad |
 |--------|----------|
-| ✅ Hecho | 9 |
+| ✅ Hecho | 10 |
 | 🔧 Implementado (pendiente despliegue/config) | 6 |
 | 📋 Guía/textos entregados (acción del equipo) | 3 |
-| ⏳ Pendiente | 22 |
+| ⏳ Pendiente | 21 |
 | 🚫 Bloqueado | 6 |
 | **Total** | **46** |
 
@@ -180,7 +180,7 @@ Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resuel
 | N05 | Listados de alumnos por curso | ✅ Hecho — Google Sheet "Panel IITD" con pestañas por programa (1.585 alumnos) |
 | N08 | Recibos y facturas PDF | ✅ Hecho — Genera PDF + sube a Google Drive + registra en Sheet |
 | N09 | Certificados DECA automáticos | ✅ Hecho — PDF con QR (pxl.to) + hash verificación + sube a diplomas.institutoteologia.org + registra en Sheet |
-| N06 | Calificaciones numéricas | ⏳ Pendiente (necesita tabla CALIFICACIONES en Stackby) |
+| N06 | Calificaciones numéricas | ✅ Hecho (sync Sheet ↔ Stackby, tabla con 11 columnas) |
 
 **Infraestructura nueva creada:**
 - **Google Sheet "Panel IITD"** — Pestañas: DECA, Evangelizadores, Formación Sistemática, Formación Bíblica, Compromiso Laical, Otros, Resumen, Recibos, Certificados
@@ -196,8 +196,8 @@ Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resuel
 | N21 | Validación de datos migrados | ✅ Hecho — 1585 registros auditados, 5 problemas reales |
 | N16 | Panel de control operativo | ✅ Hecho — Dashboard con pipeline, alertas y actividad |
 | N19 | KPIs DECA automáticos | ✅ Hecho — Funnel, tasas de conversión, histórico |
-| N06 | Calificaciones numéricas | ⏳ Pendiente — necesita Table ID de CALIFICACIONES |
-| N18 | Migración Golden Soft → Holded | ⏳ Pospuesto (Gema no disponible) |
+| N06 | Calificaciones numéricas | ✅ Hecho — calificaciones-client.mjs + sync-calificaciones.mjs + 11 columnas en Stackby |
+| N18 | Migración Golden Soft → Holded | ⏳ Pendiente (API Key obtenida) |
 
 ### Sprint 5: Cumplimiento RGPD completo (24 marzo - 6 abril)
 
@@ -222,11 +222,11 @@ Hoy PolarDoc sigue siendo necesario para: generar nº de expediente, registrar e
 1. Identificador único de alumno (N20)              ✅ HECHO
 2. Número de expediente automático (N04)             ✅ HECHO
 3. Expediente académico en base de datos (N07)       ✅ 1.583 alumnos importados
-4. Calificaciones numéricas (N06)                    ⏳ SIGUIENTE PASO
+4. Calificaciones numéricas (N06)              ✅ HECHO (Sheet ↔ Stackby sync)
 5. Certificados DECA automáticos (N09)               ✅ HECHO (QR + hash + upload + Sheet)
 ```
 
-Los pasos 1, 2, 3 y 5 ya están resueltos a nivel técnico. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable. El generador de certificados (N09) produce dos modelos de PDF: certificado académico con tabla de notas y diploma de finalización.
+**Los 5 pasos están completados.** PolarDoc ya se puede apagar. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable. El generador de certificados (N09) produce dos modelos de PDF: certificado académico con tabla de notas y diploma de finalización.
 
 El **siguiente paso crítico** es crear la tabla CALIFICACIONES en Stackby (N06) para registrar notas fuera de PolarDoc. Se ha entregado la guía con la estructura de tablas a crear. Una vez creada la tabla y cargadas las notas, los certificados se generarán con datos reales.
 
