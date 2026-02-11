@@ -28,6 +28,12 @@ results.json
 network-captures/
 **/upbase-storage-state.json
 
+# IITD generated outputs
+**/certificados/
+**/recibos/
+**/output/
+**/certs/
+
 # Backups
 *.bak
 *~
