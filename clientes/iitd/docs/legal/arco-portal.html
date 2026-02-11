@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+  Portal de Ejercicio de Derechos RGPD (ARCO+) — IITD (N43)
+
+  Formulario para que alumnos y usuarios ejerzan sus derechos RGPD:
+  Acceso, Rectificacion, Supresion, Portabilidad, Oposicion, Limitacion.
+
+  Instalacion en WordPress:
+    Opcion A: Crear pagina nueva > pegar contenido en editor HTML
+    Opcion B: Usar plugin Contact Form 7 con los campos indicados abajo
+    Opcion C: Insertar como HTML personalizado en Elementor/Gutenberg
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio de Derechos RGPD — IITD</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6; color: #333; max-width: 720px; margin: 0 auto; padding: 24px;
+    }
+    h1 { font-size: 1.5em; margin-bottom: 8px; color: #1a1a2e; }
+    .subtitle { color: #666; margin-bottom: 24px; font-size: 0.95em; }
+    .legal-notice {
+      background: #f0f4f8; border-left: 4px solid #1a1a2e; padding: 16px;
+      margin-bottom: 24px; font-size: 0.9em;
+    }
+    .legal-notice p { margin-bottom: 8px; }
+    .legal-notice p:last-child { margin-bottom: 0; }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    label { font-weight: 600; display: block; margin-bottom: 4px; }
+    .hint { font-weight: 400; color: #666; font-size: 0.85em; }
+    input, select, textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 4px;
+      font-size: 1em; font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: #1a1a2e; box-shadow: 0 0 0 2px rgba(26,26,46,0.1);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .required::after { content: " *"; color: #e74c3c; }
+    .checkbox-group { display: flex; align-items: flex-start; gap: 8px; }
+    .checkbox-group input { width: auto; margin-top: 4px; }
+    .checkbox-group label { font-weight: 400; }
+    button[type="submit"] {
+      background: #1a1a2e; color: #fff; border: none; border-radius: 4px;
+      padding: 12px 24px; font-size: 1em; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    button[type="submit"]:hover { background: #2d2d5e; }
+    .rights-list { margin: 0 0 16px 20px; font-size: 0.9em; }
+    .rights-list li { margin-bottom: 4px; }
+    .footer-note {
+      margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee;
+      font-size: 0.85em; color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ejercicio de Derechos RGPD</h1>
+  <p class="subtitle">Instituto Internacional de Teolog&iacute;a a Distancia</p>
+
+  <div class="legal-notice">
+    <p>De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Org&aacute;nica 3/2018 (LOPDGDD), puede ejercer los siguientes derechos sobre sus datos personales:</p>
+    <ul class="rights-list">
+      <li><strong>Acceso:</strong> conocer qu&eacute; datos personales tratamos sobre usted</li>
+      <li><strong>Rectificaci&oacute;n:</strong> corregir datos inexactos o incompletos</li>
+      <li><strong>Supresi&oacute;n:</strong> solicitar la eliminaci&oacute;n de sus datos</li>
+      <li><strong>Portabilidad:</strong> recibir sus datos en formato estructurado (JSON/CSV)</li>
+      <li><strong>Oposici&oacute;n:</strong> oponerse al tratamiento de sus datos</li>
+      <li><strong>Limitaci&oacute;n:</strong> restringir el tratamiento en determinadas circunstancias</li>
+    </ul>
+    <p><strong>Responsable:</strong> Instituto Internacional de Teolog&iacute;a a Distancia (IITD)<br>
+    <strong>Direcci&oacute;n:</strong> Calle Iriarte 3, 28028 Madrid<br>
+    <strong>Email:</strong> informacion@institutoteologia.org<br>
+    <strong>Plazo de respuesta:</strong> 30 d&iacute;as naturales desde la recepci&oacute;n de su solicitud</p>
+  </div>
+
+  <form id="arco-form" action="https://formsubmit.co/informacion@institutoteologia.org" method="POST">
+    <!-- FormSubmit config -->
+    <input type="hidden" name="_subject" value="Solicitud ARCO+ — Ejercicio de Derechos RGPD">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_next" value="https://institutoteologia.org/gracias-arco/">
+
+    <div>
+      <label for="nombre" class="required">Nombre completo</label>
+      <input type="text" id="nombre" name="Nombre" required>
+    </div>
+
+    <div>
+      <label for="email" class="required">Correo electr&oacute;nico</label>
+      <input type="email" id="email" name="Email" required>
+    </div>
+
+    <div>
+      <label for="dni">DNI / NIE <span class="hint">(opcional — para verificar identidad)</span></label>
+      <input type="text" id="dni" name="DNI" placeholder="12345678A">
+    </div>
+
+    <div>
+      <label for="derecho" class="required">Derecho que desea ejercer</label>
+      <select id="derecho" name="Derecho" required>
+        <option value="">— Seleccione —</option>
+        <option value="Acceso">Acceso — Quiero saber qu&eacute; datos tienen sobre m&iacute;</option>
+        <option value="Rectificacion">Rectificaci&oacute;n — Quiero corregir datos incorrectos</option>
+        <option value="Supresion">Supresi&oacute;n — Quiero que eliminen mis datos</option>
+        <option value="Portabilidad">Portabilidad — Quiero recibir mis datos en formato digital</option>
+        <option value="Oposicion">Oposici&oacute;n — No quiero que traten mis datos</option>
+        <option value="Limitacion">Limitaci&oacute;n — Quiero restringir el uso de mis datos</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="mensaje">Detalle de su solicitud <span class="hint">(opcional)</span></label>
+      <textarea id="mensaje" name="Mensaje" placeholder="Describa con detalle su solicitud si lo desea..."></textarea>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="acepto" name="Acepto" value="Si" required>
+      <label for="acepto">He le&iacute;do y acepto la <a href="/politica-de-privacidad/" target="_blank">Pol&iacute;tica de Privacidad</a> y autorizo el tratamiento de mis datos para gestionar esta solicitud.</label>
+    </div>
+
+    <button type="submit">Enviar solicitud</button>
+  </form>
+
+  <div class="footer-note">
+    <p>Si no recibe respuesta en 30 d&iacute;as, o si no est&aacute; satisfecho con nuestra respuesta, puede presentar una reclamaci&oacute;n ante la <a href="https://www.aepd.es" target="_blank">Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos (AEPD)</a>.</p>
+    <p>Tambi&eacute;n puede enviar su solicitud directamente a: <a href="mailto:informacion@institutoteologia.org">informacion@institutoteologia.org</a></p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#1a5276;margin:0;">{{institucion_nombre}}</h2>
+</div>
+
+<p>Estimado/a <strong>{{nombre}}</strong>,</p>
+
+<p>Le recordamos que tiene pendiente el pago de la matrícula correspondiente al programa <strong>{{programa}}</strong>.</p>
+
+<div style="background:#fff3cd;border-radius:8px;padding:16px;margin:16px 0;border-left:4px solid #ffc107;">
+  <p style="margin:0 0 4px;"><strong>Concepto:</strong> Matrícula {{programa}}</p>
+  <p style="margin:0 0 4px;"><strong>Importe pendiente:</strong> {{importe}} €</p>
+  <p style="margin:0;"><strong>Fecha límite:</strong> {{fecha_limite}}</p>
+</div>
+
+<p>Puede realizar el pago a través de:</p>
+<ul>
+  <li>Transferencia bancaria (datos en el recibo de matrícula)</li>
+  <li>Tarjeta de crédito/débito en nuestra web</li>
+</ul>
+
+<p>Si ya ha realizado el pago, ignore este mensaje. Si tiene alguna dificultad, escribanos a <a href="mailto:{{institucion_email}}" style="color:#1a5276;">{{institucion_email}}</a> y buscaremos una solución.</p>
+
+<p>Atentamente,<br>
+<strong>Administración</strong><br>
+{{institucion_nombre}}<br>
+<a href="https://{{institucion_web}}" style="color:#1a5276;">{{institucion_web}}</a></p>
+
+</body>
+</html>

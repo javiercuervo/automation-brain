@@ -8,7 +8,7 @@ Automatización de procesos académicos y administrativos del IITD.
 
 ## Estado del proyecto
 
-**20 de 52 necesidades resueltas (38.5%)** — Sprints 1-5 completados.
+**23 de 52 necesidades resueltas (44.2%)** — Sprints 1-6 completados.
 Camino crítico PolarDoc: **cerrado** (5/5 pasos).
 
 Ver inventario completo en [`INVENTARIO-AUTOMATIZACIONES-IITD.md`](INVENTARIO-AUTOMATIZACIONES-IITD.md).
@@ -40,7 +40,7 @@ Ver inventario completo en [`INVENTARIO-AUTOMATIZACIONES-IITD.md`](INVENTARIO-AU
 | `import-polar.mjs` | N07 | Importar PolarDoc xlsx → Stackby |
 | `validar-datos.mjs` | N21 | Auditoría de datos: emails, duplicados, estados |
 | `recibo-pdf.mjs` | N08 | Recibos PDF + Drive + Sheet |
-| `certificado-pdf.mjs` | N09 | Certificados DECA con QR + upload SiteGround |
+| `certificado-pdf.mjs` | N09, N26 | Certificados multi-programa con QR + upload SiteGround |
 | `calificaciones-client.mjs` | N06 | CRUD Stackby tabla CALIFICACIONES |
 | `sync-calificaciones.mjs` | N06 | Sync bidireccional Sheet ↔ Stackby |
 | `dashboard.mjs` | N16 | Dashboard operativo diario |
@@ -52,6 +52,8 @@ Ver inventario completo en [`INVENTARIO-AUTOMATIZACIONES-IITD.md`](INVENTARIO-AU
 | `google-auth.mjs` | — | Auth compartido (Service Account + ADC fallback) |
 | `pxl-client.mjs` | — | Short links + QR (pxl.to) |
 | `siteground-upload.mjs` | — | Upload SSH a diplomas.institutoteologia.org |
+| `email-sender.mjs` | N25 | Email transaccional con templates (pendiente SMTP) |
+| `contactos-client.mjs` | N24 | CRUD Stackby tabla CONTACTOS |
 
 ## Accesos
 

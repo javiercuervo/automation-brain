@@ -1,10 +1,10 @@
 # Pol&iacute;tica de Cookies
 
 > **N42 - Texto extra&iacute;do del Libro Registro RGPD v6 (febrero 2026)**
-> Listo para subir a WordPress en www.iitdistancia.org
+> Listo para subir a WordPress en www.institutoteologia.org
 >
-> **ATENCI&Oacute;N:** Este texto contiene campos marcados con `[PENDIENTE]` que deben
-> completarse con los datos reales de las cookies de la web antes de publicar.
+> **Complemento:** El banner de consentimiento se implementa con el script
+> `cookie-banner.js` (N41) — copiar en el footer del tema WordPress.
 
 ---
 
@@ -36,19 +36,31 @@ El titular de la web y responsable del tratamiento de las cookies, as&iacute; co
 
 ## &iquest;Cu&aacute;les son las cookies que utiliza esta Web y para qu&eacute; se utilizan?
 
-`[PENDIENTE]` Esta Web utiliza cookies propias, que tienen por finalidad ___.
+### Cookies propias (t&eacute;cnicas / necesarias)
 
-`[PENDIENTE]` Esta Web utiliza las siguientes cookies de terceros: ___.
+| Cookie | Finalidad | Duraci&oacute;n |
+|--------|-----------|----------|
+| `wordpress_logged_in_*` | Identificar al usuario tras iniciar sesi&oacute;n en WordPress | Sesi&oacute;n |
+| `wordpress_sec_*` | Autenticaci&oacute;n segura del &aacute;rea de administraci&oacute;n | Sesi&oacute;n |
+| `wp-settings-*` | Preferencias del panel de administraci&oacute;n | 1 a&ntilde;o |
+| `wp-settings-time-*` | Marca temporal de las preferencias | 1 a&ntilde;o |
+| `iitd_cookie_consent` | Almacena la preferencia de cookies del usuario (localStorage) | Persistente |
 
-`[PENDIENTE]` Las aplicaciones que utilizan estos terceros son las siguientes: ___.
+### Cookies de terceros (anal&iacute;ticas) — solo si el usuario las acepta
 
-Adem&aacute;s, esas empresas pueden utilizar los datos que obtengan para mejorar sus propios servicios y para ofrecer servicios a otras empresas.
+| Cookie | Proveedor | Finalidad | Duraci&oacute;n |
+|--------|-----------|-----------|----------|
+| `_ga` | Google Analytics (GA4) | Distinguir usuarios &uacute;nicos | 2 a&ntilde;os |
+| `_gid` | Google Analytics (GA4) | Distinguir usuarios &uacute;nicos (24h) | 24 horas |
+| `_gat` | Google Analytics (GA4) | Limitar la frecuencia de solicitudes | 1 minuto |
+
+Las cookies anal&iacute;ticas de Google se cargan &uacute;nicamente cuando el usuario acepta expresamente su uso a trav&eacute;s del banner de consentimiento. Google puede utilizar los datos recogidos para contextualizar y personalizar los anuncios de su propia red publicitaria. M&aacute;s informaci&oacute;n: [Pol&iacute;tica de privacidad de Google](https://policies.google.com/privacy).
 
 Al margen de las cookies indicadas, le informamos de que este sitio web utiliza cookies que permiten el funcionamiento y la prestaci&oacute;n de los servicios ofrecidos en el mismo.
 
 ## &iquest;Durante cu&aacute;nto tiempo se guardan las cookies?
 
-`[PENDIENTE]` Las cookies ___ se guardar&aacute;n ___.
+Las cookies de sesi&oacute;n (`wordpress_logged_in_*`, `wordpress_sec_*`) se eliminan al cerrar el navegador. Las cookies persistentes (`wp-settings-*`) se conservan durante 1 a&ntilde;o. Las cookies anal&iacute;ticas de Google (`_ga`) se conservan durante 2 a&ntilde;os como m&aacute;ximo. La preferencia de consentimiento (`iitd_cookie_consent`) permanece almacenada en el navegador hasta que el usuario la revoque.
 
 ## &iquest;Cu&aacute;l es la legitimaci&oacute;n para el uso de las cookies?
 
@@ -62,7 +74,7 @@ Cuando existan cookies de terceros, conforme a lo indicado m&aacute;s arriba, di
 
 ## &iquest;Qu&eacute; transferencias internacionales de datos se realizan?
 
-El titular de esta web no realiza transferencias internacionales de las cookies recabadas.
+Google LLC tiene servidores en Estados Unidos. La transferencia de datos a EE.UU. est&aacute; amparada por las cl&aacute;usulas contractuales tipo aprobadas por la Comisi&oacute;n Europea y el EU-US Data Privacy Framework.
 
 ## &iquest;Cu&aacute;les son sus derechos en relaci&oacute;n con el uso de cookies por esta web?
 
@@ -80,15 +92,15 @@ Frente a cualquier vulneraci&oacute;n de sus derechos puede presentar una reclam
 
 ## &iquest;C&oacute;mo puedo gestionar las cookies?
 
-Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo a trav&eacute;s del bot&oacute;n &ldquo;OPCIONES SOBRE COOKIES&rdquo;, que aparece al acceder a esta web.
+Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo a trav&eacute;s del bot&oacute;n &ldquo;OPCIONES SOBRE COOKIES&rdquo;, que aparece al acceder a esta web. Para reabrir el banner de configuraci&oacute;n, haga clic en el enlace &ldquo;Configurar cookies&rdquo; situado en el pie de p&aacute;gina.
 
 Tambi&eacute;n puede hacerlo a trav&eacute;s del men&uacute; de configuraci&oacute;n de su navegador de internet:
 
-- **Microsoft Internet Explorer:** men&uacute; Herramientas > Opciones de Internet > Privacidad > Configuraci&oacute;n.
-- **Firefox:** men&uacute; Herramientas > Opciones > Privacidad > Cookies.
-- **Chrome:** men&uacute; Opciones > Opciones avanzadas > Privacidad.
-- **Safari:** men&uacute; Preferencias/Privacidad.
-- **Safari para iOS (iPhone y iPad):** Opci&oacute;n Ajustes > Safari.
+- **Microsoft Edge:** men&uacute; Configuraci&oacute;n > Cookies y permisos del sitio.
+- **Firefox:** men&uacute; Ajustes > Privacidad y seguridad > Cookies.
+- **Chrome:** men&uacute; Configuraci&oacute;n > Privacidad y seguridad > Cookies.
+- **Safari:** men&uacute; Preferencias > Privacidad.
+- **Safari para iOS (iPhone y iPad):** Ajustes > Safari > Privacidad.
 - **Chrome para Android:** Configuraci&oacute;n > Configuraci&oacute;n de sitios web > Cookies.
 
 Tenga en cuenta que, si acepta las cookies de terceros, deber&aacute; eliminarlas desde las opciones del navegador o desde el sistema ofrecido por el propio tercero.

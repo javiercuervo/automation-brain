@@ -23,7 +23,7 @@ clientes/                   Contenido por cliente
 ### IITD — Instituto Internacional de Teología a Distancia
 Automatizaciones academicas y administrativas: inscripciones, calificaciones, certificados, recibos, RGPD, pagos Stripe, contenidos educativos.
 
-**Estado:** 20 de 52 necesidades completadas (38.5%) — Sprints 1-5.
+**Estado:** 23 de 52 necesidades completadas (44.2%) — Sprints 1-6.
 
 - **Integraciones**: `clientes/iitd/integraciones/alumnos/` (20+ scripts Node.js)
 - **Stripe Webhook**: `clientes/iitd/integraciones/stripe-webhook/` (Cloud Run)

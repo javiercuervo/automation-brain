@@ -11,10 +11,10 @@
 
 | Estado | Descripción | Cantidad | % |
 |--------|-------------|----------|---|
-| ✅ | Hecho (Funcional y en uso) | 20 | 38.5% |
-| 🔧 | Implementado (Código listo, pendiente deploy/config) | 3 | 5.8% |
-| 📋 | Guía entregada (Documentación entregada, acción manual) | 3 | 5.8% |
-| ⏳ | Pendiente (No iniciado) | 21 | 40.4% |
+| ✅ | Hecho (Funcional y en uso) | 23 | 44.2% |
+| 🔧 | Implementado (Código listo, pendiente deploy/config) | 4 | 7.7% |
+| 📋 | Guía entregada (Documentación entregada, acción manual) | 4 | 7.7% |
+| ⏳ | Pendiente (No iniciado) | 16 | 30.8% |
 | 🚫 | Bloqueado (Limitaciones externas) | 5 | 9.6% |
 | **TOTAL** | | **52** | **100%** |
 
@@ -80,9 +80,9 @@
 | **N13** | Inventario de herramientas SaaS y contratos DPA | ✅ | Tabla INVENTARIO_SAAS en Stackby: 14 columnas, 12 herramientas pre-pobladas (Stackby, OCH, Google, Stripe, BreezeDoc, pxl.to, Acumbamail, FlipBooklets, SiteGround, Holded, Pabbly, WordPress) | 1. Abrir Stackby → INVENTARIO_SAAS<br>2. Verificar 12 herramientas<br>3. Completar: Coste, Fecha DPA, Renovación | Tabla Stackby `tbx3UGrWC0XTA5Rd2e` |
 | **N23** | Minimización del uso del DNI | 🚫 | Reducir campos DNI en formularios/registros | **Bloqueado:** Requiere decisión dirección + asesor legal | (Decisión estratégica pendiente) |
 | **N40** | Incluir texto legal RGPD en todos los emails automáticos | ✅ | Footer automático con aviso legal RGPD en emails | Integrado en templates de email de los scripts | Implementado en scripts de email |
-| **N41** | Banner de cookies en la web | ⏳ | Banner consentimiento cookies en institutoteologia.org | **Pendiente Sprint 5** | (Por implementar) |
+| **N41** | Banner de cookies en la web | 📋 | Snippet JS/CSS autocontenido: banner consentimiento con 3 botones (Aceptar todas, Solo necesarias, Configurar), almacena preferencia en localStorage, bloquea GA4 hasta consentimiento, permite revocar | 1. Abrir cookie-banner.js en browser<br>2. Verificar banner aparece, botones funcionan<br>3. Instalar en WordPress: copiar en Additional JS | `/docs/legal/cookie-banner.js`<br>`/docs/legal/politica-cookies.md` |
 | **N42** | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | 📋 | Textos legales entregados para publicación web | **Manual:** Publicar en WordPress | `/docs/legal/politica-privacidad.md`<br>`/docs/legal/aviso-legal.md`<br>`/docs/legal/politica-cookies.md` |
-| **N43** | Portal para ejercicio de derechos RGPD (ARCO+) | ⏳ | Formulario web para ejercer derechos RGPD | **Pendiente Sprint 5** | (Por implementar) |
+| **N43** | Portal para ejercicio de derechos RGPD (ARCO+) | 📋 | Formulario HTML WordPress-ready con 6 derechos (Acceso, Rectificación, Supresión, Portabilidad, Oposición, Limitación) + guía operativa con plantillas de respuesta + mapeo a scripts existentes | 1. Abrir arco-portal.html en browser<br>2. Rellenar formulario de prueba<br>3. Verificar envío email<br>4. Publicar en WordPress | `/docs/legal/arco-portal.html`<br>`/docs/guias/guia-arco-portal.md` |
 | **N44** | Exportación de datos de alumno (portabilidad RGPD) | ✅ | Exporta datos ALUMNOS + CALIFICACIONES en JSON y/o CSV (Art. 20 RGPD) | 1. `node exportar-alumno.mjs --email alumno@email.com` (JSON)<br>2. `node exportar-alumno.mjs --email alumno@email.com --csv`<br>3. `node exportar-alumno.mjs --email alumno@email.com --all` (archivos) | `/integraciones/alumnos/exportar-alumno.mjs` |
 | **N45** | Registro de auditoría y notificación de brechas de seguridad | ⏳ | Sistema de logging + alertas de brechas | **Pendiente** | (Por implementar) |
 | **N46** | Caducidad y control de acceso a grabaciones | ⏳ | Gestión automática de acceso temporal a grabaciones | **Pendiente** | (Por implementar) |
@@ -103,9 +103,9 @@
 
 | Código | Necesidad | Estado | Qué hace | Cómo probarla | Archivos clave |
 |--------|-----------|--------|----------|---------------|----------------|
-| **N24** | Tabla de contactos institucionales (CRM simple) | ⏳ | Tabla Stackby para gestionar contactos externos | **Pendiente** | (Por implementar) |
-| **N25** | Emails automáticos (recepción trabajos, notas, recordatorios) | ⏳ | Sistema de notificaciones automáticas a alumnos | **Pendiente** | (Por implementar) |
-| **N26** | Diplomas de otros programas + descarga en OCH | ⏳ | Extender generador de certificados a otros programas | **Pendiente** | (Usar base de certificado-pdf.mjs) |
+| **N24** | Tabla de contactos institucionales (CRM simple) | ✅ | Tabla CONTACTOS en Stackby (8 columnas: Nombre, Organización, Cargo, Email, Teléfono, Tipo, Notas, Fecha Contacto) + cliente CRUD CLI | 1. `node contactos-client.mjs list`<br>2. `node contactos-client.mjs create --nombre "Test" --email "t@t.com" --tipo centro_asociado`<br>3. Verificar en Stackby UI | `/integraciones/alumnos/contactos-client.mjs`<br>Tabla Stackby `tbn3YzJsxtvpIS9kFP` |
+| **N25** | Emails automáticos (recepción trabajos, notas, recordatorios) | 🔧 | Módulo email transaccional (nodemailer) con 4 plantillas HTML (bienvenida, notas, recibo, recordatorio) + footer RGPD automático + dry-run. Pendiente: credenciales SMTP | 1. `node email-sender.mjs --list`<br>2. `node email-sender.mjs --template bienvenida --to test@test.com --vars nombre=Juan programa=DECA --dry-run`<br>3. Configurar SMTP en .env cuando disponible | `/integraciones/alumnos/email-sender.mjs`<br>`/integraciones/alumnos/templates/` |
+| **N26** | Diplomas de otros programas + descarga en OCH | ✅ | Generador de certificados multi-programa: DECA IP, DECA ESO, Experto, Bachiller, Licenciatura + diploma genérico para cualquier programa. Flag --programa para seleccionar | 1. `node certificado-pdf.mjs --email test@test.com --mock --programa "Experto Universitario en Teología"`<br>2. `node certificado-pdf.mjs --email test@test.com --mock --modelo 2 --programa "Curso X"` (diploma genérico) | `/integraciones/alumnos/certificado-pdf.mjs` |
 | **N27** | Notificaciones de publicaciones en la comunidad OCH | 🚫 | Alertas nuevas publicaciones en comunidad LMS | **Bloqueado:** OCH no soporta webhooks de comunidad | (Limitación OCH) |
 | **N28** | Grabaciones: control de acceso y consentimiento promocional | ⏳ | Gestión de permisos de grabaciones | **Pendiente** | (Por implementar) |
 | **N29** | Flujo de publicación de cursos con revisión COEO | ⏳ | Workflow aprobación contenidos antes de publicar | **Pendiente** | (Por implementar) |
@@ -123,17 +123,17 @@
 
 ## Desglose Detallado por Estado
 
-### ✅ Completados (20)
-N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N36, N40, N44, N48, N49, N50, N51, N52
+### ✅ Completados (23)
+N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N24, N26, N36, N40, N44, N48, N49, N50, N51, N52
 
-### 🔧 Implementados, pendiente deploy/config (3)
-N01, N14, N15, N47
+### 🔧 Implementados, pendiente deploy/config (4)
+N01, N14, N15, N25, N47
 
-### 📋 Guías entregadas (3)
-N03, N11, N42
+### 📋 Guías entregadas (4)
+N03, N11, N41, N42, N43
 
-### ⏳ Pendientes (21)
-N10, N18, N24-N35, N37-N38, N41, N43, N45-N46
+### ⏳ Pendientes (16)
+N10, N18, N28-N35, N37-N38, N45-N46
 
 ### 🚫 Bloqueados (5)
 N17, N22, N23, N27, N39
@@ -148,7 +148,9 @@ N17, N22, N23, N27, N39
 
 **Sprint 5 (feb 2026):** N36 (Stripe webhook Cloud Run), N44 (portabilidad RGPD), N12 (retención RGPD), N13 (inventario SaaS).
 
-**Próximo Sprint (marzo 2026):** Enfocado en N18 (migración Holded — urgente, caduca junio) y cumplimiento RGPD restante (N41, N43, N45).
+**Sprint 6 (feb 2026):** N41 (cookie banner), N43 (portal ARCO+), N26 (diplomas multi-programa), N25 (email transaccional — pendiente SMTP), N24 (tabla contactos CRM).
+
+**Próximo Sprint:** Enfocado en N18 (migración Holded — urgente, caduca junio 2026), N45 (auditoría/brechas), y necesidades marketing pendientes.
 
 ---
 

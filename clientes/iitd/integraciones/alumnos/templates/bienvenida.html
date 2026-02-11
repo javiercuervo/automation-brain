@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#1a5276;margin:0;">{{institucion_nombre}}</h2>
+</div>
+
+<p>Estimado/a <strong>{{nombre}}</strong>,</p>
+
+<p>Le damos la bienvenida al {{institucion_nombre}}. Su matrícula en el programa <strong>{{programa}}</strong> ha sido registrada correctamente.</p>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 8px;"><strong>Datos de su matrícula:</strong></p>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Programa: {{programa}}</li>
+    <li>Nº Expediente: {{expediente}}</li>
+    <li>Fecha de matrícula: {{fecha}}</li>
+  </ul>
+</div>
+
+<p><strong>Próximos pasos:</strong></p>
+<ol>
+  <li>Acceda al campus virtual en <a href="https://onlinecourseshost.com" style="color:#1a5276;">OnlineCourseHost</a> con el email de registro</li>
+  <li>Complete su perfil de estudiante</li>
+  <li>Consulte el plan de estudios y el calendario académico</li>
+</ol>
+
+<p>Si tiene alguna duda, no dude en escribirnos a <a href="mailto:{{institucion_email}}" style="color:#1a5276;">{{institucion_email}}</a>.</p>
+
+<p>Atentamente,<br>
+<strong>Secretaría Académica</strong><br>
+{{institucion_nombre}}<br>
+<a href="https://{{institucion_web}}" style="color:#1a5276;">{{institucion_web}}</a></p>
+
+</body>
+</html>

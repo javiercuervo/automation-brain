@@ -1,11 +1,19 @@
 #!/usr/bin/env node
 
 /**
- * Generador de certificados DECA en PDF (N09) — con QR + upload + Sheet
+ * Generador de certificados IITD en PDF (N09 + N26) — con QR + upload + Sheet
  *
- * Genera dos tipos de certificado:
+ * Genera dos tipos de certificado para cualquier programa IITD:
  *   - Modelo 1: Certificado académico con tabla de calificaciones
  *   - Modelo 2: Diploma de finalización del programa
+ *
+ * Programas soportados (PLAN_ESTUDIOS):
+ *   - DECA Infantil y Primaria
+ *   - DECA ESO y Bachillerato
+ *   - Experto Universitario en Teología
+ *   - Bachiller en Teología
+ *   - Licenciatura en Teología
+ *   - (Cualquier otro programa → diploma genérico sin tabla de notas)
  *
  * Flujo completo (con --upload):
  *   1. Leer datos alumno de Stackby ALUMNOS
@@ -19,6 +27,7 @@
  *   node certificado-pdf.mjs --email juan@email.com --mock               # Con datos de ejemplo
  *   node certificado-pdf.mjs --email juan@email.com --modelo 1           # Solo certificado académico
  *   node certificado-pdf.mjs --email juan@email.com --modelo 2           # Solo diploma
+ *   node certificado-pdf.mjs --email juan@email.com --programa "Experto Universitario en Teología"
  *   node certificado-pdf.mjs --email juan@email.com --upload             # Genera + sube + escribe Sheet
  *   node certificado-pdf.mjs --email juan@email.com --upload --mock      # Full flow con datos mock
  *   node certificado-pdf.mjs --email juan@email.com --no-sign           # Sin firma digital
@@ -70,6 +79,11 @@ const MODELO_FILTER = (() => {
   return idx !== -1 ? parseInt(process.argv[idx + 1]) : 0; // 0 = both
 })();
 
+const PROGRAMA_OVERRIDE = (() => {
+  const idx = process.argv.indexOf('--programa');
+  return idx !== -1 ? process.argv[idx + 1] : null;
+})();
+
 const OUTPUT_DIR = (() => {
   const idx = process.argv.indexOf('-o');
   return idx !== -1 ? process.argv[idx + 1] : './certificados';
@@ -96,7 +110,9 @@ const INSTITUCION = {
 
 const DIPLOMAS_BASE_URL = 'https://diplomas.institutoteologia.org';
 
-// Programas DECA y sus asignaturas
+// Programas IITD y sus asignaturas
+// Modelo 1 (certificado académico con notas) solo disponible para programas listados aquí.
+// Modelo 2 (diploma) funciona para CUALQUIER programa, incluso sin plan de estudios definido.
 const PLAN_ESTUDIOS = {
   'DECA Infantil y Primaria': [
     'Teología Fundamental',
@@ -120,6 +136,48 @@ const PLAN_ESTUDIOS = {
     'Pedagogía y Didáctica de la Religión (ESO y Bachillerato)',
     'Liturgia y Sacramentos',
   ],
+  'Experto Universitario en Teología': [
+    'Teología Fundamental',
+    'Cristología',
+    'Eclesiología',
+    'Moral Fundamental',
+    'Sagrada Escritura: Antiguo Testamento',
+    'Sagrada Escritura: Nuevo Testamento',
+    'Historia de la Iglesia',
+    'Liturgia',
+    'Teología Espiritual',
+    'Patrología',
+  ],
+  'Bachiller en Teología': [
+    'Teología Fundamental',
+    'Cristología y Soteriología',
+    'Eclesiología y Mariología',
+    'Moral Fundamental y Bioética',
+    'Moral Social y Doctrina Social de la Iglesia',
+    'Sagrada Escritura: Antiguo Testamento',
+    'Sagrada Escritura: Nuevo Testamento',
+    'Historia de la Iglesia I',
+    'Historia de la Iglesia II',
+    'Liturgia y Sacramentos',
+    'Teología Espiritual',
+    'Patrología',
+    'Filosofía I: Introducción y Metafísica',
+    'Filosofía II: Ética y Antropología',
+    'Derecho Canónico',
+  ],
+  'Licenciatura en Teología': [
+    'Teología Dogmática Avanzada',
+    'Exégesis Bíblica Avanzada',
+    'Teología Moral Especial',
+    'Metodología Teológica',
+    'Seminario de Investigación I',
+    'Seminario de Investigación II',
+    'Teología Contemporánea',
+    'Ecumenismo y Diálogo Interreligioso',
+    'Trabajo Fin de Licenciatura',
+  ],
+  // Para añadir más programas, simplemente agregar entrada aquí.
+  // Los programas SIN entrada aquí solo pueden generar Modelo 2 (diploma genérico).
 };
 
 if (!API_KEY) {
@@ -213,11 +271,19 @@ async function getCalificaciones(email) {
 }
 
 function getMockCalificaciones(programa) {
-  const planKey = Object.keys(PLAN_ESTUDIOS).find(k =>
-    programa.toLowerCase().includes(k.toLowerCase().split(' ')[0])
-  ) || Object.keys(PLAN_ESTUDIOS)[0];
+  // Try exact match first, then partial match
+  const planKey = PLAN_ESTUDIOS[programa]
+    ? programa
+    : Object.keys(PLAN_ESTUDIOS).find(k =>
+        programa.toLowerCase().includes(k.toLowerCase().split(' ')[0])
+      ) || Object.keys(PLAN_ESTUDIOS)[0];
 
-  const asignaturas = PLAN_ESTUDIOS[planKey] || PLAN_ESTUDIOS[Object.keys(PLAN_ESTUDIOS)[0]];
+  const asignaturas = PLAN_ESTUDIOS[planKey];
+  if (!asignaturas) {
+    console.log(`  ⚠ Programa "${programa}" no tiene plan de estudios definido. Solo Modelo 2 disponible.`);
+    return [];
+  }
+
   const califs = ['SOBRESALIENTE', 'NOTABLE', 'NOTABLE', 'APROBADO', 'NOTABLE', 'SOBRESALIENTE', 'NOTABLE', 'APROBADO', 'NOTABLE'];
   const notas = [9.2, 7.8, 8.1, 6.5, 7.3, 9.0, 8.4, 5.8, 7.6];
 
@@ -501,7 +567,7 @@ function generateDiploma(alumno, outputPath, opts = {}) {
     }
 
     // --- COMPLETION TEXT ---
-    const programa = alumno.programa || 'DECLARACIÓN ECLESIÁSTICA COMPETENCIA ACADEMICA (DECA)';
+    const programa = alumno.programa || 'Programa de Estudios';
     doc.fontSize(12).font('Helvetica').fillColor('#333333')
       .text('ha completado satisfactoriamente el programa de estudios', 60, y, { width: pageWidth, align: 'center' });
     y += 25;
@@ -614,10 +680,11 @@ async function appendCertificadoToSheet(row) {
 // =====================================================
 
 async function main() {
-  console.log('Generador de certificados DECA (N09)');
+  console.log('Generador de certificados IITD (N09 + N26)');
   console.log(`  Modo: ${MOCK_MODE ? 'MOCK (datos de ejemplo)' : 'producción'}`);
   console.log(`  Upload: ${UPLOAD_MODE ? 'SÍ (SiteGround + Sheet)' : 'NO (solo local)'}`);
   console.log(`  Firma digital: ${SIGN_MODE ? 'SÍ' : 'NO (--no-sign o cert no disponible)'}`);
+  if (PROGRAMA_OVERRIDE) console.log(`  Programa (override): ${PROGRAMA_OVERRIDE}`);
   console.log();
 
   // Get student data
@@ -627,7 +694,12 @@ async function main() {
     console.error(`No se encontró alumno con email: ${EMAIL_FILTER}`);
     process.exit(1);
   }
+
+  // Apply --programa override
+  if (PROGRAMA_OVERRIDE) alumno.programa = PROGRAMA_OVERRIDE;
+
   console.log(`  Encontrado: ${alumno.nombre} ${alumno.apellidos} (${alumno.expediente || 'sin expediente'})`);
+  console.log(`  Programa: ${alumno.programa || '(no especificado)'}`);
 
   // Get grades
   let calificaciones = null;
