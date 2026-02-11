@@ -1,3 +1,11 @@
+# OBSOLETO
+
+> Este documento fue reemplazado por [`../../INVENTARIO-AUTOMATIZACIONES-IITD.md`](../../INVENTARIO-AUTOMATIZACIONES-IITD.md).
+>
+> Fecha de deprecación: 11 de febrero de 2026.
+
+---
+
 # Matriz Unificada de Necesidades IITD
 
 **Fecha:** 2026-02-06

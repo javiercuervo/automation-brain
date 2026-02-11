@@ -14,19 +14,22 @@ comunes/                    Recursos compartidos entre clientes
   prompts/                  Prompts para IA
 
 clientes/                   Contenido por cliente
-  iitd/                     Instituto Internacional de Terapia Deportiva
+  iitd/                     Instituto Internacional de Teología a Distancia
   proportione/              CRM Proportione (migracion HubSpot, completado)
 ```
 
 ## Clientes
 
-### IITD — Instituto Internacional de Terapia Deportiva
-Automatizaciones de inscripcion, diplomas, sincronizacion OCH, webhooks Stripe, subida de contenidos educativos.
+### IITD — Instituto Internacional de Teología a Distancia
+Automatizaciones academicas y administrativas: inscripciones, calificaciones, certificados, recibos, RGPD, pagos Stripe, contenidos educativos.
 
-- **Workflows**: `clientes/iitd/workflows/` (WF-001 DECA inscripcion)
+**Estado:** 20 de 52 necesidades completadas (38.5%) — Sprints 1-5.
+
+- **Integraciones**: `clientes/iitd/integraciones/alumnos/` (20+ scripts Node.js)
+- **Stripe Webhook**: `clientes/iitd/integraciones/stripe-webhook/` (Cloud Run)
+- **Apps Script**: `clientes/iitd/integraciones/apps-script/` (DECA, leads)
 - **Scripts**: `clientes/iitd/scripts/` (Pabbly, PDFs/Scorms)
-- **Integraciones**: `clientes/iitd/integraciones/` (Apps Script, OCH, Stripe, Polar)
-- **Docs**: `clientes/iitd/docs/` (manuales, necesidades, investigacion)
+- **Docs**: `clientes/iitd/docs/` (manuales, legal, guias)
 
 ### Proportione — CRM Migration (completado)
 Migracion completa de HubSpot a Stackby: 911 contactos, 303 empresas, 62 oportunidades, 711 actividades.

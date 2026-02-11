@@ -1,3 +1,11 @@
+# OBSOLETO
+
+> Este documento fue reemplazado por [`../../INVENTARIO-AUTOMATIZACIONES-IITD.md`](../../INVENTARIO-AUTOMATIZACIONES-IITD.md).
+>
+> Fecha de deprecación: 11 de febrero de 2026.
+
+---
+
 # IITD – Automatizaciones priorizadas por bloques (roadmap concreto)
 **Fecha:** 2026-02-02
 **Alcance:** automatizaciones mencionadas en las actas/notas del hilo y en `stack_capacidades.md`, organizadas por bloques y vinculadas a herramientas.
