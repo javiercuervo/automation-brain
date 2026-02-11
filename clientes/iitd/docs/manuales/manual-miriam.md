@@ -1,130 +1,223 @@
 # Manual de Usuario - Automatizaciones IITD
 
 **Para:** Miriam y equipo de operaciones
-**Última actualización:** Febrero 2026
+**Ultima actualizacion:** 11 de febrero de 2026
 
 ---
 
 ## 1. Nuevas solicitudes DECA
 
-### Qué pasa automáticamente
-Cuando alguien rellena el formulario de inscripción DECA en la web:
+### Que pasa automaticamente
+Cuando alguien rellena el formulario de inscripcion DECA en la web:
 
-1. Los datos se guardan en el Google Sheet "Deca Inscripción"
-2. Cada 5 minutos, el sistema envía los datos a Stackby
+1. Los datos se guardan en el Google Sheet "Deca Inscripcion"
+2. Cada 5 minutos, el sistema envia los datos a Stackby
 3. Recibes un email con el asunto **"[DECA] Nueva solicitud: Nombre del solicitante"**
 
-### Qué tienes que hacer
+### Que tienes que hacer
 - **Nada.** Los datos llegan solos.
-- Revisa el email para ver los datos básicos
+- Revisa el email para ver los datos basicos
 - Entra en Stackby para ver el registro completo
 
-### Dónde ver las solicitudes
+### Donde ver las solicitudes
 - **Stackby:** Tabla "SOLICITUDES_DECA"
-- **Google Sheets:** Hoja "Deca Inscripción" (datos originales)
+- **Google Sheets:** Hoja "Deca Inscripcion" (datos originales)
 
 ---
 
 ## 2. Marcar a alguien como alumno
 
-### Cuándo hacerlo
+### Cuando hacerlo
 Cuando hayas verificado que una persona:
 - Ha sido admitida
-- Ha enviado la documentación
+- Ha enviado la documentacion
 - Procede crear su registro como alumno
 
-### Cómo hacerlo
+### Como hacerlo
 
-1. **Abre el Google Sheet** "Deca Inscripción"
+1. **Abre el Google Sheet** "Deca Inscripcion"
 2. **Busca la fila** de la persona
 3. **Ve a la columna AB** (titulada "Es alumno")
-4. **Escribe "Sí"** (con acento)
-5. **Espera unos minutos** - el sistema creará el registro en la tabla ALUMNOS
+4. **Escribe "Si"** (con o sin acento)
+5. **Espera unos minutos** - el sistema creara el registro en la tabla ALUMNOS
 
-### Cómo saber que funcionó
-- La columna AC ("alumno_created_at") mostrará la fecha y hora
-- En Stackby, aparecerá el registro en la tabla ALUMNOS_ACTUALES
-
-### Valores que puedes poner en la columna AB
-| Valor | Resultado |
-|-------|-----------|
-| **Sí** | Se crea registro de alumno |
-| **No** | No se crea nada (solicitud rechazada) |
-| *(vacío)* | Pendiente de decisión |
+### Como saber que funciono
+- La columna AC ("alumno_created_at") mostrara la fecha y hora
+- En Stackby, aparecera el registro en la tabla ALUMNOS_ACTUALES
 
 ---
 
-## 3. Ver el estado de las solicitudes
+## 3. Panel IITD (Google Sheet)
 
-### En el Google Sheet
+El Sheet **"Panel IITD"** es el centro de informacion. Tiene varias pestanas:
 
-| Columna | Qué significa |
-|---------|---------------|
-| **Y - published_at** | Fecha/hora en que se envió a Stackby |
-| **Z - publish_attempts** | Número de intentos (normalmente 1) |
-| **AA - last_error** | Si hubo algún error, aparece aquí |
-| **AB - Es alumno** | Tu decisión (Sí/No/vacío) |
-| **AC - alumno_created_at** | Cuándo se creó el alumno |
+| Pestana | Que muestra |
+|---------|-------------|
+| **DECA** | Alumnos del programa DECA |
+| **Evangelizadores** | Alumnos del programa Evangelizadores |
+| **Formacion Sistematica** | Alumnos de Formacion Sistematica |
+| **Formacion Biblica** | Alumnos de Formacion Biblica |
+| **Compromiso Laical** | Alumnos de Compromiso Laical |
+| **Otros** | Programas restantes |
+| **Resumen** | Totales por programa y estado |
+| **Dashboard** | Pipeline de alumnos, alertas, actividad reciente |
+| **KPIs DECA** | Funnel DECA, tasas de conversion, historico |
+| **Validacion** | Problemas detectados en los datos |
 
-### Estados posibles
+### Dashboard (pestana "Dashboard")
+Muestra automaticamente:
+- Cuantos alumnos hay en cada etapa (solicitud, admitido, pagado, enrolado, activo, baja)
+- Desglose por programa
+- **Alertas**: solicitudes pendientes mas de 7 dias, admitidos sin pago mas de 14 dias
+- Actividad de los ultimos 7 dias
 
-| Estado en columna Y | Significado |
-|--------------------|-------------|
-| Tiene fecha | Enviado correctamente a Stackby |
-| Vacío | Pendiente de enviar |
+Se actualiza ejecutando: `node dashboard.mjs`
 
-### Si hay un error
-1. Mira la columna AA para ver qué pasó
-2. Si el error persiste, avisa a soporte técnico
-3. El sistema reintenta automáticamente hasta 5 veces
+### KPIs DECA (pestana "KPIs DECA")
+Muestra:
+- Funnel acumulativo: cuantos han pasado por cada etapa
+- Tasas de conversion entre etapas
+- Split por variante (Infantil y Primaria vs ESO y Bachillerato)
+- Tabla historica (una fila por cada vez que se ejecuta, para ver tendencias)
 
----
-
-## 4. Qué hacer si algo no funciona
-
-### El email de notificación no llega
-- Revisa la carpeta de spam
-- Comprueba que el email "proportione@institutoteologia.org" no está bloqueado
-- Si sigue sin llegar, avisa a soporte
-
-### Los datos no aparecen en Stackby
-- Espera 5-10 minutos (el sistema procesa cada 5 minutos)
-- Mira la columna Y del Sheet - si está vacía, aún no se ha procesado
-- Si hay error en columna AA, avisa a soporte
-
-### Marqué "Sí" pero no se creó el alumno
-- Verifica que escribiste exactamente "Sí" (con acento)
-- Espera 10 minutos
-- Mira si la columna AC tiene fecha
-- Si no aparece, avisa a soporte
+Se actualiza ejecutando: `node kpis-deca.mjs`
 
 ---
 
-## 5. Preguntas frecuentes
+## 4. Calificaciones
 
-### ¿Puedo modificar los datos en Stackby?
-Sí, puedes modificar los datos en Stackby sin problema. Los cambios NO se sobrescriben.
+### Como funciona
+Las calificaciones se gestionan en el Google Sheet **"Calificaciones IITD"**. Tiene una fila por cada alumno y asignatura.
 
-### ¿Qué pasa si alguien envía el formulario dos veces?
-El sistema detecta duplicados por email y actualiza el registro existente en lugar de crear uno nuevo.
+### Estructura del Sheet
+| Columna | Quien la rellena |
+|---------|-----------------|
+| Email alumno | Pre-rellenado |
+| Nombre | Pre-rellenado |
+| Apellidos | Pre-rellenado |
+| Programa | Pre-rellenado |
+| Asignatura | Pre-rellenado (9 modulos DECA) |
+| Nota evaluacion | **Profesor** |
+| Nota examen | **Profesor** |
+| Calificacion final | **Profesor** |
+| Profesor | **Profesor** |
+| Convalidada | **Miriam** (Si/No) |
 
-### ¿Cómo cambio de "No" a "Sí" si me equivoqué?
-Simplemente borra "No" y escribe "Sí". El sistema creará el alumno en el siguiente ciclo.
+### Flujo
+1. El Sheet ya tiene 3.573 filas preparadas (397 alumnos DECA x 9 modulos)
+2. Los profesores rellenan las columnas de notas
+3. Proportione ejecuta `node sync-calificaciones.mjs` para sincronizar a Stackby
+4. Las notas quedan en Stackby (tabla CALIFICACIONES) para certificados
 
-### ¿A qué hora se procesan las solicitudes?
-Cada 5 minutos, las 24 horas del día.
+### Consultar notas de un alumno
+Pedir a Proportione que ejecute:
+```
+node calificaciones-client.mjs find alumno@email.com
+```
 
 ---
 
-## Resumen rápido
+## 5. Recibos de matricula
 
-| Tarea | Acción |
-|-------|--------|
-| Ver nueva solicitud | Revisa el email o Stackby |
-| Crear alumno | Escribe "Sí" en columna AB del Sheet |
-| Ver si hubo error | Mira columna AA del Sheet |
-| Problema técnico | Contacta a soporte |
+### Como generar un recibo
+Pedir a Proportione que ejecute:
+```
+node recibo-pdf.mjs --email alumno@email.com --upload
+```
+
+Esto genera un PDF con los datos del alumno y del IITD, lo sube a la carpeta "Recibos IITD" en Drive, y lo registra en la pestana "Recibos" del Panel IITD.
+
+### Donde encontrar los recibos
+- **Drive:** Carpeta "Recibos IITD"
+- **Panel IITD:** Pestana "Recibos"
 
 ---
 
-*Para dudas sobre este manual, contacta con el equipo de soporte técnico.*
+## 6. Certificados DECA
+
+### Como generar un certificado
+Pedir a Proportione que ejecute:
+```
+node certificado-pdf.mjs --email alumno@email.com --upload
+```
+
+### Que genera
+- **Certificado academico**: tabla de notas por asignatura
+- **Diploma de finalizacion**: documento formal
+- Ambos con **codigo QR** que enlaza a la version verificable online
+- Se suben a `diplomas.institutoteologia.org`
+- Se registran en la pestana "Certificados" del Panel IITD
+
+### Verificacion de certificados
+Cualquier persona puede escanear el QR del certificado. Redirige a la URL publica donde se puede descargar el PDF original.
+
+---
+
+## 7. Listados de alumnos
+
+### En el Panel IITD
+Las pestanas por programa ya estan preparadas. Se pueden filtrar por estado, programa, etc.
+
+### Listados personalizados
+Pedir a Proportione:
+```
+node listados.mjs --programa DECA --estado activo --csv
+```
+Genera un CSV descargable con los filtros aplicados.
+
+---
+
+## 8. Validacion de datos
+
+Para comprobar la calidad de los datos de alumnos:
+```
+node validar-datos.mjs
+```
+
+Detecta: emails vacios o invalidos, duplicados, estados incorrectos, alumnos activos sin programa.
+
+El resultado se escribe en la pestana "Validacion" del Panel IITD.
+
+---
+
+## 9. Contratos y firma electronica (BreezeDoc)
+
+Para enviar un contrato de matricula, convenio o consentimiento RGPD a un alumno para que lo firme electronicamente:
+```
+node breezedoc-enrollment.mjs --email alumno@email.com --template matricula
+```
+
+Templates disponibles: `matricula`, `convenio`, `rgpd`
+
+El alumno recibe un email con el documento para firmar.
+
+---
+
+## 10. Si algo no funciona
+
+| Problema | Que hacer |
+|----------|-----------|
+| El email de notificacion no llega | Revisar spam. Si persiste, avisar a Proportione |
+| Los datos no aparecen en Stackby | Esperar 5-10 minutos. Mirar columna Y del Sheet |
+| Las notas no se sincronizan | Avisar a Proportione para ejecutar sync |
+| No se genera un certificado | Verificar que el alumno tiene notas en Stackby |
+| Problema tecnico general | Contactar con Proportione |
+
+---
+
+## Resumen rapido
+
+| Tarea | Donde |
+|-------|-------|
+| Ver nueva solicitud | Email o Stackby → SOLICITUDES_DECA |
+| Ver alumnos por programa | Panel IITD → pestana del programa |
+| Ver dashboard | Panel IITD → pestana Dashboard |
+| Ver KPIs | Panel IITD → pestana KPIs DECA |
+| Ver notas de un alumno | Pedir a Proportione: `calificaciones-client.mjs find email` |
+| Generar recibo | Pedir a Proportione: `recibo-pdf.mjs --email X --upload` |
+| Generar certificado | Pedir a Proportione: `certificado-pdf.mjs --email X --upload` |
+| Enviar contrato a firmar | Pedir a Proportione: `breezedoc-enrollment.mjs --email X --template Y` |
+
+---
+
+*Para dudas sobre este manual, contactar con Proportione.*
