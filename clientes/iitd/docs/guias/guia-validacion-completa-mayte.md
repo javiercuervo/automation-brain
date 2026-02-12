@@ -199,21 +199,40 @@ Hemos creado hojas de calculo que se actualizan automaticamente con los datos de
 
 ### 2.1 Panel IITD (hoja principal)
 
-**Que es:** Una hoja de calculo con mas de 9 pestanas que muestra todos los alumnos organizados por programa, un panel operativo, indicadores, y el registro de recibos y certificados.
+**Que es:** Una hoja de calculo consolidada con 14 pestanas que muestra todos los alumnos organizados por programa, un panel operativo, indicadores, y el registro de recibos y certificados. Todos los scripts del IITD escriben en este unico Sheet.
 
 **Como acceder:**
 1. Abre el enlace compartido al Panel IITD (si no lo tienes, pidelo a Javier)
 2. Usa tu cuenta Google de Proportione
 
+**Pestanas del Panel IITD (14 en total):**
+
+| Pestana | Que contiene |
+|---------|-------------|
+| DECA | Alumnos del programa DECA |
+| Evangelizadores | Alumnos de Escuela de Evangelizadores |
+| Formacion Sistematica | Alumnos de Formacion Sistematica |
+| Formacion Biblica | Alumnos de Formacion Biblica |
+| Compromiso Laical | Alumnos de Compromiso Laical y Doctrina Social |
+| Otros | Alumnos sin programa asignado o programas historicos |
+| Resumen | Totales por programa y fecha de actualizacion |
+| Recibos | Registro de recibos de matricula generados |
+| Certificados | Registro de certificados y diplomas generados |
+| Dashboard | Pipeline de alumnos, alertas y actividad reciente |
+| KPIs DECA | Embudo de conversion DECA y tasas |
+| Validacion | Auditoria de datos: emails, duplicados, estados |
+| Retencion RGPD | Registros caducados y proximos a caducar |
+| Calificaciones | (Solo si usas Sheet de calificaciones aparte) |
+
 **Pasos:**
 
-*Pestanas por programa:*
+*Pestanas por programa (6):*
 1. Haz clic en la pestana **"DECA"** — veras los alumnos del programa DECA
 2. Haz lo mismo con: **Evangelizadores**, **Formacion Sistematica**, **Formacion Biblica**, **Compromiso Laical**, **Otros**
 3. Comprueba que los nombres y datos te suenan
 
 *Pestana Resumen:*
-4. Haz clic en **"Resumen"** — veras totales por programa y por estado (activo, baja, etc.)
+4. Haz clic en **"Resumen"** — veras totales por programa y fecha de ultima actualizacion
 
 *Pestana Dashboard:*
 5. Haz clic en **"Dashboard"** — veras la pipeline de alumnos (cuantos en cada etapa), alertas (alumnos con solicitud >7 dias sin respuesta, >14 dias sin pago) y actividad reciente
@@ -221,14 +240,20 @@ Hemos creado hojas de calculo que se actualizan automaticamente con los datos de
 *Pestana KPIs DECA:*
 6. Haz clic en **"KPIs DECA"** — veras el embudo de conversion (cuantos solicitan info → cuantos se matriculan → cuantos pagan) y desglose por variante (Infantil/Primaria vs ESO/Bachillerato)
 
+*Pestanas Validacion y Retencion RGPD:*
+7. Haz clic en **"Validacion"** — veras resultados de la auditoria de datos (emails invalidos, duplicados, estados incoherentes)
+8. Haz clic en **"Retencion RGPD"** — veras registros caducados y proximos a caducar segun la politica de conservacion
+
 **Que verificar:**
 
-- [ ] Puedo abrir el Sheet y ver las pestanas
+- [ ] Puedo abrir el Sheet y ver las 14 pestanas
 - [ ] La pestana DECA tiene alumnos y los datos parecen correctos
 - [ ] Las demas pestanas por programa tienen datos
 - [ ] La pestana Resumen muestra totales coherentes
 - [ ] La pestana Dashboard muestra alertas y pipeline
 - [ ] La pestana KPIs DECA muestra el embudo de conversion
+- [ ] La pestana Validacion muestra resultados de la auditoria de datos
+- [ ] La pestana Retencion RGPD muestra el informe de conservacion
 - [ ] Los programas que veo coinciden con los programas reales del IITD
 - [ ] Si falta algun programa, lo anoto aqui abajo
 
@@ -539,7 +564,7 @@ En la reunion del 6 de febrero se identificaron 46 necesidades (N01-N46). Durant
 | N06 | Calificaciones y gestion de notas | Hecho | Sheet Calificaciones + Stackby (seccion 2.2, 3.2) |
 | N07 | Expediente completo en base de datos | Hecho | 1.585 alumnos importados de PolarDoc (seccion 3.1) |
 | N21 | Validacion de datos migrados | Hecho | Pestana "Validacion" en Panel IITD |
-| N50 | Panel IITD multi-pestana | Hecho | 9+ pestanas en Google Sheet (seccion 2.1) |
+| N50 | Panel IITD multi-pestana | Hecho | 14 pestanas en Google Sheet consolidado (seccion 2.1) |
 | N51 | Sistema de recibos PDF | Hecho | Recibos + upload a Drive (seccion 4.1) |
 | N52 | Deduplicacion avanzada | Hecho | Prevencion automatica de duplicados |
 
@@ -636,7 +661,7 @@ Ademas de las 46 necesidades del acta, hemos implementado cosas adicionales que 
 | **Pipeline PDFs/Scorms (N47)** | Automatiza la subida de contenidos educativos a FlipBooklets y SiteGround |
 | **Subdominio diplomas (N48)** | Los certificados se pueden verificar online escaneando el QR |
 | **Codigos QR con pxl.to (N49)** | Cada certificado tiene un QR unico de verificacion |
-| **Panel IITD multi-pestana (N50)** | La hoja central con 9+ pestanas de gestion |
+| **Panel IITD consolidado (N50)** | La hoja central con 14 pestanas de gestion (todos los scripts escriben aqui) |
 | **Sistema de recibos PDF (N51)** | Genera recibos profesionales y los sube a Drive |
 | **Deduplicacion avanzada (N52)** | Evita que se dupliquen alumnos en la base de datos |
 | **BreezeDoc firma electronica** | 3 templates de contratos para firma digital |
@@ -699,7 +724,7 @@ OnlineCourseHost es la plataforma donde estan los cursos online. Su sistema de c
 | 4 | Pie de pagina (copyright 2026, datos contacto) | [ ] |
 | 5 | SEO (meta descriptions en Google) | [ ] |
 | 6 | Diplomas online (subdominio) | [ ] |
-| 7 | Panel IITD (Google Sheet con 9+ pestanas) | [ ] |
+| 7 | Panel IITD (Google Sheet consolidado con 14 pestanas) | [ ] |
 | 8 | Calificaciones IITD (Google Sheet de notas) | [ ] |
 | 9 | Stackby: tabla ALUMNOS (1.585 registros) | [ ] |
 | 10 | Stackby: tabla CALIFICACIONES | [ ] |

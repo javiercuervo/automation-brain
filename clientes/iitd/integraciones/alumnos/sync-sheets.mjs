@@ -17,7 +17,20 @@
  *   PANEL_IITD_SHEET_ID      — ID del Google Sheet "Panel IITD" (o usar --sheet-id)
  */
 
-import { google } from 'googleapis';
+import { readFileSync, existsSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { getSheetsClient } from './google-auth.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Load .env
+if (existsSync(resolve(__dirname, '.env'))) {
+  for (const line of readFileSync(resolve(__dirname, '.env'), 'utf-8').split('\n')) {
+    const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
 
 // =====================================================
 // CONFIG
@@ -61,19 +74,6 @@ if (!SHEET_ID && !CREATE_SHEET) {
   console.error('Usa --sheet-id XXXXX o --create-sheet');
   console.error('También puedes set PANEL_IITD_SHEET_ID env var');
   process.exit(1);
-}
-
-// =====================================================
-// GOOGLE AUTH
-// =====================================================
-
-function getAuth() {
-  return new google.auth.GoogleAuth({
-    scopes: [
-      'https://www.googleapis.com/auth/spreadsheets',
-      'https://www.googleapis.com/auth/drive',
-    ],
-  });
 }
 
 // =====================================================
@@ -341,8 +341,7 @@ async function main() {
   }
 
   // 3. Google Sheets auth
-  const auth = getAuth();
-  const sheets = google.sheets({ version: 'v4', auth });
+  const sheets = await getSheetsClient();
 
   // 4. Get or create Sheet
   let sheetId = SHEET_ID;
@@ -350,10 +349,10 @@ async function main() {
     sheetId = await createNewSheet(sheets);
   } else {
     // Ensure all tabs exist
-    const allTabs = [
-      ...new Set(Object.values(PROGRAMA_TABS)),
+    const allTabs = [...new Set([
+      ...Object.values(PROGRAMA_TABS),
       'Otros', 'Resumen', 'Recibos', 'Certificados',
-    ];
+    ])];
     await ensureTabsExist(sheets, sheetId, allTabs);
   }
 

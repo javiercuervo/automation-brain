@@ -304,26 +304,28 @@ async function writeSheet(results) {
     ])
   ];
 
-  const range = 'Retención RGPD';
-  try {
-    await sheets.spreadsheets.values.clear({ spreadsheetId: SHEET_ID, range: `${range}!A:Z` });
-  } catch { /* tab might not exist yet */ }
+  const TAB = 'Retención RGPD';
 
-  try {
-    await sheets.spreadsheets.values.update({
+  // Ensure tab exists (auto-create if missing)
+  const meta = await sheets.spreadsheets.get({ spreadsheetId: SHEET_ID });
+  const exists = meta.data.sheets.some(s => s.properties.title === TAB);
+  if (!exists) {
+    await sheets.spreadsheets.batchUpdate({
       spreadsheetId: SHEET_ID,
-      range: `${range}!A1`,
-      valueInputOption: 'USER_ENTERED',
-      requestBody: { values: rows }
+      requestBody: { requests: [{ addSheet: { properties: { title: TAB } } }] },
     });
-    console.log(`Pestaña "${range}" actualizada en Panel IITD.`);
-  } catch (err) {
-    if (err.message?.includes('Unable to parse range')) {
-      console.error(`Error: La pestaña "${range}" no existe en el Sheet. Créala manualmente.`);
-    } else {
-      throw err;
-    }
+    console.log(`  Pestaña "${TAB}" creada.`);
   }
+
+  // Clear + write
+  await sheets.spreadsheets.values.clear({ spreadsheetId: SHEET_ID, range: `'${TAB}'!A:Z` });
+  await sheets.spreadsheets.values.update({
+    spreadsheetId: SHEET_ID,
+    range: `'${TAB}'!A1`,
+    valueInputOption: 'USER_ENTERED',
+    requestBody: { values: rows }
+  });
+  console.log(`Pestaña "${TAB}" actualizada en Panel IITD.`);
 }
 
 // =====================================================

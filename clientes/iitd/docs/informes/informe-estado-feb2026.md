@@ -1,297 +1,358 @@
-# Informe de Estado y Planificación — IITD
+# Informe de Estado y Planificacion — IITD
 
-**Fecha:** 11 de febrero de 2026
-**Para:** Dirección IITD, Miriam, Josete
-**Referencia:** Reunión de priorización del 6 de febrero de 2026
+**Fecha:** 12 de febrero de 2026
+**Para:** Direccion IITD, Miriam, Josete
+**Referencia:** Reunion de priorizacion del 6 de febrero de 2026
 **Preparado por:** Proportione
 
 ---
 
 ## 1. Resumen ejecutivo
 
-Se han completado **4 sprints** con un total de **19 necesidades resueltas** (código, guías o configuración).
+Se han completado **6 sprints + QA** con un total de **26 necesidades resueltas** de 52 identificadas (**50%**).
 
-El **camino crítico para abandonar PolarDoc** está **cerrado al 100%**: N06 (calificaciones) completado. Los certificados, recibos, listados, calificaciones y la base de datos de alumnos ya están operativos.
+### Hitos principales
 
-Se ha integrado **BreezeDoc** para envío de contratos/consentimientos con firma electrónica (matrícula, convenios con centros, RGPD).
+- **PolarDoc cerrado al 100%.** Los 5 pasos del camino critico estan completados. PolarDoc ya no es necesario para expedientes, calificaciones ni certificados.
+- **Cumplimiento RGPD avanzado.** Banner de cookies, politica de borrado, portabilidad de datos, portal ARCO+, paginas legales, proteccion de diplomas online — todo operativo.
+- **Stripe integrado.** Webhook en Cloud Run recibe pagos y actualiza Stackby automaticamente.
+- **BreezeDoc operativo.** Envio de contratos de matricula, convenios y consentimientos RGPD para firma electronica.
+- **Web optimizada.** SEO Yoast en 13 paginas, FAQ, llms.txt, cookie banner Complianz, paginas legales publicadas.
 
-La **firma digital automática de PDFs** queda **aparcada**: el pipeline actual (QR + hash de verificación) es funcional. Cuando el director obtenga su certificado FNMT (.p12), solo hay que copiarlo a `certs/` — cero cambios en código.
+### Resumen cuantitativo
 
-Inventario completo: **46 necesidades** (N01-N46), planificación por sprints hasta abril.
-
----
-
-## 2. Sprint febrero 2026 — Las 8 priorizadas
-
-| ID | Necesidad | Estado | Qué falta | Quién |
-|----|-----------|--------|-----------|-------|
-| N01 | Notificación de alta/enrolamiento a secretaría | 🔧 Implementado | Desplegar el script actualizado en Apps Script | Proportione |
-| N02 | Datos de alumnos completos y descargables | ✅ Hecho | Comunicar a Josete que ya puede acceder en Stackby | Proportione → Josete |
-| N03 | Formulario de contacto OCH llegue a Miriam | 📋 Guía entregada | Sonia configura el reenvío de email en Gmail | Sonia |
-| N04 | Asignación automática de nº de expediente | 🔧 Implementado | Listo. Los nuevos alumnos recibirán IITD-110001 en adelante | — |
-| N11 | Separación de consentimientos RGPD en formularios | 📋 Guía entregada | Proportione modifica los formularios de WordPress | Proportione |
-| N13 | Inventario de herramientas SaaS y contratos DPA | 🔧 Implementado | Crear la tabla en Stackby y ejecutar el script | Proportione + Miriam |
-| N14 | Captura automática de leads web en Stackby | 🔧 Implementado | Necesitamos el ID de la hoja de cálculo del formulario de contacto | Sonia → Proportione |
-| N20 | Identificador único de alumno + deduplicación | 🔧 Implementado | Listo. Deduplicación preparada, IDs automáticos desde 110001 | — |
-
-**Leyenda:**
-- ✅ Hecho = ya funciona, no requiere más acción
-- 🔧 Implementado = el desarrollo está hecho, falta configurar/desplegar
-- 📋 Guía entregada = se ha entregado documentación con los pasos a seguir
+| Estado | Cantidad | % |
+|--------|----------|---|
+| Hecho (funcional y en uso) | 26 | 50.0% |
+| Implementado (pendiente deploy/config) | 5 | 9.6% |
+| Guia entregada (accion manual del equipo) | 2 | 3.8% |
+| Pendiente (no iniciado) | 14 | 26.9% |
+| Bloqueado (limitaciones externas) | 5 | 9.6% |
+| **Total** | **52** | **100%** |
 
 ---
 
-## 3. Guías entregadas
+## 2. Sprints completados
 
-Se han creado tres guías con instrucciones paso a paso:
+### Sprint 1: Fundamentos (1-9 febrero)
 
-| Guía | Para | Sobre qué |
-|------|------|-----------|
-| Reenvío formulario contacto OCH | Sonia | Cómo configurar Gmail para que los contactos de OCH lleguen también a Miriam |
-| Separación consentimientos RGPD | Proportione + Miriam | Qué checkboxes añadir a los formularios web para cumplir RGPD |
-| Acceso a datos de alumnos en Stackby | Josete | Cómo filtrar, buscar y exportar datos de alumnos desde Stackby |
+Las 8 necesidades priorizadas en la reunion del 6 de febrero:
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N01 | Notificacion alta/enrolamiento a secretaria | Implementado |
+| N02 | Datos de alumnos completos y descargables | Hecho |
+| N03 | Formulario contacto OCH llegue a Miriam | Guia entregada |
+| N04 | Asignacion automatica de num. de expediente | Hecho |
+| N11 | Separacion consentimientos RGPD en formularios | Guia entregada |
+| N13 | Inventario de herramientas SaaS y DPAs | Implementado |
+| N14 | Captura automatica de leads web en Stackby | Implementado |
+| N20 | Identificador unico de alumno + deduplicacion | Hecho |
+
+### Sprint 2: Camino critico PolarDoc + Legal (10 febrero)
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N07 | Expediente academico en base de datos | Hecho (1.583 alumnos importados de PolarDoc) |
+| N40 | Texto legal RGPD en emails automaticos | Hecho |
+| N42 | Paginas legales en la web | Hecho (textos publicados en WordPress) |
+
+Integracion BreezeDoc:
+- `breezedoc-enrollment.mjs` — envio de contratos para firma electronica
+- 3 templates creados: matricula (349874), convenio (349877), RGPD (349896)
+- IDs configurados en `.env`
+
+### Sprint 3: Certificados y documentos (10 febrero)
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N05 | Listados de alumnos por curso para profesores | Hecho |
+| N08 | Recibos y facturas PDF | Hecho (PDF + Drive + Sheet) |
+| N09 | Certificados DECA automaticos | Hecho (QR + hash + SiteGround + Sheet) |
+
+### Sprint 4: Operaciones y validacion (11 febrero)
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N21 | Validacion de datos migrados | Hecho (1.585 registros auditados) |
+| N16 | Panel de control operativo | Hecho (dashboard.mjs) |
+| N19 | KPIs DECA automaticos | Hecho (kpis-deca.mjs) |
+| N06 | Calificaciones numericas | Hecho (sync Sheet <-> Stackby, 3.573 filas) |
+
+### Sprint 5: RGPD + Pagos (11 febrero)
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N36 | Stripe webhook Cloud Run | Hecho |
+| N44 | Exportacion de datos (portabilidad RGPD Art. 20) | Hecho |
+| N12 | Politica de conservacion y borrado de datos | Hecho (anonimizacion automatica) |
+| N13 | Inventario SaaS en Stackby | Hecho (14 columnas, 12 herramientas) |
+
+IDs Sprint 5:
+- Cloud Run: `https://iitd-stripe-webhook-621601343355.europe-west1.run.app`
+- Stripe Webhook: `we_1Szfi52Ni6F9uaDOgTUnKjVq`
+
+### Sprint 6: Web + RGPD + Comunicacion (11-12 febrero)
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N41 | Banner de cookies | Hecho (Complianz plugin en WordPress) |
+| N42 | Paginas legales corregidas | Hecho (datos correctos: NIF, direccion, email, telefono) |
+| N43 | Portal ARCO+ (derechos RGPD) | Hecho (publicado en /ejercicio-derechos-rgpd/) |
+| N26 | Diplomas multi-programa | Hecho (certificado-pdf.mjs soporta todos los programas) |
+| N25 | Emails automaticos transaccionales | Implementado (pendiente SMTP) |
+| N24 | Tabla de contactos CRM | Hecho (Stackby + contactos-client.mjs) |
+
+WordPress desplegado en Sprint 6:
+- Cookie consent: plugin Complianz (banner + boton "Gestionar consentimiento")
+- Paginas legales: Aviso Legal, Politica Privacidad, Politica Cookies — con datos correctos
+- Portal ARCO+: formulario con 6 derechos, plazo 30 dias, enlace AEPD
+- Footer: "Instituto Internacional de Teologia (c) 2026" + datos de contacto
+
+### QA y mejoras web (12 febrero)
+
+| Accion | Detalle |
+|--------|---------|
+| SEO Yoast | 13 paginas con meta descriptions y focus keyphrases |
+| FAQ | Pagina /preguntas-frecuentes/ con 8 preguntas orientadas a alumno potencial |
+| llms.txt | Descripcion corregida (sin programas falsos), FAQ incluida |
+| 301 Redirect | /que-es-deca-infantil-primaria/ redirige correctamente |
+| Meta descriptions | 8 acortadas a 160 chars max, 2 corregidas |
+| XML Sitemap | 7 sitemaps activos |
+| RGPD diplomas | robots.txt + .htaccess + hash-based filenames (anti-enumeracion) |
+| DNS | diplomas.institutoteologia.org configurado y operativo |
+
+Testing QA:
+- 78 screenshots: 13 paginas x 6 viewports (1920, 1440, 1024, 768, 393, 360)
+- 0 errores JS, 0 errores de red
+- Todos los links internos responden 200
+- Guia de validacion completa entregada a Mayte
 
 ---
 
-## 4. Acciones pendientes del equipo IITD
-
-Para completar la puesta en marcha, necesitamos lo siguiente:
-
-| Acción | Responsable | Plazo sugerido |
-|--------|-------------|----------------|
-| Configurar reenvío de emails OCH → alumnos@ en Gmail | Sonia | Esta semana |
-| Confirmar que el email alumnos@institutoteologia.org es correcto para notificaciones | Miriam | Esta semana |
-| Proporcionar el enlace (Sheet ID) de la hoja de cálculo donde caen los formularios de contacto web | Sonia | Esta semana |
-| Crear tabla LEADS en Stackby (nosotros indicamos los campos) | Miriam o Josete | Esta semana |
-| Crear tabla INVENTARIO_SAAS en Stackby | Miriam o Josete | Próxima semana |
-| Completar el inventario SaaS con datos de contratos y DPAs | Miriam + Gema | Próxima semana |
-| Exportar CSV de alumnos activos de PolarDoc (para migración) | Miriam | Cuando sea posible |
-
----
-
-## 5. Inventario completo de necesidades (N01-N46)
-
-### Urgentes y rápidas
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N01 | Notificación alta/enrolamiento a secretaría | 🔧 Implementado |
-| N02 | Datos de alumnos completos y descargables | ✅ Hecho |
-| N03 | Formulario contacto OCH llegue a Miriam | 📋 Guía entregada |
-| N04 | Asignación automática nº expediente | 🔧 Implementado |
-| N40 | Incluir texto legal RGPD en todos los emails automáticos | ✅ Hecho |
-| N42 | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | 📋 Textos entregados |
-
-### Urgentes pero requieren más tiempo
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N05 | Listados de alumnos por curso para profesores | ✅ Hecho |
-| N06 | Calificaciones numéricas y gestión de trabajos | ✅ Hecho (sync Sheet ↔ Stackby) |
-| N07 | Expediente académico completo en base de datos | 🔧 Importados 1.583 alumnos activos |
-| N08 | Recibos y facturas de matrícula (PDF automático) | ✅ Hecho |
-| N09 | Certificados DECA automáticos | ✅ Hecho (con QR + hash) |
-| N10 | Facturación a centros asociados | ⏳ Pendiente |
-| N11 | Separación consentimientos RGPD | 📋 Guía entregada |
-| N12 | Política de conservación y borrado de datos RGPD | ⏳ Pendiente |
-| N13 | Inventario de herramientas SaaS y DPAs | 🔧 Implementado |
-| N14 | Captura automática de leads web en Stackby | 🔧 Implementado |
-| N15 | Pipeline DECA completo (solicitud → matrícula → enrolamiento) | 🚫 Bloqueado (token OCH) |
-| N16 | Panel de control operativo diario para Miriam | ✅ Hecho (dashboard.mjs) |
-| N17 | Sincronización de actividad del LMS con Stackby | 🚫 Bloqueado (API OCH limitada) |
-| N18 | Migración de Golden Soft a Holded (caduca junio 2026) | ⏳ Pendiente |
-| N19 | KPIs DECA automáticos | ✅ Hecho (kpis-deca.mjs) |
-| N20 | Identificador único de alumno + deduplicación | 🔧 Implementado |
-| N21 | Validación de los datos migrados | ✅ Hecho (validar-datos.mjs) |
-| N41 | Banner de cookies en la web | ⏳ Pendiente |
-| N43 | Portal para ejercicio de derechos RGPD (ARCO+) | ⏳ Pendiente |
-| N44 | Exportación de datos de alumno (portabilidad RGPD) | ⏳ Pendiente |
-
-### Urgentes pero bloqueadas
-
-| ID | Necesidad | Estado | Bloqueador |
-|----|-----------|--------|------------|
-| N22 | Notificación de preguntas de alumno al profesor | 🚫 Bloqueado | Limitación de OnlineCourseHost |
-| N23 | Minimización del uso del DNI | 🚫 Bloqueado | Requiere decisión de dirección + asesor legal |
-
-### No urgentes pero posibles
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N24 | Tabla de contactos institucionales (CRM simple) | ⏳ Pendiente |
-| N25 | Emails automáticos (recepción trabajos, notas, recordatorios) | ⏳ Pendiente |
-| N26 | Diplomas de otros programas + descarga en OCH | ⏳ Pendiente |
-| N27 | Notificaciones de publicaciones en la comunidad OCH | 🚫 Bloqueado (OCH) |
-| N28 | Grabaciones: control de acceso y consentimiento promocional | ⏳ Pendiente |
-| N29 | Flujo de publicación de cursos con revisión COEO | ⏳ Pendiente |
-| N30 | Paquetes de cursos y precios coherentes | ⏳ Pendiente |
-| N31 | Vídeo por programa y gestión multidioma | ⏳ Pendiente |
-| N32 | Onboarding del curso gratuito desde el blog | ⏳ Pendiente |
-| N33 | Oferta de tutorías al finalizar un curso | ⏳ Pendiente |
-| N34 | Suscripción a newsletter con consentimiento trazable | ⏳ Pendiente (parcial) |
-| N35 | Respuesta a dudas con IA + escalado a personas | ⏳ Pendiente |
-| N36 | Pago Stripe → matrícula → factura Holded (pipeline completo) | ⏳ Pendiente (parcial) |
-| N37 | Campañas Google Grants con seguimiento | ⏳ Pendiente |
-| N38 | Gestión de centros asociados (acceso a datos, cesiones) | ⏳ Pendiente |
-| N39 | Foros/comunidad en el LMS con privacidad | 🚫 Bloqueado (OCH) |
-| N45 | Registro de auditoría y notificación de brechas de seguridad | ⏳ Pendiente |
-| N46 | Caducidad y control de acceso a grabaciones | ⏳ Pendiente |
-
-### Resumen global
-
-| Estado | Cantidad |
-|--------|----------|
-| ✅ Hecho | 10 |
-| 🔧 Implementado (pendiente despliegue/config) | 6 |
-| 📋 Guía/textos entregados (acción del equipo) | 3 |
-| ⏳ Pendiente | 21 |
-| 🚫 Bloqueado | 6 |
-| **Total** | **46** |
-
----
-
-## 6. Planificación trimestral (febrero - abril 2026)
-
-### Sprint 1: Fundamentos (1-9 febrero) — COMPLETADO
-
-N01, N02, N03, N04, N11, N13, N14, N20
-
-Las 8 automatizaciones priorizadas en la reunión del 6 de febrero. Todas resueltas.
-
-### Sprint 2: Camino crítico PolarDoc + Legal urgente (10-23 febrero) — COMPLETADO
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N07 | Expediente académico en base de datos | ✅ 1.583 alumnos importados de PolarDoc a Stackby |
-| N40 | Texto legal RGPD en emails automáticos | ✅ Footer implementado |
-| N42 | Páginas legales en la web | 📋 Textos entregados |
-| N15 | Pipeline DECA + BreezeDoc | 🔧 Script BreezeDoc creado. Pendiente: crear templates en BreezeDoc UI + token OCH |
-| N17 | Sincronización actividad LMS | 🚫 Bloqueado (API OCH limitada a 2 endpoints) |
-
-**Integración BreezeDoc:**
-- `breezedoc-enrollment.mjs` — Envía contratos/consentimientos al alumno para firma electrónica
-- Templates a crear en BreezeDoc UI: Matrícula DECA, Convenio Centro Asociado, Consentimiento RGPD
-- Una vez creados los templates, configurar IDs en `.env` (`BREEZEDOC_TEMPLATE_MATRICULA`, etc.)
-
-### Sprint 3: Calificaciones y certificados (24 febrero - 9 marzo) — COMPLETADO
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N05 | Listados de alumnos por curso | ✅ Hecho — Google Sheet "Panel IITD" con pestañas por programa (1.585 alumnos) |
-| N08 | Recibos y facturas PDF | ✅ Hecho — Genera PDF + sube a Google Drive + registra en Sheet |
-| N09 | Certificados DECA automáticos | ✅ Hecho — PDF con QR (pxl.to) + hash verificación + sube a diplomas.institutoteologia.org + registra en Sheet |
-| N06 | Calificaciones numéricas | ✅ Hecho (sync Sheet ↔ Stackby, tabla con 11 columnas) |
-
-**Infraestructura nueva creada:**
-- **Google Sheet "Panel IITD"** — Pestañas: DECA, Evangelizadores, Formación Sistemática, Formación Bíblica, Compromiso Laical, Otros, Resumen, Recibos, Certificados
-- **Carpeta Drive "Recibos IITD"** — Almacena los PDFs de recibos
-- **Subdominio diplomas.institutoteologia.org** — Hosting de certificados/diplomas vía SiteGround SSH
-- **pxl.to** — Short links + QR codes para diplomas (500 req/día)
-- **BreezeDoc** — Cuenta configurada, API funcional. Script `breezedoc-enrollment.mjs` para enviar contratos de matrícula, convenios y consentimientos RGPD a firmar por email. Los diplomas usan QR + hash de verificación (firma digital aparcada hasta que el director obtenga certificado FNMT)
-
-### Sprint 4: Operaciones y validación (11 febrero) — EN CURSO
-
-| ID | Necesidad | Estado |
-|----|-----------|--------|
-| N21 | Validación de datos migrados | ✅ Hecho — 1585 registros auditados, 5 problemas reales |
-| N16 | Panel de control operativo | ✅ Hecho — Dashboard con pipeline, alertas y actividad |
-| N19 | KPIs DECA automáticos | ✅ Hecho — Funnel, tasas de conversión, histórico |
-| N06 | Calificaciones numéricas | ✅ Hecho — calificaciones-client.mjs + sync-calificaciones.mjs + 11 columnas en Stackby |
-| N18 | Migración Golden Soft → Holded | ⏳ Pendiente (API Key obtenida) |
-
-### Sprint 5: Cumplimiento RGPD completo (24 marzo - 6 abril)
-
-| ID | Necesidad | Por qué ahora |
-|----|-----------|---------------|
-| N12 | Política de borrado de datos | Obligación legal. Los plazos ya están definidos |
-| N41 | Banner de cookies en la web | Obligación legal |
-| N43 | Portal de ejercicio de derechos RGPD | Obligación legal |
-| N44 | Exportación de datos (portabilidad) | Obligación legal |
-
-### Backlog (segundo trimestre 2026)
-
-N10, N24-N39, N45, N46 — se abordarán una vez resueltos los urgentes.
-
----
-
-## 7. Camino crítico para abandonar PolarDoc
-
-Hoy PolarDoc sigue siendo necesario para: generar nº de expediente, registrar el expediente académico, poner notas y emitir certificados. Para poder apagarlo, hay que completar esta cadena en orden:
+## 3. Camino critico para abandonar PolarDoc — CERRADO
 
 ```
-1. Identificador único de alumno (N20)              ✅ HECHO
-2. Número de expediente automático (N04)             ✅ HECHO
-3. Expediente académico en base de datos (N07)       ✅ 1.583 alumnos importados
-4. Calificaciones numéricas (N06)              ✅ HECHO (Sheet ↔ Stackby sync)
-5. Certificados DECA automáticos (N09)               ✅ HECHO (QR + hash + upload + Sheet)
+1. Identificador unico de alumno (N20)           -> HECHO
+2. Numero de expediente automatico (N04)          -> HECHO
+3. Expediente academico en base de datos (N07)    -> HECHO (1.583 alumnos)
+4. Calificaciones numericas (N06)                 -> HECHO (3.573 filas sync)
+5. Certificados DECA automaticos (N09)            -> HECHO (QR + hash + upload)
 ```
 
-**Los 5 pasos están completados.** PolarDoc ya se puede apagar. Se han importado **1.583 alumnos activos** (con matrícula desde 2020) de PolarDoc a Stackby. Los datos históricos (28.499 registros) quedan en Google Sheets como archivo consultable. El generador de certificados (N09) produce dos modelos de PDF: certificado académico con tabla de notas y diploma de finalización.
+**Los 5 pasos estan completados.** PolarDoc ya se puede apagar. Los datos historicos (28.499 registros) quedan en Google Sheets como archivo consultable.
 
-El **siguiente paso crítico** es crear la tabla CALIFICACIONES en Stackby (N06) para registrar notas fuera de PolarDoc. Se ha entregado la guía con la estructura de tablas a crear. Una vez creada la tabla y cargadas las notas, los certificados se generarán con datos reales.
+---
 
-Hasta que no se complete el paso 5, **PolarDoc no se puede apagar**.
+## 4. Proteccion RGPD de diplomas online
+
+Los diplomas PDF en `diplomas.institutoteologia.org` contienen datos personales sensibles (nombre, notas, expediente). Se han implementado las siguientes protecciones:
+
+| Medida | Articulo RGPD | Detalle |
+|--------|--------------|---------|
+| robots.txt (Disallow: /) | Art. 32 | Impide indexacion por buscadores |
+| .htaccess anti-bots | Art. 32 | Bloquea bots conocidos (Googlebot, Bing, GPT, etc.) |
+| Nombres hash (anti-enumeracion) | Art. 5.1.f, Art. 25 | URLs no predecibles: `a7f3b2e1c9d4.pdf` en vez de `IITD-021865.pdf` |
+| No directory listing | Art. 5.1.f | Options -Indexes, index.html por defecto |
+| Cabeceras noindex en PDFs | Art. 32 | X-Robots-Tag: noindex, nofollow, noarchive |
+| Acceso solo con link directo | Art. 25 | Verificacion via QR del diploma (terceros legitimos) |
+
+Los PDFs siguen accesibles con el link directo del QR — necesario para que terceros puedan verificar la autenticidad del diploma.
+
+Workspace pxl.to:
+- Espacio de trabajo: **IITD**
+- Subdominio personalizado: `a.institutoteologia.org` (short links)
+- Diseno QR personalizado configurado
+
+---
+
+## 5. Inventario completo de necesidades (N01-N52)
+
+### A. Inscripciones y captura de datos
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N01 | Notificacion alta/enrolamiento a secretaria | Implementado |
+| N02 | Datos de alumnos completos y descargables | Hecho |
+| N03 | Formulario contacto OCH llegue a Miriam | Guia entregada |
+| N04 | Asignacion automatica num. expediente | Hecho |
+| N14 | Captura automatica de leads web en Stackby | Implementado |
+| N20 | Identificador unico de alumno + deduplicacion | Hecho |
+| N47 | Pipeline PDFs/Scorms a FlipBooklets | Implementado |
+
+### B. Gestion de alumnos y expedientes
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N05 | Listados de alumnos por curso | Hecho |
+| N06 | Calificaciones numericas y gestion de notas | Hecho |
+| N07 | Expediente academico en base de datos | Hecho (1.583 alumnos) |
+| N21 | Validacion de datos migrados | Hecho |
+| N50 | Panel IITD multi-pestana | Hecho |
+| N51 | Sistema de recibos PDF | Hecho |
+| N52 | Deduplicacion avanzada | Hecho |
+
+### C. Certificados y documentos
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N08 | Recibos y facturas PDF | Hecho |
+| N09 | Certificados DECA automaticos | Hecho |
+| N11 | Separacion consentimientos RGPD en formularios | Guia entregada |
+| N15 | Firma electronica de contratos (BreezeDoc) | Implementado |
+| N26 | Diplomas multi-programa | Hecho |
+| N48 | Infraestructura hosting diplomas | Hecho |
+| N49 | Sistema QR codes dinamicos | Hecho |
+
+### D. Sincronizaciones y LMS
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N16 | Panel de control operativo diario | Hecho |
+| N17 | Sincronizacion actividad LMS con Stackby | Bloqueado (API OCH) |
+| N19 | KPIs DECA automaticos | Hecho |
+| N22 | Notificacion de preguntas al profesor | Bloqueado (OCH) |
+
+### E. Cumplimiento RGPD
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N12 | Politica de conservacion y borrado | Hecho |
+| N13 | Inventario SaaS y contratos DPA | Hecho |
+| N23 | Minimizacion del uso del DNI | Bloqueado (decision direccion) |
+| N40 | Texto legal RGPD en emails | Hecho |
+| N41 | Banner de cookies | Hecho (Complianz) |
+| N42 | Paginas legales en la web | Hecho |
+| N43 | Portal ARCO+ (derechos RGPD) | Hecho |
+| N44 | Exportacion de datos (portabilidad) | Hecho |
+| N45 | Registro de auditoria y brechas | Pendiente |
+| N46 | Caducidad y control acceso grabaciones | Pendiente |
+
+### F. Pagos y facturacion
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N10 | Facturacion a centros asociados | Pendiente |
+| N18 | Migracion Golden Soft a Holded | Pendiente (caduca junio 2026) |
+| N36 | Stripe webhook Cloud Run | Hecho |
+
+### G. Marketing y comunicacion
+
+| ID | Necesidad | Estado |
+|----|-----------|--------|
+| N24 | Tabla de contactos CRM | Hecho |
+| N25 | Emails automaticos transaccionales | Implementado (pendiente SMTP) |
+| N27 | Notificaciones comunidad OCH | Bloqueado (OCH) |
+| N28 | Grabaciones: acceso y consentimiento | Pendiente |
+| N29 | Flujo publicacion cursos con revision COEO | Pendiente |
+| N30 | Paquetes de cursos y precios | Pendiente |
+| N31 | Video por programa y multidioma | Pendiente |
+| N32 | Onboarding curso gratuito desde blog | Pendiente |
+| N33 | Oferta de tutorias post-curso | Pendiente |
+| N34 | Newsletter con consentimiento trazable | Pendiente |
+| N35 | Respuesta con IA + escalado | Pendiente |
+| N37 | Campanas Google Grants | Pendiente |
+| N38 | Gestion de centros asociados | Pendiente |
+| N39 | Foros/comunidad LMS con privacidad | Bloqueado (OCH) |
+
+---
+
+## 6. Desglose por estado
+
+### Completados (26)
+N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N24, N26, N36, N40, N41, N42, N43, N44, N48, N49, N50, N51, N52
+
+### Implementados, pendiente deploy/config (5)
+N01, N14, N15, N25, N47
+
+### Guias entregadas (2)
+N03, N11
+
+### Pendientes (14)
+N10, N18, N28, N29, N30, N31, N32, N33, N34, N35, N37, N38, N45, N46
+
+### Bloqueados (5)
+N17, N22, N23, N27, N39
+
+---
+
+## 7. Acciones pendientes del equipo IITD
+
+| Accion | Responsable | Prioridad |
+|--------|-------------|-----------|
+| Configurar email alumnos@institutoteologia.org (N01) | Sonia | Alta |
+| Configurar reenvio Gmail OCH a alumnos@ (N03) | Sonia | Alta |
+| Proporcionar Sheet ID del formulario web (N14) | Sonia | Alta |
+| Proporcionar credenciales SMTP para emails transaccionales (N25) | Miriam | Media |
+| Completar inventario SaaS con datos de contratos y DPAs (N13) | Miriam + Gema | Media |
+| Validar la guia de testing entregada | Mayte | Alta |
 
 ---
 
 ## 8. Riesgos y dependencias externas
 
-| Riesgo | Impacto | Acción |
+| Riesgo | Impacto | Accion |
 |--------|---------|--------|
-| Golden Soft caduca en junio 2026 | Sin contabilidad si no se migra a Holded | Planificar migración N18 en sprint 4 (marzo) |
-| Obligaciones RGPD pendientes | Riesgo de sanción | Footer emails + páginas legales + consentimientos en sprints 2 y 5 |
-| Limitaciones de OnlineCourseHost | No se pueden hacer N22, N27, N39 | Protocolos manuales como alternativa |
-| Datos de PolarDoc necesarios | Sin ellos no se puede migrar ni validar | Miriam exporta CSV cuando sea posible |
-| Sheet ID del formulario de contacto web | Sin él no funciona la captura de leads (N14) | Sonia lo proporciona esta semana |
+| Golden Soft caduca junio 2026 | Sin contabilidad si no se migra | Planificar migracion N18 en proximo sprint |
+| Limitaciones OnlineCourseHost | No se pueden hacer N17, N22, N27, N39 | Protocolos manuales como alternativa |
+| SMTP no configurado | Emails transaccionales no operativos (N25) | Miriam proporciona credenciales |
+| DNS diplomas.institutoteologia.org | Operativo | Resuelto 12 feb — A record + subdominio SiteGround |
 
 ---
 
-## 9. Próximos pasos inmediatos
+## 9. Proximos pasos
 
-### Prioridad 1: Cerrar pendientes (esta semana)
+### Prioridad 1: Acciones del equipo IITD
 
-| Tarea | Tipo | Quién |
-|-------|------|-------|
-| Crear tabla CALIFICACIONES en Stackby (N06) | Config manual | Miriam/Josete |
-| Crear templates en BreezeDoc UI (matrícula, convenio, RGPD) | Config manual | Proportione |
-| Proporcionar datos institucionales (NIF, dirección, teléfono) | Datos | Miriam |
-| Configurar IDs de templates BreezeDoc en .env | Config | Proportione |
+Las acciones de Sonia (N01, N03, N14) y la validacion de Mayte son los puntos que mas velocidad pueden desbloquear.
 
-### Prioridad 2: Deploy de lo implementado
+### Prioridad 2: Migracion Holded (N18)
 
-| Need | Acción pendiente | Quién |
-|------|-----------------|-------|
-| N01 | Configurar email alumnos@institutoteologia.org | Sonia |
-| N03 | Configurar reenvío Gmail OCH → alumnos@ | Sonia |
-| N13 | Crear tabla INVENTARIO_SAAS en Stackby | Miriam |
-| N14 | Proporcionar Sheet ID del formulario web | Sonia |
+Caduca junio 2026. Requiere coordinacion con Gema. Es la unica dependencia critica con fecha limite.
 
-### Prioridad 3: Sprint 4 — pendientes
+### Prioridad 3: Backlog marketing/comunicacion
 
-| Need | Qué | Estado |
-|------|-----|--------|
-| N06 | Calificaciones (sync Sheet ↔ Stackby) | Bloqueado — necesita Table ID de CALIFICACIONES |
-| N18 | Migración Golden Soft → Holded | Pospuesto (Gema no disponible) |
-
-**Ya completados en Sprint 4:** N16 (dashboard), N19 (KPIs DECA), N21 (validación datos).
-
-### Prioridad 4: Sprint 5 — RGPD (marzo-abril)
-
-N12, N41, N43, N44 — cumplimiento RGPD completo antes de abril.
+14 necesidades pendientes (N28-N35, N37-N38, N45-N46) — se abordaran una vez resueltos los urgentes y con input de direccion sobre prioridades.
 
 ---
 
 ## 10. Firma digital de diplomas — Estado
 
-La firma digital automática de PDFs queda **aparcada**. Motivos:
+La firma digital automatica de PDFs queda **aparcada**. Motivos:
 
 - Los certificados SSL/TLS del servidor NO sirven para firmar PDFs (Key Usage incompatible)
 - Se necesita un certificado personal del director (FNMT, .p12)
-- El pipeline actual ya funciona: QR + hash de verificación apuntan a `diplomas.institutoteologia.org`
+- El pipeline actual ya funciona: QR + hash de verificacion apuntan a `diplomas.institutoteologia.org`
 
-**Cuando el director tenga su certificado FNMT:** solo hay que copiarlo a `certs/iitd-cert.p12` y actualizar `CERT_P12_PASSWORD` en `.env`. El código (`pdf-signer.mjs`) ya está implementado — cero cambios necesarios.
+**Cuando el director tenga su certificado FNMT:** solo hay que copiarlo a `certs/iitd-cert.p12` y actualizar `CERT_P12_PASSWORD` en `.env`. El codigo (`pdf-signer.mjs`) ya esta implementado — cero cambios necesarios.
 
 ---
 
-*Documento preparado por Proportione para la reunión de seguimiento IITD.*
-*Próxima actualización: 23 de febrero de 2026.*
+## 11. Programas IITD (confirmados)
+
+| Programa | Tipo |
+|----------|------|
+| DECA Infantil y Primaria | Plan de estudios completo (9 asignaturas) |
+| DECA ESO y Bachillerato | Plan de estudios completo (9 asignaturas) |
+| Formacion Sistematica en Teologia | Curso corto |
+| Formacion Biblica (AT/NT) | Curso corto |
+| Compromiso Laical y Doctrina Social | Curso corto |
+| Cursos Monograficos | Curso corto |
+
+Stackby contiene ademas programas historicos: Diplomatura/Licenciatura/Bachillerato en CC. Religiosas, Escuela de Evangelizadores.
+
+---
+
+## 12. Datos de contacto IITD
+
+- **Razon social:** Instituto Internacional de Teologia a Distancia
+- **NIF:** R2800617I
+- **Direccion:** Calle Iriarte, 3 — 28028 Madrid
+- **Telefono:** 91 401 50 62
+- **Email:** informacion@institutoteologia.org
+- **Web:** institutoteologia.org
+
+---
+
+*Documento preparado por Proportione.*
+*Proxima actualizacion: 23 de febrero de 2026.*

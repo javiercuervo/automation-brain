@@ -48,3 +48,16 @@ export async function getDriveClient() {
   ]);
   return google.drive({ version: 'v3', auth: await auth.getClient() });
 }
+
+export async function getGoogleServices() {
+  const google = await loadGoogle();
+  const auth = await getAuth([
+    'https://www.googleapis.com/auth/spreadsheets',
+    'https://www.googleapis.com/auth/drive',
+  ]);
+  const client = await auth.getClient();
+  return {
+    drive: google.drive({ version: 'v3', auth: client }),
+    sheets: google.sheets({ version: 'v4', auth: client }),
+  };
+}

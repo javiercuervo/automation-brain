@@ -4,7 +4,16 @@
   "description": "",
   "main": "alumnos-client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sync": "node sync-sheets.mjs",
+    "dashboard": "node dashboard.mjs",
+    "kpis": "node kpis-deca.mjs",
+    "validate": "node validar-datos.mjs --sheet",
+    "retencion": "node rgpd-retencion.mjs --sheet",
+    "recibo": "node recibo-pdf.mjs",
+    "certificado": "node certificado-pdf.mjs",
+    "all": "node sync-sheets.mjs && node dashboard.mjs && node kpis-deca.mjs && node validar-datos.mjs --sheet && node rgpd-retencion.mjs --sheet",
+    "test": "node test-suite.mjs",
+    "test:fast": "node test-suite.mjs --fast"
   },
   "keywords": [],
   "author": "",

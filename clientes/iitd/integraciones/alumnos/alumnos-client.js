@@ -92,6 +92,29 @@ function normalizeEmail(email) {
 }
 
 /**
+ * Obtiene todos los registros de la tabla con paginacion
+ * @returns {Promise<Array>} Todos los registros
+ */
+async function getAllRecords() {
+  checkConfig();
+  const PAGE_SIZE = 100;
+  let all = [];
+  let offset = 0;
+
+  while (true) {
+    const endpoint = `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}` +
+      (offset ? `?offset=${offset}` : '');
+    const data = await stackbyFetch(endpoint);
+    const records = Array.isArray(data) ? data : (data.records || []);
+    all = all.concat(records);
+    if (records.length < PAGE_SIZE) break;
+    offset += records.length;
+  }
+
+  return all;
+}
+
+/**
  * Busca un alumno por email
  * @param {string} email - Email del alumno
  * @returns {Promise<Object|null>} Registro del alumno o null
@@ -102,14 +125,10 @@ async function findByEmail(email) {
   const normalizedEmail = normalizeEmail(email);
   if (!normalizedEmail) return null;
 
-  const rows = await stackbyFetch(
-    `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}?maxRecords=500`
-  );
+  const rows = await getAllRecords();
 
-  if (!rows.records) return null;
-
-  return rows.records.find(row => {
-    const rowEmail = normalizeEmail(row.field['Email']);
+  return rows.find(row => {
+    const rowEmail = normalizeEmail(row.field?.['Email']);
     return rowEmail === normalizedEmail;
   }) || null;
 }
@@ -120,19 +139,15 @@ async function findByEmail(email) {
  * @returns {Promise<string>} Next ID like "IITD-0042"
  */
 async function getNextAlumnoId() {
-  const rows = await stackbyFetch(
-    `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}?maxRecords=5000`
-  );
+  const rows = await getAllRecords();
 
   // Base: último nº expediente PolarDoc = 110000
   const POLAR_LAST_ID = 110000;
   let maxNum = POLAR_LAST_ID;
-  if (rows.records) {
-    for (const row of rows.records) {
-      const id = row.field?.ID_ALUMNO || '';
-      const match = String(id).match(/(\d+)$/);
-      if (match) maxNum = Math.max(maxNum, parseInt(match[1]));
-    }
+  for (const row of rows) {
+    const id = row.field?.ID_ALUMNO || '';
+    const match = String(id).match(/(\d+)$/);
+    if (match) maxNum = Math.max(maxNum, parseInt(match[1]));
   }
 
   return 'IITD-' + String(maxNum + 1).padStart(6, '0');
@@ -340,25 +355,26 @@ async function actualizarDesdeOCH(email, ochData) {
 }
 
 /**
- * Lista todos los alumnos
+ * Lista todos los alumnos (paginado)
  * @param {Object} options - Opciones de consulta
  * @returns {Promise<Array>} Lista de alumnos
  */
 async function listarAlumnos(options = {}) {
   checkConfig();
 
-  let endpoint = `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}`;
-  const params = new URLSearchParams();
-
-  if (options.maxRecords) params.set('maxRecords', options.maxRecords);
-  if (options.view) params.set('view', options.view);
-
-  if (params.toString()) {
+  if (options.view) {
+    // Views use single request (Stackby handles pagination server-side)
+    let endpoint = `/rowlist/${ALUMNOS_CONFIG.STACK_ID}/${ALUMNOS_CONFIG.TABLE_ID}`;
+    const params = new URLSearchParams();
+    params.set('view', options.view);
+    if (options.maxRecords) params.set('maxRecords', options.maxRecords);
     endpoint += `?${params.toString()}`;
+    const result = await stackbyFetch(endpoint);
+    return result.records || [];
   }
 
-  const result = await stackbyFetch(endpoint);
-  return result.records || [];
+  // Default: paginate all records
+  return getAllRecords();
 }
 
 /**
@@ -367,8 +383,8 @@ async function listarAlumnos(options = {}) {
  * @returns {Promise<Array>} Alumnos con ese estado
  */
 async function filtrarPorEstado(estado) {
-  const alumnos = await listarAlumnos({ maxRecords: 1000 });
-  return alumnos.filter(a => a.field['Estado'] === estado);
+  const alumnos = await getAllRecords();
+  return alumnos.filter(a => a.field?.['Estado'] === estado);
 }
 
 module.exports = {
@@ -380,6 +396,7 @@ module.exports = {
   FUENTES,
 
   // Operaciones básicas
+  getAllRecords,
   findByEmail,
   createAlumno,
   updateAlumno,

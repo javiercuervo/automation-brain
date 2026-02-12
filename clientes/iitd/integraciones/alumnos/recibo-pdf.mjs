@@ -328,23 +328,13 @@ function generateReciboPDF(alumno, outputPath) {
 // GOOGLE DRIVE — Upload PDF
 // =====================================================
 
-let _driveService = null;
-let _sheetsService = null;
+let _services = null;
 
 async function getGoogleServices() {
-  if (_driveService && _sheetsService) return { drive: _driveService, sheets: _sheetsService };
-
-  const { google } = await import('googleapis');
-  const auth = new google.auth.GoogleAuth({
-    scopes: [
-      'https://www.googleapis.com/auth/drive',
-      'https://www.googleapis.com/auth/spreadsheets',
-    ],
-  });
-
-  _driveService = google.drive({ version: 'v3', auth });
-  _sheetsService = google.sheets({ version: 'v4', auth });
-  return { drive: _driveService, sheets: _sheetsService };
+  if (_services) return _services;
+  const { getGoogleServices: getServices } = await import('./google-auth.mjs');
+  _services = await getServices();
+  return _services;
 }
 
 async function ensureDriveFolder() {
