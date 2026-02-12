@@ -86,10 +86,10 @@ Cuando el formulario este publicado en la web:
 |----------|-----------------------------------|---------|
 | DECA Infantil y Primaria | Si | Si |
 | DECA ESO y Bachillerato | Si | Si |
-| Experto Universitario en Teologia | Si | Si |
-| Bachiller en Teologia | Si | Si |
-| Licenciatura en Teologia | Si | Si |
-| Cualquier otro programa | No (sin plan de estudios) | Si |
+| Formacion Sistematica en Teologia | No (curso corto) | Si |
+| Formacion Biblica (AT/NT) | No (curso corto) | Si |
+| Compromiso Laical y Doctrina Social | No (curso corto) | Si |
+| Cursos Monograficos | No (curso corto) | Si |
 
 ### Que verificar
 

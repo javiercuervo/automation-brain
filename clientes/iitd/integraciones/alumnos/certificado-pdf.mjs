@@ -8,12 +8,14 @@
  *   - Modelo 2: Diploma de finalización del programa
  *
  * Programas soportados (PLAN_ESTUDIOS):
- *   - DECA Infantil y Primaria
- *   - DECA ESO y Bachillerato
- *   - Experto Universitario en Teología
- *   - Bachiller en Teología
- *   - Licenciatura en Teología
- *   - (Cualquier otro programa → diploma genérico sin tabla de notas)
+ *   - DECA Infantil y Primaria (plan de estudios completo → certificado con notas)
+ *   - DECA ESO y Bachillerato (plan de estudios completo → certificado con notas)
+ *   - Otros programas: Formación Sistemática, Formación Bíblica, Compromiso Laical,
+ *     Cursos Monográficos → solo diploma genérico (Modelo 2)
+ *
+ * NOTA: Los programas "Experto", "Bachiller en Teología" y "Licenciatura en Teología"
+ * tienen plan de estudios provisional (placeholder). Cuando el IITD confirme las
+ * asignaturas reales, actualizar las entradas en PLAN_ESTUDIOS.
  *
  * Flujo completo (con --upload):
  *   1. Leer datos alumno de Stackby ALUMNOS
@@ -27,7 +29,7 @@
  *   node certificado-pdf.mjs --email juan@email.com --mock               # Con datos de ejemplo
  *   node certificado-pdf.mjs --email juan@email.com --modelo 1           # Solo certificado académico
  *   node certificado-pdf.mjs --email juan@email.com --modelo 2           # Solo diploma
- *   node certificado-pdf.mjs --email juan@email.com --programa "Experto Universitario en Teología"
+ *   node certificado-pdf.mjs --email juan@email.com --programa "DECA ESO y Bachillerato"
  *   node certificado-pdf.mjs --email juan@email.com --upload             # Genera + sube + escribe Sheet
  *   node certificado-pdf.mjs --email juan@email.com --upload --mock      # Full flow con datos mock
  *   node certificado-pdf.mjs --email juan@email.com --no-sign           # Sin firma digital
@@ -136,6 +138,9 @@ const PLAN_ESTUDIOS = {
     'Pedagogía y Didáctica de la Religión (ESO y Bachillerato)',
     'Liturgia y Sacramentos',
   ],
+  // ⚠️ PLACEHOLDER: Estos 3 programas tienen asignaturas provisionales.
+  // El IITD ofrece DECA + cursos cortos de teología. Verificar si estos programas
+  // existen realmente y cuáles son sus asignaturas antes de generar certificados.
   'Experto Universitario en Teología': [
     'Teología Fundamental',
     'Cristología',

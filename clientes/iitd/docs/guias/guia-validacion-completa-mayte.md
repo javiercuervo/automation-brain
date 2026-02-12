@@ -407,16 +407,16 @@ Hemos creado un sistema que genera automaticamente recibos de matricula y certif
 
 **Que es:** Un diploma de finalizacion de programa, mas formal, sin tabla de notas. Funciona para TODOS los programas del IITD.
 
-**Programas disponibles:**
+**Programas del IITD:**
 
 | Programa | Certificado con notas | Diploma |
 |----------|----------------------|---------|
 | DECA Infantil y Primaria | Si | Si |
 | DECA ESO y Bachillerato | Si | Si |
-| Experto Universitario en Teologia | Si | Si |
-| Bachiller en Teologia | Si | Si |
-| Licenciatura en Teologia | Si | Si |
-| Cualquier otro programa | No (no tiene plan de estudios definido) | Si |
+| Formacion Sistematica en Teologia | No (curso corto) | Si |
+| Formacion Biblica (AT/NT) | No (curso corto) | Si |
+| Compromiso Laical y Doctrina Social | No (curso corto) | Si |
+| Cursos Monograficos | No (curso corto) | Si |
 
 **Que verificar:**
 
