@@ -792,14 +792,14 @@ async function main() {
   // --- Upload to SiteGround ---
   if (UPLOAD_MODE && alumno.expediente) {
     console.log('\n  Subiendo a SiteGround...');
-    const { uploadFile } = await import('./siteground-upload.mjs');
+    const { uploadFile, diplomaHash } = await import('./siteground-upload.mjs');
+    const fileHash = diplomaHash(alumno.expediente);
 
     for (const r of results) {
-      // Use expediente as remote filename for the diploma (modelo 2)
-      // For certificado académico, add suffix
+      // RGPD: use hash-based filenames (non-enumerable)
       const remoteName = r.modelo === 'Diploma'
-        ? `${alumno.expediente}.pdf`
-        : `${alumno.expediente}-academico.pdf`;
+        ? `${fileHash}.pdf`
+        : `${fileHash}-academico.pdf`;
 
       try {
         const uploadResult = uploadFile(r.path, remoteName);

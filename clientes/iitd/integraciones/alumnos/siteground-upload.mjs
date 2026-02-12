@@ -17,7 +17,10 @@
  */
 
 import { execSync } from 'child_process';
-import { existsSync } from 'fs';
+import { existsSync, writeFileSync, mkdtempSync, rmSync } from 'fs';
+import { join } from 'path';
+import { tmpdir } from 'os';
+import { createHash } from 'crypto';
 
 // =====================================================
 // CONFIG
@@ -132,6 +135,104 @@ export function fileExists(remoteName) {
 }
 
 // =====================================================
+// RGPD PROTECTIONS
+// =====================================================
+
+const ROBOTS_TXT = `User-agent: *
+Disallow: /
+`;
+
+const HTACCESS = `# RGPD protections — diplomas.institutoteologia.org
+# Bloquear directory listing
+Options -Indexes
+
+# Cabeceras anti-indexacion en PDFs
+<IfModule mod_headers.c>
+<FilesMatch "\\.pdf$">
+  Header set X-Robots-Tag "noindex, nofollow, noarchive"
+  Header set Content-Disposition "attachment"
+  Header set Cache-Control "private, no-store"
+</FilesMatch>
+</IfModule>
+
+# Bloquear bots conocidos
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} (Googlebot|bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Sogou|Exabot|ia_archiver|AhrefsBot|SemrushBot|MJ12bot|DotBot|GPTBot|CCBot|ChatGPT|ClaudeBot|anthropic) [NC]
+RewriteRule \\.pdf$ - [F,L]
+</IfModule>
+
+# Pagina por defecto
+DirectoryIndex index.html
+`;
+
+const INDEX_HTML = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="refresh" content="5;url=https://institutoteologia.org">
+  <title>Acceso restringido — IITD</title>
+  <style>body{font-family:system-ui,sans-serif;text-align:center;padding:4rem 1rem;color:#333}h1{font-size:1.4rem}p{color:#666}</style>
+</head>
+<body>
+  <h1>Portal de verificacion de diplomas</h1>
+  <p>Acceso restringido. Redirigiendo a <a href="https://institutoteologia.org">institutoteologia.org</a>...</p>
+</body>
+</html>
+`;
+
+/**
+ * Deploy RGPD protection files (robots.txt, .htaccess, index.html)
+ * @returns {{ files: string[] }} List of deployed files
+ */
+export function deployProtections() {
+  const tmp = mkdtempSync(join(tmpdir(), 'diplomas-protect-'));
+  const deployed = [];
+
+  try {
+    ensureRemoteDir();
+
+    const files = [
+      { name: 'robots.txt', content: ROBOTS_TXT },
+      { name: '.htaccess', content: HTACCESS },
+      { name: 'index.html', content: INDEX_HTML },
+    ];
+
+    for (const { name, content } of files) {
+      const localPath = join(tmp, name);
+      writeFileSync(localPath, content, 'utf-8');
+      rsyncFile(localPath, `${REMOTE_BASE}/${name}`);
+      deployed.push(name);
+    }
+
+    return { files: deployed };
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Generate a hash-based filename for a diploma (anti-enumeration)
+ * @param {string} expediente - e.g. 'IITD-021865'
+ * @returns {string} 12-char hex hash
+ */
+export function diplomaHash(expediente) {
+  const salt = process.env.DIPLOMA_FILENAME_SALT;
+  if (!salt) throw new Error('DIPLOMA_FILENAME_SALT not set in .env');
+  return createHash('sha256').update(expediente + salt).digest('hex').slice(0, 12);
+}
+
+/**
+ * Rename a file on the remote server
+ * @param {string} oldName - Current filename
+ * @param {string} newName - New filename
+ */
+export function renameFile(oldName, newName) {
+  sshExec(`mv ${REMOTE_BASE}/${oldName} ${REMOTE_BASE}/${newName}`);
+}
+
+// =====================================================
 // CLI MODE
 // =====================================================
 
@@ -140,6 +241,7 @@ async function main() {
   const fileIdx = process.argv.indexOf('--file');
   const nameIdx = process.argv.indexOf('--name');
   const isList = process.argv.includes('--list');
+  const isProtect = process.argv.includes('--deploy-protections');
 
   if (isTest) {
     console.log('Testing SSH connection to SiteGround...');
@@ -150,6 +252,16 @@ async function main() {
     const ok = testConnection();
     console.log(ok ? '  ✓ Connection OK' : '  ✗ Connection FAILED');
     process.exit(ok ? 0 : 1);
+  }
+
+  if (isProtect) {
+    console.log('Deploying RGPD protections to diplomas.institutoteologia.org...');
+    const result = deployProtections();
+    for (const f of result.files) {
+      console.log(`  ✓ ${f}`);
+    }
+    console.log('Done. Protections deployed.');
+    return;
   }
 
   if (isList) {
@@ -180,6 +292,7 @@ async function main() {
   console.log('  node siteground-upload.mjs --file /path/to/file.pdf');
   console.log('  node siteground-upload.mjs --file /path/to/file.pdf --name IITD-021865.pdf');
   console.log('  node siteground-upload.mjs --list');
+  console.log('  node siteground-upload.mjs --deploy-protections');
 }
 
 // Only run CLI if executed directly (not imported)

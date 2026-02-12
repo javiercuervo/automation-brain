@@ -153,7 +153,10 @@ export async function generateQR(url, opts = {}) {
  * @returns {{ shortUrl: string, fullUrl: string, qrBuffer: Buffer, linkData: object }}
  */
 export async function createDiplomaLink(expediente) {
-  const fullUrl = `${DIPLOMAS_BASE_URL}/${expediente}.pdf`;
+  // RGPD: use hash-based filename (non-enumerable)
+  const { diplomaHash } = await import('./siteground-upload.mjs');
+  const fileHash = diplomaHash(expediente);
+  const fullUrl = `${DIPLOMAS_BASE_URL}/${fileHash}.pdf`;
   const title = `Diploma ${expediente}`;
 
   // Create short link
