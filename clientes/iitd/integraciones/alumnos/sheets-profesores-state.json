@@ -1,0 +1,23 @@
+{
+  "sheets": {
+    "avelino-revilla": {
+      "sheetId": "19iNZX1iynhYBe8dyg_Hms0c-N4oz_cTqMknCFTiCEwc",
+      "nombre": "Avelino Revilla",
+      "email": "avelino.revilla@institutoteologia.org",
+      "createdAt": "2026-02-12T23:25:00.000Z"
+    },
+    "javier-sanchez": {
+      "sheetId": "1rXbSOxqbbtNftrllnuzJcQnHGlU3RRjgHTk0ViiTqQs",
+      "nombre": "Javier Sánchez",
+      "email": "javier.sanchez@institutoteologia.org",
+      "createdAt": "2026-02-12T23:25:00.000Z"
+    },
+    "antonio-salas": {
+      "sheetId": "1wytYZqMDvE4t3a4HNqvDCwNoGezmsQzUWLPebu7u3bk",
+      "nombre": "Antonio Salas",
+      "email": "antonio.salas@institutoteologia.org",
+      "createdAt": "2026-02-12T23:25:00.000Z"
+    }
+  },
+  "lastRun": "2026-02-12T23:25:00.000Z"
+}

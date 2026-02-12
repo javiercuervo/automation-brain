@@ -12,6 +12,10 @@
     "recibo": "node recibo-pdf.mjs",
     "certificado": "node certificado-pdf.mjs",
     "all": "node sync-sheets.mjs && node dashboard.mjs && node kpis-deca.mjs && node validar-datos.mjs --sheet && node rgpd-retencion.mjs --sheet",
+    "profes:init": "node sheets-profesores.mjs --init",
+    "profes:sync": "node sheets-profesores.mjs --sync",
+    "profes:refresh": "node sheets-profesores.mjs --refresh",
+    "profes:share": "node sheets-profesores.mjs --share",
     "test": "node test-suite.mjs",
     "test:fast": "node test-suite.mjs --fast"
   },

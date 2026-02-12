@@ -70,6 +70,7 @@ const MJS_FILES = [
   'pxl-client.mjs', 'breezedoc-client.mjs', 'breezedoc-enrollment.mjs',
   'siteground-upload.mjs', 'reorganizar-drive.mjs', 'listados.mjs',
   'calificaciones-client.mjs', 'sync-calificaciones.mjs',
+  'sheets-profesores.mjs',
 ];
 
 console.log('TAP version 14');
@@ -415,6 +416,139 @@ if (FAST_MODE || !SHEET_ID) {
     }
   } catch (err) {
     notOk('Headers', err.message);
+  }
+}
+
+// =====================================================
+// T20-T26 — SHEETS PROFESORES
+// =====================================================
+
+console.log('# T20-T26 — Sheets Profesores');
+
+// T20: State file exists and has valid structure
+const profStatePath = resolve(__dirname, 'sheets-profesores-state.json');
+if (existsSync(profStatePath)) {
+  try {
+    const profState = JSON.parse(readFileSync(profStatePath, 'utf-8'));
+    const profCount = Object.keys(profState.sheets || {}).length;
+    if (profCount === 3 && profState.lastRun) {
+      ok(`Profesores: state.json válido (${profCount} profesores)`);
+    } else {
+      notOk('Profesores: state.json', `sheets: ${profCount}, lastRun: ${profState.lastRun || 'missing'}`);
+    }
+  } catch (err) {
+    notOk('Profesores: state.json', err.message);
+  }
+} else {
+  notOk('Profesores: state.json', 'file not found');
+}
+
+// T21: Init --dry-run completes without error
+if (FAST_MODE) {
+  skip('Profesores: init --dry-run', 'fast mode');
+} else {
+  try {
+    const out = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --init --dry-run`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (out.includes('alumnos activos') && out.includes('Init completado')) {
+      ok('Profesores: init --dry-run');
+    } else {
+      notOk('Profesores: init --dry-run', 'output missing expected markers');
+    }
+  } catch (err) {
+    notOk('Profesores: init --dry-run', err.stderr?.toString().split('\n')[0] || err.message);
+  }
+}
+
+// T22-T24: Professor Sheet structure (tabs, headers, data count)
+if (FAST_MODE) {
+  skip('Profesores: Sheet tabs correctas', 'fast mode');
+  skip('Profesores: Sheet headers (8 cols)', 'fast mode');
+  skip('Profesores: Sheet data count > 0', 'fast mode');
+} else {
+  try {
+    const { getSheetsClient: getProfSheets } = await import('./google-auth.mjs');
+    const profSheets = await getProfSheets();
+
+    // Use Javier Sánchez (has 2 tabs: DECA + Formación Sistemática)
+    const testSheetId = '1rXbSOxqbbtNftrllnuzJcQnHGlU3RRjgHTk0ViiTqQs';
+    const meta = await profSheets.spreadsheets.get({ spreadsheetId: testSheetId });
+    const tabs = meta.data.sheets.map(s => s.properties.title);
+
+    // T22: Correct tabs exist
+    if (tabs.includes('DECA') && tabs.includes('Formación Sistemática')) {
+      ok(`Profesores: Sheet Javier tabs correctas (${tabs.join(', ')})`);
+    } else {
+      notOk('Profesores: Sheet tabs', `esperadas DECA + Formación Sistemática, tiene: ${tabs.join(', ')}`);
+    }
+
+    // T23: Headers are the expected 8 columns
+    const headerData = await profSheets.spreadsheets.values.get({
+      spreadsheetId: testSheetId, range: "'DECA'!A1:H1",
+    });
+    const profHeaders = headerData.data.values?.[0] || [];
+    const EXPECTED_PROF_H = [
+      'Email alumno', 'Nombre', 'Apellidos', 'Asignatura',
+      'Nota evaluación', 'Nota examen', 'Calificación final', 'Convalidada',
+    ];
+    const profHMatch = EXPECTED_PROF_H.every((h, i) => profHeaders[i] === h);
+    if (profHMatch) {
+      ok(`Profesores: headers DECA correctas (${profHeaders.length} cols)`);
+    } else {
+      notOk('Profesores: headers DECA', `got: [${profHeaders.join(', ')}]`);
+    }
+
+    // T24: Data count > 0 rows
+    const allData = await profSheets.spreadsheets.values.get({
+      spreadsheetId: testSheetId, range: "'DECA'!A:A",
+    });
+    const dataRows = (allData.data.values || []).length - 1;
+    if (dataRows > 0) {
+      ok(`Profesores: DECA tiene ${dataRows} filas de datos`);
+    } else {
+      notOk('Profesores: DECA data', `solo ${dataRows} filas`);
+    }
+  } catch (err) {
+    notOk('Profesores: Sheet tabs', err.message);
+    skip('Profesores: headers', 'depende de T22');
+    skip('Profesores: data count', 'depende de T22');
+  }
+}
+
+// T25: Sync --dry-run completes without error
+if (FAST_MODE) {
+  skip('Profesores: sync --dry-run', 'fast mode');
+} else {
+  try {
+    const syncOut = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --sync --dry-run`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (syncOut.includes('Total:')) {
+      ok('Profesores: sync --dry-run');
+    } else {
+      notOk('Profesores: sync --dry-run', 'output missing "Total:" marker');
+    }
+  } catch (err) {
+    notOk('Profesores: sync --dry-run', err.stderr?.toString().split('\n')[0] || err.message);
+  }
+}
+
+// T26: Refresh --dry-run completes without error
+if (FAST_MODE) {
+  skip('Profesores: refresh --dry-run', 'fast mode');
+} else {
+  try {
+    const refreshOut = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --refresh --dry-run`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (refreshOut.includes('Refresh completado')) {
+      ok('Profesores: refresh --dry-run');
+    } else {
+      notOk('Profesores: refresh --dry-run', 'output missing "Refresh completado" marker');
+    }
+  } catch (err) {
+    notOk('Profesores: refresh --dry-run', err.stderr?.toString().split('\n')[0] || err.message);
   }
 }
 
