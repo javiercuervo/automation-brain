@@ -11,10 +11,10 @@
 
 | Estado | Descripción | Cantidad | % |
 |--------|-------------|----------|---|
-| ✅ | Hecho (Funcional y en uso) | 23 | 44.2% |
-| 🔧 | Implementado (Código listo, pendiente deploy/config) | 4 | 7.7% |
-| 📋 | Guía entregada (Documentación entregada, acción manual) | 4 | 7.7% |
-| ⏳ | Pendiente (No iniciado) | 16 | 30.8% |
+| ✅ | Hecho (Funcional y en uso) | 26 | 50.0% |
+| 🔧 | Implementado (Código listo, pendiente deploy/config) | 5 | 9.6% |
+| 📋 | Guía entregada (Documentación entregada, acción manual) | 2 | 3.8% |
+| ⏳ | Pendiente (No iniciado) | 14 | 26.9% |
 | 🚫 | Bloqueado (Limitaciones externas) | 5 | 9.6% |
 | **TOTAL** | | **52** | **100%** |
 
@@ -80,9 +80,9 @@
 | **N13** | Inventario de herramientas SaaS y contratos DPA | ✅ | Tabla INVENTARIO_SAAS en Stackby: 14 columnas, 12 herramientas pre-pobladas (Stackby, OCH, Google, Stripe, BreezeDoc, pxl.to, Acumbamail, FlipBooklets, SiteGround, Holded, Pabbly, WordPress) | 1. Abrir Stackby → INVENTARIO_SAAS<br>2. Verificar 12 herramientas<br>3. Completar: Coste, Fecha DPA, Renovación | Tabla Stackby `tbx3UGrWC0XTA5Rd2e` |
 | **N23** | Minimización del uso del DNI | 🚫 | Reducir campos DNI en formularios/registros | **Bloqueado:** Requiere decisión dirección + asesor legal | (Decisión estratégica pendiente) |
 | **N40** | Incluir texto legal RGPD en todos los emails automáticos | ✅ | Footer automático con aviso legal RGPD en emails | Integrado en templates de email de los scripts | Implementado en scripts de email |
-| **N41** | Banner de cookies en la web | 📋 | Snippet JS/CSS autocontenido: banner consentimiento con 3 botones (Aceptar todas, Solo necesarias, Configurar), almacena preferencia en localStorage, bloquea GA4 hasta consentimiento, permite revocar | 1. Abrir cookie-banner.js en browser<br>2. Verificar banner aparece, botones funcionan<br>3. Instalar en WordPress: copiar en Additional JS | `/docs/legal/cookie-banner.js`<br>`/docs/legal/politica-cookies.md` |
-| **N42** | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | 📋 | Textos legales entregados para publicación web | **Manual:** Publicar en WordPress | `/docs/legal/politica-privacidad.md`<br>`/docs/legal/aviso-legal.md`<br>`/docs/legal/politica-cookies.md` |
-| **N43** | Portal para ejercicio de derechos RGPD (ARCO+) | 📋 | Formulario HTML WordPress-ready con 6 derechos (Acceso, Rectificación, Supresión, Portabilidad, Oposición, Limitación) + guía operativa con plantillas de respuesta + mapeo a scripts existentes | 1. Abrir arco-portal.html en browser<br>2. Rellenar formulario de prueba<br>3. Verificar envío email<br>4. Publicar en WordPress | `/docs/legal/arco-portal.html`<br>`/docs/guias/guia-arco-portal.md` |
+| **N41** | Banner de cookies en la web | ✅ | Plugin Complianz instalado y configurado en WordPress. Banner de consentimiento con opciones Aceptar/Rechazar/Configurar, botón "Gestionar consentimiento" persistente | 1. Abrir institutoteologia.org en modo incógnito<br>2. Verificar banner aparece<br>3. Aceptar → banner desaparece<br>4. Botón "Gestionar consentimiento" visible | WordPress plugin Complianz |
+| **N42** | Páginas legales en la web (Privacidad, Aviso Legal, Cookies) | ✅ | Textos legales publicados en WordPress con datos correctos (NIF R2800617I, Calle Iriarte 3, 28028 Madrid, informacion@institutoteologia.org) | 1. institutoteologia.org/aviso-legal/<br>2. institutoteologia.org/politica-de-privacidad/<br>3. institutoteologia.org/politica-de-cookies/ | WordPress páginas 510, 512, 514 |
+| **N43** | Portal para ejercicio de derechos RGPD (ARCO+) | ✅ | Portal ARCO+ publicado en WordPress (page 1219). Formulario con 6 derechos RGPD, campos Nombre/Email/DNI/Derecho/Detalle/Consentimiento, plazo 30 días, enlace AEPD | 1. institutoteologia.org/ejercicio-derechos-rgpd/<br>2. Rellenar formulario de prueba<br>3. Verificar envío email | WordPress página 1219 |
 | **N44** | Exportación de datos de alumno (portabilidad RGPD) | ✅ | Exporta datos ALUMNOS + CALIFICACIONES en JSON y/o CSV (Art. 20 RGPD) | 1. `node exportar-alumno.mjs --email alumno@email.com` (JSON)<br>2. `node exportar-alumno.mjs --email alumno@email.com --csv`<br>3. `node exportar-alumno.mjs --email alumno@email.com --all` (archivos) | `/integraciones/alumnos/exportar-alumno.mjs` |
 | **N45** | Registro de auditoría y notificación de brechas de seguridad | ⏳ | Sistema de logging + alertas de brechas | **Pendiente** | (Por implementar) |
 | **N46** | Caducidad y control de acceso a grabaciones | ⏳ | Gestión automática de acceso temporal a grabaciones | **Pendiente** | (Por implementar) |
@@ -123,16 +123,16 @@
 
 ## Desglose Detallado por Estado
 
-### ✅ Completados (23)
-N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N24, N26, N36, N40, N44, N48, N49, N50, N51, N52
+### ✅ Completados (26)
+N02, N04, N05, N06, N07, N08, N09, N12, N13, N16, N19, N20, N21, N24, N26, N36, N40, N41, N42, N43, N44, N48, N49, N50, N51, N52
 
-### 🔧 Implementados, pendiente deploy/config (4)
+### 🔧 Implementados, pendiente deploy/config (5)
 N01, N14, N15, N25, N47
 
-### 📋 Guías entregadas (4)
-N03, N11, N41, N42, N43
+### 📋 Guías entregadas (2)
+N03, N11
 
-### ⏳ Pendientes (16)
+### ⏳ Pendientes (14)
 N10, N18, N28-N35, N37-N38, N45-N46
 
 ### 🚫 Bloqueados (5)
