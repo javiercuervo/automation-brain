@@ -33,8 +33,8 @@ import { createTransport } from 'nodemailer';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  for (const line of readFileSync(resolve(__dirname, '.env'), 'utf-8').split('\n')) {
+if (existsSync(resolve(__dirname, '../.env'))) {
+  for (const line of readFileSync(resolve(__dirname, '../.env'), 'utf-8').split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   }
@@ -50,7 +50,7 @@ const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
 const SMTP_FROM = process.env.SMTP_FROM || `Instituto Internacional de Teología <${process.env.IITD_EMAIL || 'informacion@institutoteologia.org'}>`;
 
-const TEMPLATES_DIR = resolve(__dirname, 'templates');
+const TEMPLATES_DIR = resolve(__dirname, '../plantillas');
 
 const INSTITUCION = {
   nombre: 'Instituto Internacional de Teología a Distancia',

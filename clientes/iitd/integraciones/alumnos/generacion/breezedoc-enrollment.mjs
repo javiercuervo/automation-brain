@@ -33,13 +33,13 @@ import {
   createFromTemplate,
   sendDocument,
   getDocument,
-} from './breezedoc-client.mjs';
+} from '../compartido/breezedoc-client.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  const envContent = readFileSync(resolve(__dirname, '.env'), 'utf-8');
+if (existsSync(resolve(__dirname, '../.env'))) {
+  const envContent = readFileSync(resolve(__dirname, '../.env'), 'utf-8');
   for (const line of envContent.split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];

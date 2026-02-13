@@ -20,13 +20,13 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getSheetsClient } from './google-auth.mjs';
+import { getSheetsClient } from '../compartido/google-auth.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  for (const line of readFileSync(resolve(__dirname, '.env'), 'utf-8').split('\n')) {
+if (existsSync(resolve(__dirname, '../.env'))) {
+  for (const line of readFileSync(resolve(__dirname, '../.env'), 'utf-8').split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   }

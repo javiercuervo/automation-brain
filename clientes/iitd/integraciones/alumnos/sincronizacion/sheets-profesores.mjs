@@ -22,8 +22,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  for (const line of readFileSync(resolve(__dirname, '.env'), 'utf-8').split('\n')) {
+if (existsSync(resolve(__dirname, '../.env'))) {
+  for (const line of readFileSync(resolve(__dirname, '../.env'), 'utf-8').split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   }
@@ -35,8 +35,8 @@ import {
   findByAsignatura,
   updateCalificacion,
   createCalificacion,
-} from './calificaciones-client.mjs';
-import { getSheetsClient, getDriveClient } from './google-auth.mjs';
+} from '../compartido/calificaciones-client.mjs';
+import { getSheetsClient, getDriveClient } from '../compartido/google-auth.mjs';
 
 // Pre-created sheet IDs (created via Apps Script as administracion@institutoteologia.org,
 // shared with SA as editor)

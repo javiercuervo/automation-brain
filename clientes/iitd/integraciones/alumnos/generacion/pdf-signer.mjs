@@ -30,15 +30,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  const envContent = readFileSync(resolve(__dirname, '.env'), 'utf-8');
+if (existsSync(resolve(__dirname, '../.env'))) {
+  const envContent = readFileSync(resolve(__dirname, '../.env'), 'utf-8');
   for (const line of envContent.split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   }
 }
 
-const CERT_PATH = resolve(__dirname, 'certs/iitd-cert.p12');
+const CERT_PATH = resolve(__dirname, '../certs/iitd-cert.p12');
 const CERT_PASSWORD = process.env.CERT_P12_PASSWORD || '';
 
 // Synchronous import of CJS placeholder module (needed because addSignaturePlaceholder is sync)
@@ -132,7 +132,7 @@ async function main() {
   console.log(`  Signed buffer: ${signedBuffer.length} bytes`);
 
   // Write test file
-  const testPath = resolve(__dirname, 'certificados/test-signed.pdf');
+  const testPath = resolve(__dirname, '../certificados/test-signed.pdf');
   mkdirSync(dirname(testPath), { recursive: true });
   writeFileSync(testPath, signedBuffer);
   console.log(`  ✓ Written to: ${testPath}`);

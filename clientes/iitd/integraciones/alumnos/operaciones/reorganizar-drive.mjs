@@ -14,7 +14,7 @@
  *   node reorganizar-drive.mjs                    # Ejecutar reorganización
  */
 
-import { getDriveClient } from './google-auth.mjs';
+import { getDriveClient } from '../compartido/google-auth.mjs';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -160,7 +160,7 @@ async function ensureSubfolder(drive, folderConfig) {
 }
 
 function updateEnvFile(folderIds) {
-  const envPath = resolve(__dirname, '.env');
+  const envPath = resolve(__dirname, '../.env');
 
   console.log(`\n📝 Actualizando .env`);
   console.log(`  Ruta: ${envPath}`);

@@ -22,8 +22,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  for (const line of readFileSync(resolve(__dirname, '.env'), 'utf-8').split('\n')) {
+if (existsSync(resolve(__dirname, '../.env'))) {
+  for (const line of readFileSync(resolve(__dirname, '../.env'), 'utf-8').split('\n')) {
     const m = line.match(/^([A-Z_0-9]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   }
@@ -211,7 +211,7 @@ async function main() {
 
   if (ALL_MODE) {
     // Write files to output/
-    const outDir = resolve(__dirname, 'output');
+    const outDir = resolve(__dirname, '../output');
     if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
     const base = `export-${normalizeEmail(EMAIL).replace(/[@.]/g, '_')}`;

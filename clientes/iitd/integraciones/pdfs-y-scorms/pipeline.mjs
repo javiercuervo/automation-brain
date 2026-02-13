@@ -64,7 +64,7 @@ function scormEmbed(url) {
 
 function getAuth() {
   // Try Service Account first (works in CI and avoids ADC permission issues)
-  const saPath = resolve(SCRIPT_DIR, '../../integraciones/alumnos/service-account.json');
+  const saPath = resolve(SCRIPT_DIR, '../alumnos/service-account.json');
   if (existsSync(saPath)) {
     return new google.auth.GoogleAuth({
       keyFile: saPath,

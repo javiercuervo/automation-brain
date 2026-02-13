@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 import { existsSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SA_PATH = resolve(__dirname, 'service-account.json');
+const SA_PATH = resolve(__dirname, '../service-account.json');
 
 let _google;
 

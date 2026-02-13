@@ -30,8 +30,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Load .env
-if (existsSync(resolve(__dirname, '.env'))) {
-  const envContent = readFileSync(resolve(__dirname, '.env'), 'utf-8');
+if (existsSync(resolve(__dirname, '../.env'))) {
+  const envContent = readFileSync(resolve(__dirname, '../.env'), 'utf-8');
   for (const line of envContent.split('\n')) {
     const m = line.match(/^([A-Z_]+)=(.*)$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
@@ -225,7 +225,7 @@ async function main() {
     console.log(`  QR PNG: ${result.qrBuffer.length} bytes`);
 
     // Save QR as file
-    const qrPath = resolve(__dirname, `output/${expediente}-qr.png`);
+    const qrPath = resolve(__dirname, `../output/${expediente}-qr.png`);
     writeFileSync(qrPath, result.qrBuffer);
     console.log(`  QR saved: ${qrPath}`);
     return;
