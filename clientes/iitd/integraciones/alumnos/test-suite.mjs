@@ -64,13 +64,16 @@ function skip(name, reason) {
 // =====================================================
 
 const MJS_FILES = [
-  'sync-sheets.mjs', 'dashboard.mjs', 'kpis-deca.mjs',
-  'validar-datos.mjs', 'rgpd-retencion.mjs', 'recibo-pdf.mjs',
-  'certificado-pdf.mjs', 'google-auth.mjs', 'email-sender.mjs',
-  'pxl-client.mjs', 'breezedoc-client.mjs', 'breezedoc-enrollment.mjs',
-  'siteground-upload.mjs', 'reorganizar-drive.mjs', 'listados.mjs',
-  'calificaciones-client.mjs', 'sync-calificaciones.mjs',
-  'sheets-profesores.mjs',
+  'compartido/google-auth.mjs', 'compartido/email-sender.mjs',
+  'compartido/pxl-client.mjs', 'compartido/breezedoc-client.mjs',
+  'compartido/siteground-upload.mjs', 'compartido/calificaciones-client.mjs',
+  'sincronizacion/sync-sheets.mjs', 'sincronizacion/sync-calificaciones.mjs',
+  'sincronizacion/sheets-profesores.mjs',
+  'generacion/recibo-pdf.mjs', 'generacion/certificado-pdf.mjs',
+  'generacion/breezedoc-enrollment.mjs',
+  'operaciones/dashboard.mjs', 'operaciones/kpis-deca.mjs',
+  'operaciones/rgpd-retencion.mjs', 'operaciones/reorganizar-drive.mjs',
+  'datos/validar-datos.mjs', 'datos/listados.mjs',
 ];
 
 console.log('TAP version 14');
@@ -91,7 +94,7 @@ for (const file of MJS_FILES) {
 }
 
 // JS files too
-const JS_FILES = ['alumnos-client.js'];
+const JS_FILES = ['compartido/alumnos-client.js'];
 for (const file of JS_FILES) {
   const path = resolve(__dirname, file);
   if (!existsSync(path)) {
@@ -113,7 +116,7 @@ for (const file of JS_FILES) {
 console.log('# T02 — Module imports');
 
 try {
-  const mod = await import('./google-auth.mjs');
+  const mod = await import('./compartido/google-auth.mjs');
   const exports = ['getAuth', 'getSheetsClient', 'getDriveClient', 'getGoogleServices'];
   const missing = exports.filter(e => typeof mod[e] !== 'function');
   if (missing.length === 0) {
@@ -128,7 +131,7 @@ try {
 try {
   const { createRequire } = await import('module');
   const require = createRequire(import.meta.url);
-  const mod = require('./alumnos-client.js');
+  const mod = require('./compartido/alumnos-client.js');
   const exports = ['getAllRecords', 'findByEmail', 'createAlumno', 'updateAlumno',
     'upsertByEmail', 'listarAlumnos', 'filtrarPorEstado', 'getNextAlumnoId',
     'normalizeEmail', 'ESTADOS', 'FUENTES'];
@@ -174,7 +177,7 @@ if (FAST_MODE) {
   try {
     const { createRequire } = await import('module');
     const require = createRequire(import.meta.url);
-    const { getAllRecords, findByEmail } = require('./alumnos-client.js');
+    const { getAllRecords, findByEmail } = require('./compartido/alumnos-client.js');
 
     // T04: pagination returns all records
     const records = await getAllRecords();
@@ -214,7 +217,7 @@ if (FAST_MODE) {
   console.log('# T06 — Google Auth');
 
   try {
-    const { getSheetsClient, getDriveClient, getGoogleServices } = await import('./google-auth.mjs');
+    const { getSheetsClient, getDriveClient, getGoogleServices } = await import('./compartido/google-auth.mjs');
 
     const sheets = await getSheetsClient();
     const drive = await getDriveClient();
@@ -243,7 +246,7 @@ if (FAST_MODE || !SHEET_ID) {
   console.log('# T07-T10 — Sheet structure & data');
 
   try {
-    const { getSheetsClient } = await import('./google-auth.mjs');
+    const { getSheetsClient } = await import('./compartido/google-auth.mjs');
     const sheets = await getSheetsClient();
 
     // T07: 14 tabs
@@ -307,11 +310,11 @@ if (FAST_MODE || !SHEET_ID) {
 console.log('# T11-T15 — Script dry-runs');
 
 const DRY_RUN_SCRIPTS = [
-  { file: 'sync-sheets.mjs', args: '--dry-run', name: 'sync-sheets' },
-  { file: 'dashboard.mjs', args: '--dry-run', name: 'dashboard' },
-  { file: 'kpis-deca.mjs', args: '--dry-run', name: 'kpis-deca' },
-  { file: 'validar-datos.mjs', args: '', name: 'validar-datos' },
-  { file: 'rgpd-retencion.mjs', args: '', name: 'rgpd-retencion' },
+  { file: 'sincronizacion/sync-sheets.mjs', args: '--dry-run', name: 'sync-sheets' },
+  { file: 'operaciones/dashboard.mjs', args: '--dry-run', name: 'dashboard' },
+  { file: 'operaciones/kpis-deca.mjs', args: '--dry-run', name: 'kpis-deca' },
+  { file: 'datos/validar-datos.mjs', args: '', name: 'validar-datos' },
+  { file: 'operaciones/rgpd-retencion.mjs', args: '', name: 'rgpd-retencion' },
 ];
 
 for (const { file, args, name } of DRY_RUN_SCRIPTS) {
@@ -351,8 +354,8 @@ if (FAST_MODE || !SHEET_ID) {
   try {
     const { createRequire } = await import('module');
     const require = createRequire(import.meta.url);
-    const { getAllRecords } = require('./alumnos-client.js');
-    const { getSheetsClient } = await import('./google-auth.mjs');
+    const { getAllRecords } = require('./compartido/alumnos-client.js');
+    const { getSheetsClient } = await import('./compartido/google-auth.mjs');
 
     const records = await getAllRecords();
     const sheets = await getSheetsClient();
@@ -385,7 +388,7 @@ if (FAST_MODE || !SHEET_ID) {
   console.log('# T17-T18 — Header validation');
 
   try {
-    const { getSheetsClient } = await import('./google-auth.mjs');
+    const { getSheetsClient } = await import('./compartido/google-auth.mjs');
     const sheets = await getSheetsClient();
 
     // T17: Recibos headers
@@ -426,7 +429,7 @@ if (FAST_MODE || !SHEET_ID) {
 console.log('# T20-T26 — Sheets Profesores');
 
 // T20: State file exists and has valid structure
-const profStatePath = resolve(__dirname, 'sheets-profesores-state.json');
+const profStatePath = resolve(__dirname, 'sincronizacion/sheets-profesores-state.json');
 if (existsSync(profStatePath)) {
   try {
     const profState = JSON.parse(readFileSync(profStatePath, 'utf-8'));
@@ -448,7 +451,7 @@ if (FAST_MODE) {
   skip('Profesores: init --dry-run', 'fast mode');
 } else {
   try {
-    const out = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --init --dry-run`, {
+    const out = execSync(`node "${resolve(__dirname, 'sincronizacion/sheets-profesores.mjs')}" --init --dry-run`, {
       cwd: __dirname, stdio: 'pipe', timeout: 60000,
     }).toString();
     if (out.includes('alumnos activos') && out.includes('Init completado')) {
@@ -468,7 +471,7 @@ if (FAST_MODE) {
   skip('Profesores: Sheet data count > 0', 'fast mode');
 } else {
   try {
-    const { getSheetsClient: getProfSheets } = await import('./google-auth.mjs');
+    const { getSheetsClient: getProfSheets } = await import('./compartido/google-auth.mjs');
     const profSheets = await getProfSheets();
 
     // Use Javier Sánchez (has 2 tabs: DECA + Formación Sistemática)
@@ -521,7 +524,7 @@ if (FAST_MODE) {
   skip('Profesores: sync --dry-run', 'fast mode');
 } else {
   try {
-    const syncOut = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --sync --dry-run`, {
+    const syncOut = execSync(`node "${resolve(__dirname, 'sincronizacion/sheets-profesores.mjs')}" --sync --dry-run`, {
       cwd: __dirname, stdio: 'pipe', timeout: 60000,
     }).toString();
     if (syncOut.includes('Total:')) {
@@ -539,7 +542,7 @@ if (FAST_MODE) {
   skip('Profesores: refresh --dry-run', 'fast mode');
 } else {
   try {
-    const refreshOut = execSync(`node "${resolve(__dirname, 'sheets-profesores.mjs')}" --refresh --dry-run`, {
+    const refreshOut = execSync(`node "${resolve(__dirname, 'sincronizacion/sheets-profesores.mjs')}" --refresh --dry-run`, {
       cwd: __dirname, stdio: 'pipe', timeout: 60000,
     }).toString();
     if (refreshOut.includes('Refresh completado')) {
