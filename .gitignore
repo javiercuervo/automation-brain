@@ -27,6 +27,7 @@ downloads/
 results.json
 network-captures/
 **/upbase-storage-state.json
+**/uber-storage-state.json
 .playwright-mcp/
 
 # Temporary files
