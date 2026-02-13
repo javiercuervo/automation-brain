@@ -36,56 +36,14 @@ const PDFS = [
 ];
 
 const SCORMS = [
-  // El hombre ante el misterio de Dios
-  { driveId: '1uykwv_7z9p4lVr0LK_KxzRJFBfLxe5xc', route: 'hombre-misterio-dios', ud: 'UD1', sheetName: 'Scorm El hombre ante el misterio de Dios UD1' },
-  { driveId: '1BeY1K8Rec_-693enSnuU5s6wenlbnp84', route: 'hombre-misterio-dios', ud: 'UD2', sheetName: 'Scorm El hombre ante el misterio de Dios UD2' },
-  { driveId: '1_-Aee-fkjcslQN9EpMgHPce8mVxzJsre', route: 'hombre-misterio-dios', ud: 'UD3', sheetName: 'Scorm El hombre ante el misterio de Dios UD3' },
-  { driveId: '1LhFxarKU3mXFRjInoZWKOKZYoqVyRLb2', route: 'hombre-misterio-dios', ud: 'UD4', sheetName: 'Scorm El hombre ante el misterio de Dios UD4' },
-  { driveId: '1uTJ32tOYRtcP4VkJ0vC7Ng9Hx286TR_4', route: 'hombre-misterio-dios', ud: 'UD5', sheetName: 'Scorm El hombre ante el misterio de Dios UD5' },
-  { driveId: '1cccTWbDuKo1Iy7y0bTNKRF5xzaLyNyg_', route: 'hombre-misterio-dios', ud: 'UD6', sheetName: 'Scorm El hombre ante el misterio de Dios UD6' },
-  // Caminar en la fe
-  { driveId: '1Cy8jamH92OHkh16RsLGCujc91BXiAKVy', route: 'caminar-fe', ud: 'UD1', sheetName: 'Scorm Caminar en la fe UD1' },
-  { driveId: '1fXOlucToUB8470K3PsMFaIMsERf24cde', route: 'caminar-fe', ud: 'UD2', sheetName: 'Scorm Caminar en la fe UD2' },
-  { driveId: '1yx1vjEJbFqWHXpd6GCaZxej95QxF0NYW', route: 'caminar-fe', ud: 'UD3', sheetName: 'Scorm Caminar en la fe UD3' },
-  { driveId: '1jJektnNgIp3PuScRqJqvJBFmyr2vJadD', route: 'caminar-fe', ud: 'UD4', sheetName: 'Scorm Caminar en la fe UD4' },
-  { driveId: '10urQ8sbtAP0_b0oB2NexJOixbZ-iPhMu', route: 'caminar-fe', ud: 'UD5', sheetName: 'Scorm Caminar en la fe UD5' },
-  { driveId: '1oAeUNhhYoptr7rpTM1CvObCslma1-lfE', route: 'caminar-fe', ud: 'UD6', sheetName: 'Scorm Caminar en la fe UD6' },
-  // Biblia, el mensaje del AT
-  { driveId: '1T8TysfFxk_Mpf2LYYW9vi8xvnmMw4PHi', route: 'biblia-mensaje-AT', ud: 'UD1', sheetName: 'Scorm Biblia, el mensaje del AT UD1' },
-  { driveId: '1IPCZNZGPGekujsrBHmtlDaeRoHXQwuq1', route: 'biblia-mensaje-AT', ud: 'UD2', sheetName: 'Scorm Biblia, el mensaje del AT UD2' },
-  { driveId: '1L_uaLL61EAds07D88Z9TJ760oDvX4mXy', route: 'biblia-mensaje-AT', ud: 'UD3', sheetName: 'Scorm Biblia, el mensaje del AT UD3' },
-  { driveId: '1Mq-ivizR7BiIXq0Ju686z0tbtYsTznND', route: 'biblia-mensaje-AT', ud: 'UD4', sheetName: 'Scorm Biblia, el mensaje del AT UD4' },
-  { driveId: '1LfUpHnISUUOWR0Ug-rCYn2hBHOEcwLoc', route: 'biblia-mensaje-AT', ud: 'UD5', sheetName: 'Scorm Biblia, el mensaje del AT UD5' },
-  { driveId: '1c7WBAR_If7sbxR3T2qAv-vaGct7GVFnm', route: 'biblia-mensaje-AT', ud: 'UD6', sheetName: 'Scorm Biblia, el mensaje del AT UD6' },
-  { driveId: '1EmAgHxy0x0m8hN343-uYy9YOJDO7yMI-', route: 'biblia-mensaje-AT', ud: 'UD7', sheetName: 'Scorm Biblia, el mensaje del AT UD7' },
-  // Jesucristo la Palabra de Dios
-  { driveId: '1i5VVPJGlvEGu9gryXYBhucdDAROp2J0H', route: 'jesucristo-palabra-dios', ud: 'UD1', sheetName: 'Scorm Jesucristo la Palabra de Dios UD1' },
-  { driveId: '1gQKlrZj0XAiTTKe9Xxfk836_2hRWO-jo', route: 'jesucristo-palabra-dios', ud: 'UD2', sheetName: 'Scorm Jesucristo la Palabra de Dios UD2' },
-  { driveId: '1uETPSnLHQ-0Nm4wJtSqdDYVf97CyxV9C', route: 'jesucristo-palabra-dios', ud: 'UD3', sheetName: 'Scorm Jesucristo la Palabra de Dios UD3' },
-  { driveId: '1aX2GWIIHjWhk3CY0bq-DCkdWKC1ZpETt', route: 'jesucristo-palabra-dios', ud: 'UD4', sheetName: 'Scorm Jesucristo la Palabra de Dios UD4' },
-  { driveId: '1kIHUiVs4SCH6x3hfrSBJqQ6GkilKlMWR', route: 'jesucristo-palabra-dios', ud: 'UD5', sheetName: 'Scorm Jesucristo la Palabra de Dios UD5' },
-  { driveId: '1c66I2fW_KlqOqyPpKH1jo9KBGyzIWs8H', route: 'jesucristo-palabra-dios', ud: 'UD6', sheetName: 'Scorm Jesucristo la Palabra de Dios UD6' },
-  { driveId: '1tgo0MbsZcBB62xg8txOYcZjCAfb1DZA8', route: 'jesucristo-palabra-dios', ud: 'UD7', sheetName: 'Scorm Jesucristo la Palabra de Dios UD7' },
-  // La celebración cristiana: los sacramentos
-  { driveId: '1f8WPhd9YfjV2J_LXPHCW0mlcLyKUpkGX', route: 'celebracion-sacramentos', ud: 'UD1', sheetName: 'Scorm La celebración cristiana: los sacramentos UD1' },
-  { driveId: '1X4YHCM1QUiUv2WnUlzLOgi4RFxAgjURG', route: 'celebracion-sacramentos', ud: 'UD2', sheetName: 'Scorm La celebración cristiana: los sacramentos UD2' },
-  { driveId: '1B5C52Sls1IGa1Mj32W8ecpZs73jq_obQ', route: 'celebracion-sacramentos', ud: 'UD3', sheetName: 'Scorm La celebración cristiana: los sacramentos UD3' },
-  { driveId: '1JaYivpXW0bfPpR4VEkpRuEo-qcJEHoML', route: 'celebracion-sacramentos', ud: 'UD4', sheetName: 'Scorm La celebración cristiana: los sacramentos UD4' },
-  { driveId: '12FYz_6D3Adeay1-Ob0j4EWrWevsKfrTJ', route: 'celebracion-sacramentos', ud: 'UD5', sheetName: 'Scorm La celebración cristiana: los sacramentos UD5' },
-  { driveId: '10cHCoUCtPZ01Adh_56fshmNpgUjWlGGL', route: 'celebracion-sacramentos', ud: 'UD6', sheetName: 'Scorm La celebración cristiana: los sacramentos UD6' },
-  // La condición moral del ser humano
-  { driveId: '1NM2FtePzV4yOKBS_omTtVruXDDSwrqzM', route: 'condicion-moral', ud: 'UD1', sheetName: 'Scorm La condición moral del ser humano UD1' },
-  { driveId: '1mWvPaLm_JHiUPKjhHSK7c3ESDuqCLvTU', route: 'condicion-moral', ud: 'UD2', sheetName: 'Scorm La condición moral del ser humano UD2' },
-  { driveId: '1S1q4NO0RXXbZaDqc3fhHEiUpOyYTOsKC', route: 'condicion-moral', ud: 'UD3', sheetName: 'Scorm La condición moral del ser humano UD3' },
-  { driveId: '157HSzTLroCPVukMhKSD0y9iOSWKftWT6', route: 'condicion-moral', ud: 'UD4', sheetName: 'Scorm La condición moral del ser humano UD4' },
-  { driveId: '1VNQd7hcc_3Csj5rwiM98n2kwCxieu07R', route: 'condicion-moral', ud: 'UD5', sheetName: 'Scorm La condición moral del ser humano UD5' },
-  // El camino moral del cristiano
-  { driveId: '1xJOYkKC-tT70O8cFZ7oo7xlqPZAKlzm3', route: 'camino-moral', ud: 'UD1', sheetName: 'Scorm El camino moral del cristiano UD1' },
-  { driveId: '1uNT-shZY03RboGhvDy9HkyfUWqlFer7P', route: 'camino-moral', ud: 'UD2', sheetName: 'Scorm El camino moral del cristiano UD2' },
-  { driveId: '1Np6hV6zuVKf8QrCxUng3iHDT_ez_IzKM', route: 'camino-moral', ud: 'UD3', sheetName: 'Scorm El camino moral del cristiano UD3' },
-  { driveId: '1iEJlmsINCMjhVUMqlB2SURWf9fmzjZRZ', route: 'camino-moral', ud: 'UD4', sheetName: 'Scorm El camino moral del cristiano UD4' },
-  { driveId: '1K3GQXIdqZ5qKyrkQtSuu9LuCfecotIui', route: 'camino-moral', ud: 'UD5', sheetName: 'Scorm El camino moral del cristiano UD5' },
-  { driveId: '1O9IaEcWl3wKojmrHaiQiI3SFoMKjm67K', route: 'camino-moral', ud: 'UD6', sheetName: 'Scorm El camino moral del cristiano UD6' },
+  // Biblia, el mensaje del AT — v2 (filas 157-163, feb 2026)
+  { driveId: '1AKTG9y1m6CgK7Y_tMt4PUhghhD-NmX9w', route: 'biblia-mensaje-AT-v2', ud: 'UD1', sheetName: 'Scorm Biblia, el mensaje del AT UD1' },
+  { driveId: '12-f0DlOzQkdMOxjAfu_VlGntJI4EaFjp', route: 'biblia-mensaje-AT-v2', ud: 'UD2', sheetName: 'Scorm Biblia, el mensaje del AT UD2' },
+  { driveId: '1O7OPuy0ZQc9B-KOJhxvukr4lDawtWR0p', route: 'biblia-mensaje-AT-v2', ud: 'UD3', sheetName: 'Scorm Biblia, el mensaje del AT UD3' },
+  { driveId: '1WVltiT2eY_rFOFmX6fZ6McImYNFWYRft', route: 'biblia-mensaje-AT-v2', ud: 'UD4', sheetName: 'Scorm Biblia, el mensaje del AT UD4' },
+  { driveId: '1dvwgwoU94D1dKMTikAZEB-5hqwKSubkm', route: 'biblia-mensaje-AT-v2', ud: 'UD5', sheetName: 'Scorm Biblia, el mensaje del AT UD5' },
+  { driveId: '1mCD3Px0XZHJApr9a5LuviyaSRVBd8olP', route: 'biblia-mensaje-AT-v2', ud: 'UD6', sheetName: 'Scorm Biblia, el mensaje del AT UD6' },
+  { driveId: '1kamMHkAfWN1EIClwFrLC8AblFiDmZ3LI', route: 'biblia-mensaje-AT-v2', ud: 'UD7', sheetName: 'Scorm Biblia, el mensaje del AT UD7' },
 ];
 
 // ============================================================================
@@ -105,6 +63,17 @@ function scormEmbed(url) {
 // ============================================================================
 
 function getAuth() {
+  // Try Service Account first (works in CI and avoids ADC permission issues)
+  const saPath = resolve(SCRIPT_DIR, '../../integraciones/alumnos/service-account.json');
+  if (existsSync(saPath)) {
+    return new google.auth.GoogleAuth({
+      keyFile: saPath,
+      scopes: [
+        'https://www.googleapis.com/auth/drive.readonly',
+        'https://www.googleapis.com/auth/spreadsheets',
+      ],
+    });
+  }
   return new google.auth.GoogleAuth({
     scopes: [
       'https://www.googleapis.com/auth/drive.readonly',

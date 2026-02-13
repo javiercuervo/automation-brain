@@ -51,6 +51,7 @@ const TABLE_ID = process.env.STACKBY_ALUMNOS_TABLE_ID || 'tbJ6m2vPBrLEBvZ3VQ';
 const BASE_URL = 'https://stackby.com/api/betav1';
 const SHEET_ID = process.env.PANEL_IITD_SHEET_ID || '';
 let DRIVE_FOLDER_ID = process.env.DRIVE_RECIBOS_FOLDER_ID || '';
+const APPS_SCRIPT_UPLOAD_URL = process.env.APPS_SCRIPT_UPLOAD_URL || '';
 
 const EMAIL_FILTER = (() => {
   const idx = process.argv.indexOf('--email');
@@ -368,9 +369,29 @@ async function ensureDriveFolder() {
   return DRIVE_FOLDER_ID;
 }
 
+async function uploadViaAppsScript(localPath, fileName, folderId) {
+  const base64 = readFileSync(localPath).toString('base64');
+  const resp = await fetch(APPS_SCRIPT_UPLOAD_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileName, base64, folderId, mimeType: 'application/pdf' }),
+    redirect: 'follow',
+  });
+  const data = await resp.json();
+  if (!data.ok) throw new Error(data.error || 'Apps Script upload failed');
+  return { fileId: data.fileId, url: data.url };
+}
+
 async function uploadToDrive(localPath, fileName) {
+  const folderId = DRIVE_FOLDER_ID || await ensureDriveFolder();
+
+  // Apps Script proxy (works around SA storage quota limit)
+  if (APPS_SCRIPT_UPLOAD_URL) {
+    return uploadViaAppsScript(localPath, fileName, folderId);
+  }
+
+  // Direct Drive API (only works with OAuth, not SA)
   const { drive } = await getGoogleServices();
-  const folderId = await ensureDriveFolder();
   const { createReadStream } = await import('fs');
 
   const res = await drive.files.create({

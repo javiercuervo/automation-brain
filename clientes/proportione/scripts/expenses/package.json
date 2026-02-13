@@ -1,0 +1,17 @@
+{
+  "name": "proportione-expenses",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Uber invoices → SparkReceipt automation",
+  "scripts": {
+    "auth": "node uber-invoices.mjs --auth",
+    "invoices": "node uber-invoices.mjs",
+    "invoices:dry": "node uber-invoices.mjs --dry-run",
+    "invoices:all": "node uber-invoices.mjs --all"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "nodemailer": "^6.10.0",
+    "playwright": "^1.50.0"
+  }
+}

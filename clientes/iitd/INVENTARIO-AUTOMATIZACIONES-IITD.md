@@ -11,11 +11,11 @@
 
 | Estado | Descripción | Cantidad | % |
 |--------|-------------|----------|---|
-| ✅ | Hecho (Funcional y en uso) | 26 | 50.0% |
+| ✅ | Hecho (Funcional y en uso) | 28 | 53.8% |
 | 🔧 | Implementado (Código listo, pendiente deploy/config) | 5 | 9.6% |
 | 📋 | Guía entregada (Documentación entregada, acción manual) | 2 | 3.8% |
 | ⏳ | Pendiente (No iniciado) | 14 | 26.9% |
-| 🚫 | Bloqueado (Limitaciones externas) | 5 | 9.6% |
+| 🚫 | Bloqueado (Limitaciones externas) | 3 | 5.8% |
 | **TOTAL** | | **52** | **100%** |
 
 ---

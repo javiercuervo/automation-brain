@@ -1,0 +1,13 @@
+{
+  "processedTrips": {
+    "fd540957-e66b-4520-95e7-c0fb24afe3a3": {
+      "date": "Feb 12 • 4:09 PM",
+      "amount": "€24.95",
+      "destination": "UNIE Universidad - Campus Arapiles",
+      "pdfFile": "uber-Feb-12---4-09-PM-fd540957.pdf",
+      "sentToSparkReceipt": true,
+      "processedAt": "2026-02-12T22:30:14.329Z"
+    }
+  },
+  "lastRun": "2026-02-12T22:30:14.329Z"
+}
