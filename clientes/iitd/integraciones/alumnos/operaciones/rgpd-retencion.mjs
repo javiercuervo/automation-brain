@@ -271,7 +271,7 @@ async function writeSheet(results) {
     return;
   }
 
-  const { getSheetsClient } = await import('./google-auth.mjs');
+  const { getSheetsClient } = await import('../compartido/google-auth.mjs');
   const sheets = await getSheetsClient();
 
   const expired = results.filter(r => r.analysis.expired);

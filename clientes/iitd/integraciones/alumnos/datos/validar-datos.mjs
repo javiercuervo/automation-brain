@@ -306,7 +306,7 @@ async function writeSheet(alumnos, issues, countByRule, validCount, duplicates) 
     process.exit(1);
   }
 
-  const { getSheetsClient } = await import('./google-auth.mjs');
+  const { getSheetsClient } = await import('../compartido/google-auth.mjs');
   const sheets = await getSheetsClient();
 
   const TAB = 'Validación';

@@ -250,7 +250,7 @@ async function writeToSheet(alumnos, metrics) {
     return;
   }
 
-  const { getSheetsClient } = await import('./google-auth.mjs');
+  const { getSheetsClient } = await import('../compartido/google-auth.mjs');
   const sheets = await getSheetsClient();
 
   const TAB = 'Dashboard';

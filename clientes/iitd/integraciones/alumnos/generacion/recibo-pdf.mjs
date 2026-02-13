@@ -333,7 +333,7 @@ let _services = null;
 
 async function getGoogleServices() {
   if (_services) return _services;
-  const { getGoogleServices: getServices } = await import('./google-auth.mjs');
+  const { getGoogleServices: getServices } = await import('../compartido/google-auth.mjs');
   _services = await getServices();
   return _services;
 }

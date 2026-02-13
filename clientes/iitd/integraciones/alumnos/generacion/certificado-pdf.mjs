@@ -663,7 +663,7 @@ async function appendCertificadoToSheet(row) {
     return;
   }
 
-  const { getSheetsClient } = await import('./google-auth.mjs');
+  const { getSheetsClient } = await import('../compartido/google-auth.mjs');
   const sheets = await getSheetsClient();
 
   await sheets.spreadsheets.values.append({
@@ -736,7 +736,7 @@ async function main() {
 
   if (UPLOAD_MODE && alumno.expediente) {
     console.log('\n  Creando short link + QR...');
-    const { createDiplomaLink } = await import('./pxl-client.mjs');
+    const { createDiplomaLink } = await import('../compartido/pxl-client.mjs');
     const linkResult = await createDiplomaLink(alumno.expediente);
     qrBuffer = linkResult.qrBuffer;
     shortUrl = linkResult.shortUrl;
@@ -789,7 +789,7 @@ async function main() {
   // --- Upload to SiteGround ---
   if (UPLOAD_MODE && alumno.expediente) {
     console.log('\n  Subiendo a SiteGround...');
-    const { uploadFile, diplomaHash } = await import('./siteground-upload.mjs');
+    const { uploadFile, diplomaHash } = await import('../compartido/siteground-upload.mjs');
     const fileHash = diplomaHash(alumno.expediente);
 
     for (const r of results) {

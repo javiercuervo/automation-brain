@@ -74,6 +74,10 @@ const MJS_FILES = [
   'operaciones/dashboard.mjs', 'operaciones/kpis-deca.mjs',
   'operaciones/rgpd-retencion.mjs', 'operaciones/reorganizar-drive.mjs',
   'datos/validar-datos.mjs', 'datos/listados.mjs',
+  'compartido/contactos-client.mjs',
+  'generacion/pdf-signer.mjs',
+  'datos/assign-ids.mjs', 'datos/dedup-alumnos.mjs',
+  'datos/exportar-alumno.mjs', 'datos/import-polar.mjs',
 ];
 
 console.log('TAP version 14');
