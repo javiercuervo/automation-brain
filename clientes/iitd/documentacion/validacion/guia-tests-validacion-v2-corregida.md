@@ -284,22 +284,22 @@ _______________________________________________________________________
 
 1. Abre el enlace compartido: [Calificaciones IITD](INSERTAR_URL_AQUI)
 
-**✅ Estructura actualizada (orden real de columnas):**
+**✅ Estructura actualizada (orden real de columnas en el Sheet):**
 
 ```
-1. Email
-2. ✅ Nombre (AÑADIDO)
-3. ✅ Apellidos (AÑADIDO)
-4. Calificación final
+1. Email alumno
+2. Nombre
+3. Apellidos
+4. Programa
 5. Asignatura
-6. Programa
-7. Curso académico
-8. Nota Evaluación
-9. Nota examen
-10. Fecha evaluación
-11. Profesor
-12. Convalidada
+6. Nota evaluación
+7. Nota examen
+8. Calificación final
+9. Profesor
+10. Convalidada
 ```
+
+**Nota:** El Sheet tiene 10 columnas. La tabla Stackby tiene 13 columnas adicionales (Notas, Curso académico, Fecha evaluación) que no se sincronizan al Sheet.
 
 **Qué verificar:**
 
@@ -388,12 +388,29 @@ _______________________________________________________________________
 **Qué verificar:**
 
 1. Haz clic en la pestaña "CALIFICACIONES"
-2. Verifica que existe y tiene las columnas indicadas en sección 2.2
+2. Verifica que existe y tiene las columnas en este orden:
+
+**Columnas Stackby CALIFICACIONES (orden real):**
+```
+1. Email alumno
+2. Nombre
+3. Apellidos
+4. Notas
+5. Calificación final
+6. Asignatura
+7. Programa
+8. Curso académico
+9. Nota evaluación
+10. Nota examen
+11. Fecha evaluación
+12. Profesor
+13. Convalidada
+```
 
 **Checklist:**
 
 - [ ] La tabla existe
-- [ ] ✅ Tiene columnas Nombre y Apellidos además de Email
+- [ ] Tiene columnas Nombre y Apellidos (después de Email alumno)
 - [ ] Si tiene datos, son coherentes
 - [ ] Entiendo que se sincroniza con el Google Sheet "Calificaciones IITD"
 
@@ -554,10 +571,10 @@ _______________________________________________________________________
 - [ ] Adecuado para todos los programas del IITD:
   - DECA Infantil y Primaria
   - DECA ESO y Bachillerato
-  - Experto Universitario en Teología
-  - Bachiller en Teología
-  - Licenciatura en Teología
-  - Otros programas
+  - Formación Sistemática en Teología
+  - Formación Bíblica (AT/NT)
+  - Compromiso Laical y Doctrina Social
+  - Cursos Monográficos
 
 **Notas/Problemas:**
 ```
@@ -767,8 +784,8 @@ _______________________________________________________________________
 
 ---
 
-**Versión:** 2.0
-**Última actualización:** 12 febrero 2026
+**Versión:** 2.1
+**Última actualización:** 14 febrero 2026
 **Tiempo estimado:** 60-90 minutos para completar todos los tests
 
 ✅ **Todo es autoexplicativo - No necesitas demos ni llamadas**

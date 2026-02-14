@@ -7,7 +7,7 @@
  * Mismo patrón que alumnos-client.js pero ESM.
  *
  * Campos esperados en Stackby:
- *   Email alumno, Asignatura, Programa, Curso académico,
+ *   Email alumno, Nombre, Apellidos, Asignatura, Programa, Curso académico,
  *   Nota evaluación, Nota examen, Calificación final,
  *   Fecha evaluación, Profesor, Convalidada, Notas
  */
@@ -168,6 +168,8 @@ export async function upsertCalificacion(email, asignatura, fields) {
 function parseFields(f) {
   return {
     email: (f?.['Email alumno'] || '').trim(),
+    nombre: (f?.Nombre || '').trim(),
+    apellidos: (f?.Apellidos || '').trim(),
     asignatura: (f?.Asignatura || '').trim(),
     programa: (f?.Programa || '').trim(),
     curso: (f?.['Curso académico'] || '').trim(),
@@ -184,6 +186,8 @@ function parseFields(f) {
 function toStackbyFields(f) {
   const out = {};
   if (f.email !== undefined)          out['Email alumno'] = f.email;
+  if (f.nombre !== undefined)         out['Nombre'] = f.nombre;
+  if (f.apellidos !== undefined)      out['Apellidos'] = f.apellidos;
   if (f.asignatura !== undefined)     out['Asignatura'] = f.asignatura;
   if (f.programa !== undefined)       out['Programa'] = f.programa;
   if (f.curso !== undefined)          out['Curso académico'] = f.curso;

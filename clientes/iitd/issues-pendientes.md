@@ -93,137 +93,29 @@ Publicado en Customizer. Móvil (375px) ya era correcto.
 
 ---
 
-## 🟢 PENDIENTES - MEJORAS USABILIDAD (Febrero/Marzo)
+### Issue #10: Añadir columnas Nombre/Apellidos en CALIFICACIONES ✅
 
-### Issue #10: Añadir columnas Nombre/Apellidos en CALIFICACIONES
-
-**Título:** Tabla CALIFICACIONES - Añadir columnas Nombre y Apellidos
-**Prioridad:** 🟢 MEDIA-BAJA
-**Tiempo estimado:** 30 min
-**Responsable:** Javier Cuervo
-
-**Tareas:**
-- [ ] Abrir Stackby tabla CALIFICACIONES
-- [ ] Añadir campo "Nombre" (tipo: texto)
-- [ ] Añadir campo "Apellidos" (tipo: texto)
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/calificaciones-client.mjs`:
-  - Añadir campos a CALIFICACIONES_FIELDS
-  - Actualizar función createCalificacion()
-  - Actualizar función upsertCalificacion()
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/sync-calificaciones.mjs`:
-  - Añadir columnas Nombre/Apellidos en encabezados esperados
-  - Actualizar mapping de datos
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/sheets-profesores.mjs`:
-  - Ya tiene Nombre/Apellidos, verificar compatibilidad
-- [ ] Re-sincronizar: `node sync-calificaciones.mjs --reverse` (Stackby → Sheet)
-- [ ] Verificar en Sheet "Calificaciones IITD" que columnas aparecen
-
-**Contexto:** Mayte sugiere "CREO QUE DEBERÍA TENER NOMBRE Y APELLIDOS" en tabla CALIFICACIONES. Actualmente solo tiene email, dificulta identificación visual de alumnos.
-
-**Archivos involucrados:**
-- `/clientes/iitd/integraciones/alumnos/calificaciones-client.mjs`
-- `/clientes/iitd/integraciones/alumnos/sync-calificaciones.mjs`
-- `/clientes/iitd/integraciones/alumnos/sheets-profesores.mjs`
-
-**Impacto:** BAJO - Mejora usabilidad, no afecta funcionalidad core
+**Estado:** RESUELTO — 14 feb 2026
+**Resolución:**
+- Columnas "Nombre" y "Apellidos" (Short Text) añadidas en Stackby CALIFICACIONES via UI
+- `calificaciones-client.mjs` actualizado: parseFields() + toStackbyFields() incluyen nombre/apellidos
+- `sync-calificaciones.mjs` actualizado: syncToStackby() envía nombre/apellidos desde Sheet
+- Filas existentes pobladas con datos de ALUMNOS (API rowupdate)
+- Sync reverso ejecutado: Sheet "Calificaciones IITD" actualizado con columnas Nombre/Apellidos
+- Fila vacía creada accidentalmente eliminada via API
 
 ---
 
-### Issue #11: Actualizar documentación columnas reales
+### Issue #11: Actualizar documentación columnas reales ✅
 
-**Título:** Docs - Corregir nombres y orden columnas Stackby
-**Prioridad:** 🟢 BAJA
-**Tiempo estimado:** 10 min
-**Responsable:** Javier Cuervo
-
-**Tareas:**
-- [ ] Revisar columna "Notas" vs "Nº Expediente" en tabla ALUMNOS:
-  - Opción A: Renombrar en Stackby de "Notas" → "Nº Expediente"
-  - Opción B: Actualizar docs para decir 'Columna "Notas" (contiene Nº Expediente)'
-  - **Decisión:** Opción B (menos disruptivo)
-- [ ] Abrir Stackby tabla CALIFICACIONES
-- [ ] Documentar orden real de columnas
-- [ ] Actualizar `/clientes/iitd/docs/GUIA-TESTS-VALIDACION-V2-CORREGIDA.md`:
-  - Sección 3.1: Aclarar "Notas (contiene Nº Expediente)"
-  - Sección 3.2: Corregir orden columnas CALIFICACIONES
-- [ ] Actualizar Google Docs de Mayte con misma corrección
-
-**Contexto:** Discrepancias anotadas por Mayte:
-- Columna documentada "Nº Expediente" se llama "Notas" en Stackby
-- Orden columnas CALIFICACIONES diferente al documentado
-
-**Archivos involucrados:**
-- `/clientes/iitd/docs/GUIA-TESTS-VALIDACION-V2-CORREGIDA.md`
-- Google Docs Mayte
-
-**Impacto:** BAJO - Documentación vs realidad, no afecta funcionalidad
-
----
-
-## 🟢 MEJORAS USABILIDAD - Sprint 4 (Febrero/Marzo - 1 hora)
-
-### Issue #10: Añadir columnas Nombre/Apellidos en CALIFICACIONES
-
-**Título:** Tabla CALIFICACIONES - Añadir columnas Nombre y Apellidos
-**Prioridad:** 🟢 MEDIA-BAJA
-**Tiempo estimado:** 30 min
-**Responsable:** Javier Cuervo
-
-**Tareas:**
-- [ ] Abrir Stackby tabla CALIFICACIONES
-- [ ] Añadir campo "Nombre" (tipo: texto)
-- [ ] Añadir campo "Apellidos" (tipo: texto)
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/calificaciones-client.mjs`:
-  - Añadir campos a CALIFICACIONES_FIELDS
-  - Actualizar función createCalificacion()
-  - Actualizar función upsertCalificacion()
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/sync-calificaciones.mjs`:
-  - Añadir columnas Nombre/Apellidos en encabezados esperados
-  - Actualizar mapping de datos
-- [ ] Actualizar `/clientes/iitd/integraciones/alumnos/sheets-profesores.mjs`:
-  - Ya tiene Nombre/Apellidos, verificar compatibilidad
-- [ ] Re-sincronizar: `node sync-calificaciones.mjs --reverse` (Stackby → Sheet)
-- [ ] Verificar en Sheet "Calificaciones IITD" que columnas aparecen
-
-**Contexto:** Mayte sugiere "CREO QUE DEBERÍA TENER NOMBRE Y APELLIDOS" en tabla CALIFICACIONES. Actualmente solo tiene email, dificulta identificación visual de alumnos.
-
-**Archivos involucrados:**
-- `/clientes/iitd/integraciones/alumnos/calificaciones-client.mjs`
-- `/clientes/iitd/integraciones/alumnos/sync-calificaciones.mjs`
-- `/clientes/iitd/integraciones/alumnos/sheets-profesores.mjs`
-
-**Impacto:** BAJO - Mejora usabilidad, no afecta funcionalidad core
-
----
-
-### Issue #11: Actualizar documentación columnas reales
-
-**Título:** Docs - Corregir nombres y orden columnas Stackby
-**Prioridad:** 🟢 BAJA
-**Tiempo estimado:** 10 min
-**Responsable:** Javier Cuervo
-
-**Tareas:**
-- [ ] Revisar columna "Notas" vs "Nº Expediente" en tabla ALUMNOS:
-  - Opción A: Renombrar en Stackby de "Notas" → "Nº Expediente"
-  - Opción B: Actualizar docs para decir 'Columna "Notas" (contiene Nº Expediente)'
-  - **Decisión:** Opción B (menos disruptivo)
-- [ ] Abrir Stackby tabla CALIFICACIONES
-- [ ] Documentar orden real de columnas
-- [ ] Actualizar `/clientes/iitd/docs/GUIA-TESTS-VALIDACION-V2-CORREGIDA.md`:
-  - Sección 3.1: Aclarar "Notas (contiene Nº Expediente)"
-  - Sección 3.2: Corregir orden columnas CALIFICACIONES
-- [ ] Actualizar Google Docs de Mayte con misma corrección
-
-**Contexto:** Discrepancias anotadas por Mayte:
-- Columna documentada "Nº Expediente" se llama "Notas" en Stackby
-- Orden columnas CALIFICACIONES diferente al documentado
-
-**Archivos involucrados:**
-- `/clientes/iitd/docs/GUIA-TESTS-VALIDACION-V2-CORREGIDA.md`
-- Google Docs Mayte
-
-**Impacto:** BAJO - Documentación vs realidad, no afecta funcionalidad
+**Estado:** RESUELTO — 14 feb 2026
+**Resolución:**
+- Sección 2.2 (Sheet Calificaciones): corregido orden de columnas a 10 cols reales del HEADERS
+- Sección 3.3 (Stackby CALIFICACIONES): documentado orden real de 13 columnas
+- Sección 3.2 (ALUMNOS): ya tenía aclaración "Notas (contiene Nº Expediente)" — OK
+- Sección 4.3 (Diploma): corregidos programas falsos (Experto/Bachiller/Licenciatura) → programas reales
+- Guía actualizada a v2.1 (14 feb 2026)
+- Google Docs de Mayte: pendiente enviar versión actualizada
 
 ---
 
@@ -293,15 +185,13 @@ Publicado en Customizer. Móvil (375px) ya era correcto.
 | #7 | ARCO+ responsive | ✅ Resuelto 13 feb |
 | #8 | Cookies formato | ✅ Resuelto 13 feb |
 | #9 | DNS diplomas | ✅ Resuelto 13 feb (ya estaba OK) |
-| #10 | Columnas Nombre/Apellidos | ⬚ Pendiente |
-| #11 | Docs columnas Stackby | ⬚ Pendiente |
+| #10 | Columnas Nombre/Apellidos | ✅ Resuelto 14 feb |
+| #11 | Docs columnas Stackby | ✅ Resuelto 14 feb |
 | #12 | Migración Holded | ⬚ Pendiente (deadline mayo 2026) |
 
-**Progreso: 9/12 completados (75%)**
+**Progreso: 11/12 completados (92%)**
 
 ### Pendientes:
-- [ ] Issue #10: Columnas Nombre/Apellidos en CALIFICACIONES (~30 min)
-- [ ] Issue #11: Docs actualizadas (~10 min)
 - [ ] Issue #12: Migración Golden Soft → Holded (5-6 semanas, requiere Gema)
 
 ### Artefactos generados durante resolución (13 feb):
@@ -313,5 +203,5 @@ Publicado en Customizer. Móvil (375px) ya era correcto.
 
 ---
 
-**Última actualización:** 13 febrero 2026 21:00
+**Última actualización:** 14 febrero 2026
 **Preparado por:** Javier Cuervo / Proportione

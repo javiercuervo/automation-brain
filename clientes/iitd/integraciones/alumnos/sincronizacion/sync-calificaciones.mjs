@@ -204,6 +204,8 @@ async function syncToStackby() {
 
   const headers = rows[0];
   const emailIdx = headers.indexOf('Email alumno');
+  const nombreIdx = headers.indexOf('Nombre');
+  const apellidosIdx = headers.indexOf('Apellidos');
   const asigIdx = headers.indexOf('Asignatura');
   const progIdx = headers.indexOf('Programa');
   const noteIdx = headers.indexOf('Nota evaluación');
@@ -230,6 +232,8 @@ async function syncToStackby() {
     if (!nota && !examen && !calif && !conv) { skipped++; continue; }
 
     const fields = {
+      nombre: nombreIdx >= 0 ? (row[nombreIdx] || '').trim() : '',
+      apellidos: apellidosIdx >= 0 ? (row[apellidosIdx] || '').trim() : '',
       programa: (row[progIdx] || '').trim(),
       curso: '2025/26',
     };
