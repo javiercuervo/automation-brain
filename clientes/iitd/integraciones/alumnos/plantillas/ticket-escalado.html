@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#1a5276;margin:0;">{{institucion_nombre}} — Ticket Escalado</h2>
+</div>
+
+<p>Se ha escalado un ticket que requiere atencion manual:</p>
+
+<div style="background:#fff3e0;border-left:4px solid #ff9800;border-radius:4px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 8px;"><strong>Ticket:</strong> {{ticket_id}}</p>
+  <p style="margin:0 0 8px;"><strong>Remitente:</strong> {{email_remitente}}</p>
+  <p style="margin:0 0 8px;"><strong>Asunto:</strong> {{asunto}}</p>
+  <p style="margin:0 0 8px;"><strong>Categoria:</strong> {{categoria}}</p>
+  <p style="margin:0;"><strong>Confianza FAQ:</strong> {{confianza}}%</p>
+</div>
+
+<p><strong>Mensaje original:</strong></p>
+
+<div style="background:#f5f5f5;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0;white-space:pre-wrap;">{{mensaje}}</p>
+</div>
+
+<p>Responda directamente al alumno en <a href="mailto:{{email_remitente}}" style="color:#1a5276;">{{email_remitente}}</a>.</p>
+
+<p style="font-size:12px;color:#999;">Este es un mensaje automatico del sistema de tickets IITD.</p>
+
+</body>
+</html>

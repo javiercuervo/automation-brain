@@ -147,6 +147,9 @@ const TEMPLATE_SUBJECTS = {
   'brecha-director': 'URGENTE: Posible brecha de seguridad — {{institucion_nombre}}',
   'brecha-aepd': 'Notificación de brecha de datos personales — {{institucion_nombre}} ({{iitd_nif}})',
   'brecha-afectado': 'Información importante sobre sus datos personales — {{institucion_nombre}}',
+  'respuesta-ticket': 'Re: {{asunto}} — {{institucion_nombre}} ({{ticket_id}})',
+  'ticket-escalado': 'Ticket escalado: {{ticket_id}} — {{asunto}}',
+  'newsletter-baja-confirmacion': 'Confirmacion de baja — Newsletter {{institucion_nombre}}',
 };
 
 // =====================================================

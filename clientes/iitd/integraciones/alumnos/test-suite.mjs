@@ -83,6 +83,10 @@ const MJS_FILES = [
   'compartido/grabaciones-client.mjs', 'operaciones/grabaciones-expiracion.mjs',
   'compartido/productos-client.mjs', 'compartido/facturas-client.mjs',
   'generacion/factura-centro-pdf.mjs', 'operaciones/grabaciones-compliance.mjs',
+  'compartido/newsletter-client.mjs', 'compartido/tickets-client.mjs',
+  'compartido/faq-responder.mjs', 'compartido/centros-acceso-client.mjs',
+  'operaciones/newsletter-consent-report.mjs', 'operaciones/ticket-processor.mjs',
+  'operaciones/centros-exportar.mjs',
 ];
 
 console.log('TAP version 14');
@@ -716,6 +720,119 @@ if (FAST_MODE) {
   } catch (err) {
     notOk('Dry-run: grabaciones-compliance', err.stderr?.toString().split('\n')[0] || err.message);
   }
+}
+
+// =====================================================
+// T36-T39 — N34/N35/N38 MODULE IMPORTS
+// =====================================================
+
+console.log('# T36-T39 — N34/N35/N38 module imports');
+
+try {
+  const mod = await import('./compartido/newsletter-client.mjs');
+  const exports = ['listSubscribers', 'subscribe', 'unsubscribe'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.CONSENTIMIENTO_ESTADOS && mod.BASES_LEGALES;
+  if (missing.length === 0 && hasConst) {
+    ok('Import: newsletter-client.mjs (3 fn + CONSENTIMIENTO_ESTADOS + BASES_LEGALES)');
+  } else {
+    notOk('Import: newsletter-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: newsletter-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/tickets-client.mjs');
+  const exports = ['listarTickets', 'crearTicket', 'validarTransicion'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.ESTADOS_TICKET && mod.CATEGORIAS;
+  if (missing.length === 0 && hasConst) {
+    ok('Import: tickets-client.mjs (3 fn + ESTADOS_TICKET + CATEGORIAS)');
+  } else {
+    notOk('Import: tickets-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: tickets-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/faq-responder.mjs');
+  const exports = ['matchFAQ'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = Array.isArray(mod.FAQ_ENTRIES) && typeof mod.CONFIDENCE_THRESHOLD === 'number';
+  if (missing.length === 0 && hasConst) {
+    ok(`Import: faq-responder.mjs (matchFAQ + ${mod.FAQ_ENTRIES.length} FAQs + threshold=${mod.CONFIDENCE_THRESHOLD})`);
+  } else {
+    notOk('Import: faq-responder.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: faq-responder.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/centros-acceso-client.mjs');
+  const exports = ['listarCentros', 'crearCentro', 'getCamposPermitidos'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasCampos = Array.isArray(mod.CAMPOS_MINIMOS_CENTRO);
+  if (missing.length === 0 && hasCampos) {
+    ok(`Import: centros-acceso-client.mjs (3 fn + CAMPOS_MINIMOS_CENTRO=[${mod.CAMPOS_MINIMOS_CENTRO.join(',')}])`);
+  } else {
+    notOk('Import: centros-acceso-client.mjs', `missing fn: ${missing.join(', ')}${!hasCampos ? ', CAMPOS_MINIMOS_CENTRO' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: centros-acceso-client.mjs', err.message);
+}
+
+// =====================================================
+// T40 — N34/N35/N38 ENV VARS
+// =====================================================
+
+console.log('# T40 — N34/N35/N38 env vars');
+
+const N34_N38_VARS = ['STACKBY_NEWSLETTER_CONSENT_TABLE_ID', 'STACKBY_TICKETS_TABLE_ID', 'STACKBY_CENTROS_ACCESO_TABLE_ID'];
+const missingN34 = N34_N38_VARS.filter(v => !process.env[v]);
+if (missingN34.length === 0) {
+  ok(`Env: N34/N35/N38 vars definidas (${N34_N38_VARS.length})`);
+} else {
+  notOk('Env: N34/N35/N38 vars', `missing: ${missingN34.join(', ')}`);
+}
+
+// =====================================================
+// T41 — FAQ OFFLINE TEST
+// =====================================================
+
+console.log('# T41 — FAQ offline test');
+
+try {
+  const { matchFAQ, CONFIDENCE_THRESHOLD } = await import('./compartido/faq-responder.mjs');
+  const result = matchFAQ('matricula DECA', 'quiero matricularme en DECA infantil');
+  if (result.matched && result.confianza >= CONFIDENCE_THRESHOLD && result.categoria === 'matricula') {
+    ok(`FAQ: matchFAQ('matricula DECA') → matched=true, confianza=${result.confianza}, cat=${result.categoria}`);
+  } else {
+    notOk('FAQ: matchFAQ', `matched=${result.matched}, confianza=${result.confianza}, cat=${result.categoria}`);
+  }
+} catch (err) {
+  notOk('FAQ: matchFAQ', err.message);
+}
+
+// =====================================================
+// T42 — RGPD CAMPOS PROHIBIDOS
+// =====================================================
+
+console.log('# T42 — RGPD campos prohibidos');
+
+try {
+  const { CAMPOS_MINIMOS_CENTRO } = await import('./compartido/centros-acceso-client.mjs');
+  const PROHIBIDOS = ['DNI', 'Email', 'Telefono'];
+  const violations = PROHIBIDOS.filter(p => CAMPOS_MINIMOS_CENTRO.includes(p));
+  if (violations.length === 0) {
+    ok(`RGPD: CAMPOS_MINIMOS_CENTRO no incluye ${PROHIBIDOS.join(', ')}`);
+  } else {
+    notOk('RGPD: CAMPOS_MINIMOS_CENTRO', `incluye campos prohibidos: ${violations.join(', ')}`);
+  }
+} catch (err) {
+  notOk('RGPD: CAMPOS_MINIMOS_CENTRO', err.message);
 }
 
 // =====================================================

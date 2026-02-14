@@ -293,6 +293,8 @@ export async function detectAnomalies(options = {}) {
     'validar-datos.mjs', 'breach-notification.mjs', 'grabaciones-expiracion.mjs',
     'import-polar.mjs', 'dedup-alumnos.mjs', 'assign-ids.mjs',
     'audit-client.mjs', 'grabaciones-client.mjs', 'curso-publicar.mjs',
+    'newsletter-client.mjs', 'ticket-processor.mjs', 'centros-exportar.mjs',
+    'centros-acceso-client.mjs', 'tickets-client.mjs',
     'setup-test', 'manual', 'stripe-webhook',
   ];
   const unknownUser = records.filter(r =>
