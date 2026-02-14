@@ -98,6 +98,8 @@ const MJS_FILES = [
   'compartido/och-client.mjs',
   'sincronizacion/och-enrollment.mjs',
   'datos/och-csv-import.mjs',
+  // Diploma OCH — diseño corporativo
+  'generacion/diploma-och.mjs',
 ];
 
 console.log('TAP version 14');
@@ -1005,6 +1007,40 @@ for (const { file, args, name, marker } of SPRINT11_HELP_SCRIPTS) {
   } catch (err) {
     notOk(`Help: ${name}`, err.stderr?.toString().split('\n')[0] || err.message);
   }
+}
+
+// =====================================================
+// T58-T59 — Diploma OCH
+// =====================================================
+
+console.log('# T58-T59 — Diploma OCH');
+
+// T58: --help
+try {
+  const helpOut = execSync(`node "${resolve(__dirname, 'generacion/diploma-och.mjs')}" --help`, {
+    cwd: __dirname, stdio: 'pipe', timeout: 15000,
+  }).toString();
+  if (helpOut.includes('Diplomas OCH') || helpOut.includes('diploma-och')) {
+    ok('Help: diploma-och --help');
+  } else {
+    notOk('Help: diploma-och', 'output missing marker');
+  }
+} catch (err) {
+  notOk('Help: diploma-och', err.stderr?.toString().split('\n')[0] || err.message);
+}
+
+// T59: --mock dry-run (generates PDF)
+try {
+  const mockOut = execSync(`node "${resolve(__dirname, 'generacion/diploma-och.mjs')}" --mock --no-sign -o /tmp/test-diploma-och-suite`, {
+    cwd: __dirname, stdio: 'pipe', timeout: 30000,
+  }).toString();
+  if (mockOut.includes('Diploma OCH') && mockOut.includes('Hash:')) {
+    ok('Mock: diploma-och --mock (PDF generated)');
+  } else {
+    notOk('Mock: diploma-och --mock', 'output missing expected markers');
+  }
+} catch (err) {
+  notOk('Mock: diploma-och --mock', err.stderr?.toString().split('\n')[0] || err.message);
 }
 
 // =====================================================

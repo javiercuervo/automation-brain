@@ -41,6 +41,7 @@ Ver inventario completo en [`INVENTARIO-AUTOMATIZACIONES-IITD.md`](INVENTARIO-AU
 | `validar-datos.mjs` | N21 | Auditoría de datos: emails, duplicados, estados |
 | `recibo-pdf.mjs` | N08 | Recibos PDF + Drive + Sheet |
 | `certificado-pdf.mjs` | N09, N26 | Certificados multi-programa con QR + upload SiteGround |
+| `diploma-och.mjs` | N09b | Diplomas OCH con diseño corporativo IITD (Quasimoda + branding) |
 | `calificaciones-client.mjs` | N06 | CRUD Stackby tabla CALIFICACIONES |
 | `sync-calificaciones.mjs` | N06 | Sync bidireccional Sheet ↔ Stackby |
 | `dashboard.mjs` | N16 | Dashboard operativo diario |

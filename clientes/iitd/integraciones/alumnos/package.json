@@ -11,6 +11,7 @@
     "retencion": "node operaciones/rgpd-retencion.mjs --sheet",
     "recibo": "node generacion/recibo-pdf.mjs",
     "certificado": "node generacion/certificado-pdf.mjs",
+    "diploma-och": "node generacion/diploma-och.mjs",
     "all": "node sincronizacion/sync-sheets.mjs && node operaciones/dashboard.mjs && node operaciones/kpis-deca.mjs && node datos/validar-datos.mjs --sheet && node operaciones/rgpd-retencion.mjs --sheet",
     "profes:init": "node sincronizacion/sheets-profesores.mjs --init",
     "profes:sync": "node sincronizacion/sheets-profesores.mjs --sync",
