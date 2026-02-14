@@ -256,6 +256,107 @@ export async function revocarConsentimiento(grabacionId) {
 }
 
 /**
+ * Grant promotional consent for a recording.
+ */
+export async function grantConsentimiento(grabacionId) {
+  await actualizarGrabacion(grabacionId, { consentimientoPromocional: 'si' });
+
+  try {
+    const { logAudit } = await import('./audit-client.mjs');
+    await logAudit({
+      tabla: 'GRABACIONES',
+      operacion: 'UPDATE',
+      rowId: grabacionId,
+      usuario: 'grabaciones-client.mjs',
+      campos: JSON.stringify({ 'Consentimiento promocional': 'si' }),
+      fuente: 'CLI',
+      detalles: 'Consentimiento promocional otorgado',
+      severidad: 'info',
+    });
+  } catch {
+    // Non-blocking
+  }
+
+  return { success: true };
+}
+
+/**
+ * Add an authorized email to a recording (comma-separated, no duplicates).
+ */
+export async function addAuthorizedEmail(grabacionId, email) {
+  const all = await listarGrabaciones();
+  const grabacion = all.find(g => g.id === grabacionId);
+  if (!grabacion) throw new Error(`Grabacion no encontrada: ${grabacionId}`);
+
+  const emailNorm = email.toLowerCase().trim();
+  const existing = grabacion.emailsAutorizados
+    .split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+
+  if (existing.includes(emailNorm)) {
+    return { success: true, message: 'Email ya autorizado' };
+  }
+
+  existing.push(emailNorm);
+  await actualizarGrabacion(grabacionId, { emailsAutorizados: existing.join(', ') });
+
+  try {
+    const { logAudit } = await import('./audit-client.mjs');
+    await logAudit({
+      tabla: 'GRABACIONES',
+      operacion: 'UPDATE',
+      rowId: grabacionId,
+      usuario: 'grabaciones-client.mjs',
+      campos: JSON.stringify({ 'Emails autorizados': `+${emailNorm}` }),
+      fuente: 'CLI',
+      detalles: `Email autorizado anadido: ${emailNorm}`,
+      severidad: 'info',
+    });
+  } catch {
+    // Non-blocking
+  }
+
+  return { success: true };
+}
+
+/**
+ * Remove an authorized email from a recording.
+ */
+export async function removeAuthorizedEmail(grabacionId, email) {
+  const all = await listarGrabaciones();
+  const grabacion = all.find(g => g.id === grabacionId);
+  if (!grabacion) throw new Error(`Grabacion no encontrada: ${grabacionId}`);
+
+  const emailNorm = email.toLowerCase().trim();
+  const existing = grabacion.emailsAutorizados
+    .split(',').map(e => e.trim()).filter(Boolean);
+  const filtered = existing.filter(e => e.toLowerCase() !== emailNorm);
+
+  if (filtered.length === existing.length) {
+    return { success: true, message: 'Email no estaba en la lista' };
+  }
+
+  await actualizarGrabacion(grabacionId, { emailsAutorizados: filtered.join(', ') });
+
+  try {
+    const { logAudit } = await import('./audit-client.mjs');
+    await logAudit({
+      tabla: 'GRABACIONES',
+      operacion: 'UPDATE',
+      rowId: grabacionId,
+      usuario: 'grabaciones-client.mjs',
+      campos: JSON.stringify({ 'Emails autorizados': `-${emailNorm}` }),
+      fuente: 'CLI',
+      detalles: `Email autorizado eliminado: ${emailNorm}`,
+      severidad: 'info',
+    });
+  } catch {
+    // Non-blocking
+  }
+
+  return { success: true };
+}
+
+/**
  * Get all recordings past their expiration date that are still active.
  */
 export async function getExpired() {
@@ -288,7 +389,7 @@ async function main() {
 
   if (!command || command === 'help' || args.includes('--help')) {
     console.log(`
-Grabaciones Client IITD (N46) — RGPD Art. 5.1.e
+Grabaciones Client IITD (N46+N28) — RGPD Art. 5.1.e
 
 Comandos:
   list                                         Listar grabaciones
@@ -296,7 +397,10 @@ Comandos:
   list --curso "Teologia"                      Filtrar por curso
   create --curso "X" --url "Y" --caducidad YYYY-MM-DD
   check-access --email X --grabacion-id rwXXX  Verificar acceso
+  grant-consent --grabacion-id rwXXX           Otorgar consentimiento promocional
   revoke-consent --grabacion-id rwXXX          Revocar consentimiento promocional
+  add-access --grabacion-id rwXXX --email Y    Anadir email autorizado
+  remove-access --grabacion-id rwXXX --email Y Quitar email autorizado
 
 Estados: activa -> caducada -> archivada / eliminada
 `);
@@ -374,12 +478,49 @@ Estados: activa -> caducada -> archivada / eliminada
     return;
   }
 
+  if (command === 'grant-consent') {
+    const grabacionId = getArg('--grabacion-id');
+    if (!grabacionId) { console.error('Error: --grabacion-id es requerido'); process.exit(1); }
+
+    await grantConsentimiento(grabacionId);
+    console.log(`Consentimiento promocional otorgado para ${grabacionId}`);
+    return;
+  }
+
   if (command === 'revoke-consent') {
     const grabacionId = getArg('--grabacion-id');
     if (!grabacionId) { console.error('Error: --grabacion-id es requerido'); process.exit(1); }
 
     await revocarConsentimiento(grabacionId);
     console.log(`Consentimiento promocional revocado para ${grabacionId}`);
+    return;
+  }
+
+  if (command === 'add-access') {
+    const grabacionId = getArg('--grabacion-id');
+    const email = getArg('--email');
+    if (!grabacionId || !email) {
+      console.error('Error: --grabacion-id y --email son requeridos');
+      process.exit(1);
+    }
+
+    const result = await addAuthorizedEmail(grabacionId, email);
+    console.log(`Email autorizado anadido: ${email} → ${grabacionId}`);
+    if (result.message) console.log(`  (${result.message})`);
+    return;
+  }
+
+  if (command === 'remove-access') {
+    const grabacionId = getArg('--grabacion-id');
+    const email = getArg('--email');
+    if (!grabacionId || !email) {
+      console.error('Error: --grabacion-id y --email son requeridos');
+      process.exit(1);
+    }
+
+    const result = await removeAuthorizedEmail(grabacionId, email);
+    console.log(`Email autorizado eliminado: ${email} → ${grabacionId}`);
+    if (result.message) console.log(`  (${result.message})`);
     return;
   }
 

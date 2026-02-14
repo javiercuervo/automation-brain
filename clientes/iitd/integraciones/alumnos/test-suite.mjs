@@ -81,6 +81,8 @@ const MJS_FILES = [
   'compartido/cursos-client.mjs', 'operaciones/curso-publicar.mjs',
   'compartido/audit-client.mjs', 'operaciones/breach-notification.mjs',
   'compartido/grabaciones-client.mjs', 'operaciones/grabaciones-expiracion.mjs',
+  'compartido/productos-client.mjs', 'compartido/facturas-client.mjs',
+  'generacion/factura-centro-pdf.mjs', 'operaciones/grabaciones-compliance.mjs',
 ];
 
 console.log('TAP version 14');
@@ -643,6 +645,76 @@ if (FAST_MODE) {
     }
   } catch (err) {
     notOk('Dry-run: grabaciones-expiracion', err.stderr?.toString().split('\n')[0] || err.message);
+  }
+}
+
+// =====================================================
+// T32-T33 — N10/N28/N30 MODULE IMPORTS
+// =====================================================
+
+console.log('# T32-T33 — N10/N28/N30 module imports');
+
+try {
+  const mod = await import('./compartido/productos-client.mjs');
+  const exports = ['listarProductos', 'crearProducto', 'calcularPrecioBundle'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  if (missing.length === 0) {
+    ok('Import: productos-client.mjs (3 exports)');
+  } else {
+    notOk('Import: productos-client.mjs', `missing: ${missing.join(', ')}`);
+  }
+} catch (err) {
+  notOk('Import: productos-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/facturas-client.mjs');
+  const exports = ['listarFacturas', 'crearFactura', 'getNextFacturaNumber'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasEstados = mod.ESTADOS_FACTURA && typeof mod.ESTADOS_FACTURA === 'object';
+  if (missing.length === 0 && hasEstados) {
+    ok('Import: facturas-client.mjs (3 fn + ESTADOS_FACTURA)');
+  } else {
+    notOk('Import: facturas-client.mjs', `missing fn: ${missing.join(', ')}${!hasEstados ? ', ESTADOS_FACTURA' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: facturas-client.mjs', err.message);
+}
+
+// =====================================================
+// T34 — N10/N30 ENV VARS
+// =====================================================
+
+console.log('# T34 — N10/N30 env vars');
+
+const N10_N30_VARS = ['STACKBY_PRODUCTOS_TABLE_ID', 'STACKBY_FACTURAS_CENTROS_TABLE_ID'];
+const missingN10 = N10_N30_VARS.filter(v => !process.env[v]);
+if (missingN10.length === 0) {
+  ok(`Env: N10/N30 vars definidas (${N10_N30_VARS.length})`);
+} else {
+  notOk('Env: N10/N30 vars', `missing: ${missingN10.join(', ')}`);
+}
+
+// =====================================================
+// T35 — N28 GRABACIONES COMPLIANCE DRY-RUN
+// =====================================================
+
+console.log('# T35 — N28 grabaciones-compliance');
+
+if (FAST_MODE) {
+  skip('Dry-run: grabaciones-compliance', 'fast mode');
+} else {
+  try {
+    const out = execSync(`node "${resolve(__dirname, 'operaciones/grabaciones-compliance.mjs')}"`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (out.includes('COMPLIANCE GRABACIONES') || out.includes('Total grabaciones')) {
+      ok('Dry-run: grabaciones-compliance');
+    } else {
+      notOk('Dry-run: grabaciones-compliance', 'output missing expected markers');
+    }
+  } catch (err) {
+    notOk('Dry-run: grabaciones-compliance', err.stderr?.toString().split('\n')[0] || err.message);
   }
 }
 

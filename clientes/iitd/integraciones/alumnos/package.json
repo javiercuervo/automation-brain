@@ -22,6 +22,10 @@
     "grabaciones": "node compartido/grabaciones-client.mjs list",
     "grabaciones:expire": "node operaciones/grabaciones-expiracion.mjs --expire --dry-run",
     "grabaciones:sheet": "node operaciones/grabaciones-expiracion.mjs --sheet",
+    "grabaciones:compliance": "node operaciones/grabaciones-compliance.mjs",
+    "productos": "node compartido/productos-client.mjs list",
+    "facturas": "node compartido/facturas-client.mjs list",
+    "factura:pdf": "node generacion/factura-centro-pdf.mjs",
     "test": "node test-suite.mjs",
     "test:fast": "node test-suite.mjs --fast"
   },
