@@ -150,6 +150,10 @@ const TEMPLATE_SUBJECTS = {
   'respuesta-ticket': 'Re: {{asunto}} — {{institucion_nombre}} ({{ticket_id}})',
   'ticket-escalado': 'Ticket escalado: {{ticket_id}} — {{asunto}}',
   'newsletter-baja-confirmacion': 'Confirmacion de baja — Newsletter {{institucion_nombre}}',
+  'curso-gratuito-bienvenida': 'Bienvenido/a al curso gratuito — {{institucion_nombre}}',
+  'curso-gratuito-leccion': '{{curso_gratuito}} — Leccion {{dia_numero}} — {{institucion_nombre}}',
+  'curso-gratuito-upsell': 'Continua tu formacion — {{institucion_nombre}}',
+  'tutorias-oferta': 'Tutorias personalizadas para ti — {{institucion_nombre}}',
 };
 
 // =====================================================

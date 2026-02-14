@@ -87,6 +87,17 @@ const MJS_FILES = [
   'compartido/faq-responder.mjs', 'compartido/centros-acceso-client.mjs',
   'operaciones/newsletter-consent-report.mjs', 'operaciones/ticket-processor.mjs',
   'operaciones/centros-exportar.mjs',
+  // Sprint 10 — N18, N31, N32, N33, N37
+  'compartido/leads-client.mjs', 'compartido/tutorias-client.mjs',
+  'compartido/videos-client.mjs', 'compartido/holded-client.mjs',
+  'compartido/campaigns-client.mjs',
+  'operaciones/onboarding-funnel.mjs', 'operaciones/tutorias-upsell.mjs',
+  'operaciones/videos-publicar.mjs', 'operaciones/migracion-holded.mjs',
+  'operaciones/google-grants-report.mjs',
+  // Sprint 11 — N15/N17/N23 (OCH)
+  'compartido/och-client.mjs',
+  'sincronizacion/och-enrollment.mjs',
+  'datos/och-csv-import.mjs',
 ];
 
 console.log('TAP version 14');
@@ -833,6 +844,167 @@ try {
   }
 } catch (err) {
   notOk('RGPD: CAMPOS_MINIMOS_CENTRO', err.message);
+}
+
+// =====================================================
+// T43-T47 — SPRINT 10 MODULE IMPORTS (N18/N31/N32/N33/N37)
+// =====================================================
+
+console.log('# T43-T47 — Sprint 10 module imports');
+
+try {
+  const mod = await import('./compartido/leads-client.mjs');
+  const exports = ['listLeads', 'findByEmail', 'createLead', 'updateLead', 'getStats'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.LEAD_ESTADOS && mod.LEAD_ORIGENES;
+  if (missing.length === 0 && hasConst) {
+    ok('Import: leads-client.mjs (5 fn + LEAD_ESTADOS + LEAD_ORIGENES)');
+  } else {
+    notOk('Import: leads-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: leads-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/tutorias-client.mjs');
+  const exports = ['listOfertas', 'findByEmail', 'createOferta', 'updateOferta', 'getStats'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.OFERTA_ESTADOS && typeof mod.OFERTA_ESTADOS === 'object';
+  if (missing.length === 0 && hasConst) {
+    ok('Import: tutorias-client.mjs (5 fn + OFERTA_ESTADOS)');
+  } else {
+    notOk('Import: tutorias-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', OFERTA_ESTADOS' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: tutorias-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/videos-client.mjs');
+  const exports = ['listVideos', 'findByTitulo', 'createVideo', 'updateVideo', 'getStats', 'generateEmbed'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.VIDEO_ESTADOS && mod.IDIOMAS;
+  if (missing.length === 0 && hasConst) {
+    ok('Import: videos-client.mjs (6 fn + VIDEO_ESTADOS + IDIOMAS)');
+  } else {
+    notOk('Import: videos-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: videos-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/holded-client.mjs');
+  const exports = ['listAllContacts', 'listAllProducts', 'listAllInvoices',
+    'createContact', 'createProduct', 'createInvoice', 'alumnoToHoldedContact', 'getAccountInfo'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  if (missing.length === 0) {
+    ok('Import: holded-client.mjs (8 exports)');
+  } else {
+    notOk('Import: holded-client.mjs', `missing: ${missing.join(', ')}`);
+  }
+} catch (err) {
+  notOk('Import: holded-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/campaigns-client.mjs');
+  const exports = ['listCampaigns', 'createCampaign', 'updateCampaign', 'getStats'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  const hasConst = mod.CAMPAIGN_ESTADOS && mod.PLATAFORMAS;
+  if (missing.length === 0 && hasConst) {
+    ok('Import: campaigns-client.mjs (4 fn + CAMPAIGN_ESTADOS + PLATAFORMAS)');
+  } else {
+    notOk('Import: campaigns-client.mjs', `missing fn: ${missing.join(', ')}${!hasConst ? ', constants' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: campaigns-client.mjs', err.message);
+}
+
+// =====================================================
+// T48-T52 — SPRINT 10 --help CHECKS
+// =====================================================
+
+console.log('# T48-T52 — Sprint 10 --help checks');
+
+const SPRINT10_HELP_SCRIPTS = [
+  { file: 'compartido/leads-client.mjs', args: '--help', name: 'leads-client', marker: 'Leads Client' },
+  { file: 'operaciones/onboarding-funnel.mjs', args: '--help', name: 'onboarding-funnel', marker: 'Onboarding Funnel' },
+  { file: 'operaciones/tutorias-upsell.mjs', args: '--help', name: 'tutorias-upsell', marker: 'Tutorias Upsell' },
+  { file: 'operaciones/videos-publicar.mjs', args: '--help', name: 'videos-publicar', marker: 'Videos Publicar' },
+  { file: 'operaciones/google-grants-report.mjs', args: '--help', name: 'google-grants-report', marker: 'Google Grants' },
+];
+
+for (const { file, args, name, marker } of SPRINT10_HELP_SCRIPTS) {
+  try {
+    const out = execSync(`node "${resolve(__dirname, file)}" ${args}`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 15000,
+    }).toString();
+    if (out.includes(marker)) {
+      ok(`Help: ${name} --help`);
+    } else {
+      notOk(`Help: ${name}`, `output missing "${marker}"`);
+    }
+  } catch (err) {
+    notOk(`Help: ${name}`, err.stderr?.toString().split('\n')[0] || err.message);
+  }
+}
+
+// =====================================================
+// T53-T54 — SPRINT 11 MODULE IMPORTS (OCH)
+// =====================================================
+
+console.log('# T53-T54 — Sprint 11 module imports (OCH)');
+
+try {
+  const mod = await import('./compartido/och-client.mjs');
+  const exports = ['listCourses', 'findCourse', 'enrollStudent', 'enrollByCourseName', 'testConnection'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  if (missing.length === 0) {
+    ok('Import: och-client.mjs (5 exports)');
+  } else {
+    notOk('Import: och-client.mjs', `missing: ${missing.join(', ')}`);
+  }
+} catch (err) {
+  notOk('Import: och-client.mjs', err.message);
+}
+
+// T54: OCH_API_KEY check (informational — not required to pass)
+{
+  const hasKey = !!process.env.OCH_API_KEY || !!process.env.OCH_INTEGRATION_TOKEN;
+  if (hasKey) {
+    ok('Env: OCH_API_KEY configurada');
+  } else {
+    skip('Env: OCH_API_KEY', 'no configurada (obtener de OCH Admin > Settings > Pabbly Integrations)');
+  }
+}
+
+// =====================================================
+// T55-T57 — SPRINT 11 --help CHECKS
+// =====================================================
+
+console.log('# T55-T57 — Sprint 11 --help checks');
+
+const SPRINT11_HELP_SCRIPTS = [
+  { file: 'compartido/och-client.mjs', args: '--help', name: 'och-client', marker: 'OCH Client' },
+  { file: 'sincronizacion/och-enrollment.mjs', args: '--help', name: 'och-enrollment', marker: 'OCH Auto-Enrollment' },
+  { file: 'datos/och-csv-import.mjs', args: '--help', name: 'och-csv-import', marker: 'OCH CSV Import' },
+];
+
+for (const { file, args, name, marker } of SPRINT11_HELP_SCRIPTS) {
+  try {
+    const out = execSync(`node "${resolve(__dirname, file)}" ${args}`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 15000,
+    }).toString();
+    if (out.includes(marker)) {
+      ok(`Help: ${name} --help`);
+    } else {
+      notOk(`Help: ${name}`, `output missing "${marker}"`);
+    }
+  } catch (err) {
+    notOk(`Help: ${name}`, err.stderr?.toString().split('\n')[0] || err.message);
+  }
 }
 
 // =====================================================
