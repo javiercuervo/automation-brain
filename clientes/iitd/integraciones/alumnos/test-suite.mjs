@@ -78,6 +78,9 @@ const MJS_FILES = [
   'generacion/pdf-signer.mjs',
   'datos/assign-ids.mjs', 'datos/dedup-alumnos.mjs',
   'datos/exportar-alumno.mjs', 'datos/import-polar.mjs',
+  'compartido/cursos-client.mjs', 'operaciones/curso-publicar.mjs',
+  'compartido/audit-client.mjs', 'operaciones/breach-notification.mjs',
+  'compartido/grabaciones-client.mjs', 'operaciones/grabaciones-expiracion.mjs',
 ];
 
 console.log('TAP version 14');
@@ -556,6 +559,90 @@ if (FAST_MODE) {
     }
   } catch (err) {
     notOk('Profesores: refresh --dry-run', err.stderr?.toString().split('\n')[0] || err.message);
+  }
+}
+
+// =====================================================
+// T27-T28 — N45/N46 MODULE IMPORTS
+// =====================================================
+
+console.log('# T27-T28 — N45/N46 module imports');
+
+try {
+  const mod = await import('./compartido/audit-client.mjs');
+  const exports = ['logAudit', 'logBulkAudit', 'getAuditLog', 'detectAnomalies'];
+  const missing = exports.filter(e => typeof mod[e] !== 'function');
+  if (missing.length === 0) {
+    ok('Import: audit-client.mjs (4 exports)');
+  } else {
+    notOk('Import: audit-client.mjs', `missing: ${missing.join(', ')}`);
+  }
+} catch (err) {
+  notOk('Import: audit-client.mjs', err.message);
+}
+
+try {
+  const mod = await import('./compartido/grabaciones-client.mjs');
+  const fnExports = ['listarGrabaciones', 'crearGrabacion', 'actualizarGrabacion', 'verificarAcceso', 'getExpired'];
+  const missing = fnExports.filter(e => typeof mod[e] !== 'function');
+  const hasEstados = mod.ESTADOS_GRABACION && typeof mod.ESTADOS_GRABACION === 'object';
+  if (missing.length === 0 && hasEstados) {
+    ok('Import: grabaciones-client.mjs (5 fn + ESTADOS_GRABACION)');
+  } else {
+    notOk('Import: grabaciones-client.mjs', `missing fn: ${missing.join(', ')}${!hasEstados ? ', ESTADOS_GRABACION' : ''}`);
+  }
+} catch (err) {
+  notOk('Import: grabaciones-client.mjs', err.message);
+}
+
+// =====================================================
+// T29 — N45/N46 ENV VARS
+// =====================================================
+
+console.log('# T29 — N45/N46 env vars');
+
+const N45_N46_VARS = ['STACKBY_AUDIT_LOG_TABLE_ID', 'STACKBY_GRABACIONES_TABLE_ID', 'IITD_DIRECTOR_EMAIL'];
+const missingN45 = N45_N46_VARS.filter(v => !process.env[v]);
+if (missingN45.length === 0) {
+  ok(`Env: N45/N46 vars definidas (${N45_N46_VARS.length})`);
+} else {
+  notOk('Env: N45/N46 vars', `missing: ${missingN45.join(', ')}`);
+}
+
+// =====================================================
+// T30-T31 — N45/N46 DRY-RUNS
+// =====================================================
+
+console.log('# T30-T31 — N45/N46 dry-runs');
+
+if (FAST_MODE) {
+  skip('Dry-run: breach-notification --report', 'fast mode');
+  skip('Dry-run: grabaciones-expiracion', 'fast mode');
+} else {
+  try {
+    const out = execSync(`node "${resolve(__dirname, 'operaciones/breach-notification.mjs')}" --report`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (out.includes('Informe de anomalias') || out.includes('anomal')) {
+      ok('Dry-run: breach-notification --report');
+    } else {
+      notOk('Dry-run: breach-notification --report', 'output missing expected markers');
+    }
+  } catch (err) {
+    notOk('Dry-run: breach-notification --report', err.stderr?.toString().split('\n')[0] || err.message);
+  }
+
+  try {
+    const out = execSync(`node "${resolve(__dirname, 'operaciones/grabaciones-expiracion.mjs')}"`, {
+      cwd: __dirname, stdio: 'pipe', timeout: 60000,
+    }).toString();
+    if (out.includes('Informe de grabaciones') || out.includes('Total:')) {
+      ok('Dry-run: grabaciones-expiracion');
+    } else {
+      notOk('Dry-run: grabaciones-expiracion', 'output missing expected markers');
+    }
+  } catch (err) {
+    notOk('Dry-run: grabaciones-expiracion', err.stderr?.toString().split('\n')[0] || err.message);
   }
 }
 

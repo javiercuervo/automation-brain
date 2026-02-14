@@ -16,6 +16,12 @@
     "profes:sync": "node sincronizacion/sheets-profesores.mjs --sync",
     "profes:refresh": "node sincronizacion/sheets-profesores.mjs --refresh",
     "profes:share": "node sincronizacion/sheets-profesores.mjs --share",
+    "audit": "node compartido/audit-client.mjs list",
+    "audit:anomalies": "node compartido/audit-client.mjs anomalies",
+    "breach": "node operaciones/breach-notification.mjs --report",
+    "grabaciones": "node compartido/grabaciones-client.mjs list",
+    "grabaciones:expire": "node operaciones/grabaciones-expiracion.mjs --expire --dry-run",
+    "grabaciones:sheet": "node operaciones/grabaciones-expiracion.mjs --sheet",
     "test": "node test-suite.mjs",
     "test:fast": "node test-suite.mjs --fast"
   },

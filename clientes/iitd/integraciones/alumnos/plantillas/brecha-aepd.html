@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#1a5276;margin:0;">Notificacion de brecha de datos personales</h2>
+  <p style="color:#666;margin:4px 0 0;">Art. 33 Reglamento (UE) 2016/679 (RGPD)</p>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">1. Identificacion del responsable del tratamiento</p>
+  <ul style="margin:0;padding-left:20px;">
+    <li><strong>Nombre:</strong> {{institucion_nombre}}</li>
+    <li><strong>NIF:</strong> {{iitd_nif}}</li>
+    <li><strong>Direccion:</strong> {{iitd_direccion}}, {{iitd_cp}} {{iitd_ciudad}}</li>
+    <li><strong>Contacto DPD:</strong> {{institucion_email}}</li>
+    <li><strong>Telefono:</strong> {{iitd_telefono}}</li>
+    <li><strong>Web:</strong> {{institucion_web}}</li>
+  </ul>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">2. Datos del incidente</p>
+  <ul style="margin:0;padding-left:20px;">
+    <li><strong>ID Brecha:</strong> {{breach_id}}</li>
+    <li><strong>Fecha y hora de deteccion:</strong> {{fecha_deteccion}}</li>
+    <li><strong>Naturaleza de la brecha:</strong> {{descripcion}}</li>
+  </ul>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">3. Categorias de datos y afectados</p>
+  <ul style="margin:0;padding-left:20px;">
+    <li><strong>Tablas/sistemas afectados:</strong> {{tablas_afectadas}}</li>
+    <li><strong>Categorias de datos personales:</strong> {{tipo_datos}}</li>
+    <li><strong>Numero aproximado de interesados afectados:</strong> {{registros_afectados}}</li>
+    <li><strong>Categorias de interesados:</strong> Alumnos matriculados, solicitantes de informacion</li>
+  </ul>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">4. Consecuencias probables</p>
+  <p style="margin:0;">{{consecuencias}}</p>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">5. Medidas adoptadas o propuestas</p>
+  <p style="margin:0;">{{medidas_adoptadas}}</p>
+</div>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 12px;font-weight:bold;font-size:15px;">6. Comunicacion a los interesados</p>
+  <p style="margin:0;">{{comunicacion_afectados}}</p>
+</div>
+
+<hr style="border:none;border-top:1px solid #ccc;margin:24px 0;">
+
+<p style="font-size:12px;color:#666;">
+  Esta notificacion se realiza en cumplimiento del articulo 33 del Reglamento (UE) 2016/679
+  relativo a la proteccion de las personas fisicas en lo que respecta al tratamiento de datos
+  personales y a la libre circulacion de estos datos (RGPD).<br><br>
+  Para mas informacion, puede contactar con el responsable del tratamiento en
+  <a href="mailto:{{institucion_email}}" style="color:#1a5276;">{{institucion_email}}</a>.
+</p>
+
+</body>
+</html>

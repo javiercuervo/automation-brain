@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#c0392b;margin:0;">URGENTE: Posible brecha de seguridad</h2>
+  <p style="color:#666;margin:4px 0 0;">{{institucion_nombre}}</p>
+</div>
+
+<p>Estimado/a Director/a,</p>
+
+<p>Se ha detectado una posible brecha de seguridad en los sistemas de datos personales del {{institucion_nombre}}.</p>
+
+<div style="background:#fdf2f2;border-left:4px solid #c0392b;border-radius:4px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 8px;"><strong>Datos del incidente:</strong></p>
+  <ul style="margin:0;padding-left:20px;">
+    <li><strong>ID Brecha:</strong> {{breach_id}}</li>
+    <li><strong>Fecha deteccion:</strong> {{fecha_deteccion}}</li>
+    <li><strong>Descripcion:</strong> {{descripcion}}</li>
+    <li><strong>Tablas afectadas:</strong> {{tablas_afectadas}}</li>
+    <li><strong>Registros afectados (aprox.):</strong> {{registros_afectados}}</li>
+    <li><strong>Tipo de datos:</strong> {{tipo_datos}}</li>
+  </ul>
+</div>
+
+<p><strong>Acciones recomendadas:</strong></p>
+<ol>
+  <li>Evaluar la gravedad del incidente y determinar si constituye una brecha de datos personales</li>
+  <li>Documentar las medidas adoptadas o previstas</li>
+  <li><strong style="color:#c0392b;">Si se confirma la brecha: notificar a la AEPD en un plazo maximo de 72 horas</strong> (Art. 33 RGPD)</li>
+  <li>Si existe riesgo alto para los derechos de los interesados: notificar a los afectados (Art. 34 RGPD)</li>
+</ol>
+
+<div style="background:#fff3cd;border-radius:8px;padding:12px;margin:16px 0;">
+  <p style="margin:0;"><strong>Plazo legal AEPD:</strong> La notificacion debe realizarse antes de las <strong>72 horas</strong> desde la deteccion del incidente. Fecha limite estimada: {{fecha_limite_aepd}}</p>
+</div>
+
+<p>Para generar la notificacion AEPD, ejecute:</p>
+<pre style="background:#f4f4f4;padding:12px;border-radius:4px;font-size:13px;overflow-x:auto;">node operaciones/breach-notification.mjs --notify-aepd --breach-id {{breach_id}} --confirm</pre>
+
+<p>Atentamente,<br>
+<strong>Sistema de Auditoria RGPD</strong><br>
+{{institucion_nombre}}<br>
+<a href="https://{{institucion_web}}" style="color:#c0392b;">{{institucion_web}}</a></p>
+
+</body>
+</html>

@@ -144,6 +144,9 @@ const TEMPLATE_SUBJECTS = {
   'recibo-adjunto': 'Recibo de matrícula — {{institucion_nombre}}',
   'recordatorio-pago': 'Recordatorio: pago de matrícula pendiente — {{institucion_nombre}}',
   'revision-coeo': 'Revisión COEO pendiente: {{nombre_curso}} — {{institucion_nombre}}',
+  'brecha-director': 'URGENTE: Posible brecha de seguridad — {{institucion_nombre}}',
+  'brecha-aepd': 'Notificación de brecha de datos personales — {{institucion_nombre}} ({{iitd_nif}})',
+  'brecha-afectado': 'Información importante sobre sus datos personales — {{institucion_nombre}}',
 };
 
 // =====================================================
