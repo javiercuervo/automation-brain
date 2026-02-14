@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;max-width:600px;margin:0 auto;padding:20px;">
+
+<div style="text-align:center;margin-bottom:24px;">
+  <h2 style="color:#1a5276;margin:0;">{{institucion_nombre}}</h2>
+  <p style="color:#666;margin:4px 0 0;">Revisión COEO pendiente</p>
+</div>
+
+<p>Hola <strong>{{revisor}}</strong>,</p>
+
+<p>El curso <strong>{{nombre_curso}}</strong> ha sido enviado para revisión COEO.</p>
+
+<div style="background:#f0f4f8;border-radius:8px;padding:16px;margin:16px 0;">
+  <p style="margin:0 0 8px;"><strong>Datos del curso:</strong></p>
+  <ul style="margin:0;padding-left:20px;">
+    <li><strong>Programa:</strong> {{programa}}</li>
+    <li><strong>URL slug:</strong> {{url_slug}}</li>
+    <li><strong>Responsable:</strong> {{responsable}}</li>
+    <li><strong>Fecha envío:</strong> {{fecha}}</li>
+  </ul>
+</div>
+
+<p><strong>Checklist COEO a verificar:</strong></p>
+<ul>
+  <li>Título optimizado (50-60 caracteres)</li>
+  <li>URL slug definido y coherente</li>
+  <li>Descripción SEO (120-160 caracteres)</li>
+  <li>Keywords SEO definidas</li>
+  <li>Enlazado interno y CTAs</li>
+  <li>Enlace LMS configurado</li>
+</ul>
+
+<p>Una vez revisado, comunique el resultado a <a href="mailto:{{institucion_email}}" style="color:#1a5276;">{{institucion_email}}</a> para proceder a la validación o solicitar correcciones.</p>
+
+<p>Atentamente,<br>
+<strong>Secretaría Académica</strong><br>
+{{institucion_nombre}}<br>
+<a href="https://{{institucion_web}}" style="color:#1a5276;">{{institucion_web}}</a></p>
+
+</body>
+</html>

@@ -6,13 +6,7 @@
  * Modulo reutilizable de email transaccional con plantillas HTML.
  * Usa nodemailer con SMTP configurable via .env.
  *
- * Estado: 🔧 Implementado, pendiente config SMTP
- * Cuando IITD proporcione credenciales SMTP, anadir a .env:
- *   SMTP_HOST=smtp.example.com
- *   SMTP_PORT=587
- *   SMTP_USER=user@institutoteologia.org
- *   SMTP_PASS=password
- *   SMTP_FROM=Instituto Internacional de Teologia <informacion@institutoteologia.org>
+ * Estado: ✅ Operativo — SMTP configurado (notificaciones@institutoteologia.org)
  *
  * Usage como modulo:
  *   import { sendEmail, sendTemplate } from './email-sender.mjs';
@@ -149,6 +143,7 @@ const TEMPLATE_SUBJECTS = {
   'notas-publicadas': 'Tus calificaciones han sido publicadas — {{institucion_nombre}}',
   'recibo-adjunto': 'Recibo de matrícula — {{institucion_nombre}}',
   'recordatorio-pago': 'Recordatorio: pago de matrícula pendiente — {{institucion_nombre}}',
+  'revision-coeo': 'Revisión COEO pendiente: {{nombre_curso}} — {{institucion_nombre}}',
 };
 
 // =====================================================
